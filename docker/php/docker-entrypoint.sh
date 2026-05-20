@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+# Ne pas faire planter le conteneur si migrate/cache échoue au démarrage (DB pas encore prête)
+handle_startup_cmd() {
+    "$@" || echo "[entrypoint] Avertissement: échec de la commande: $*"
+}
+
 cd /var/www/html
 
 fix_permissions() {
@@ -41,12 +46,12 @@ if [ "${APP_ENV:-local}" = "production" ]; then
     php artisan storage:link --force 2>/dev/null || true
 
     if [ "${RUN_MIGRATIONS:-false}" = "true" ]; then
-        php artisan migrate --force
+        handle_startup_cmd php artisan migrate --force
     fi
 
-    php artisan config:cache
-    php artisan route:cache
-    php artisan view:cache
+    handle_startup_cmd php artisan config:cache
+    handle_startup_cmd php artisan route:cache
+    handle_startup_cmd php artisan view:cache
 fi
 
 fix_permissions
