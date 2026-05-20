@@ -43,6 +43,9 @@
                             if ($name === 'umt') $label = 'UAG';
                             if ($name === 'unsp') $label = 'UPNS';
                             if ($name === 'ubt') $label = 'UGBT';
+                            if ($name === 'sgb') $label = 'SGB';
+                            if ($name === 'ual') $label = 'UAL';
+                            if ($name === 'ucc') $label = 'UCC';
                         @endphp
                         <option value="{{ $name }}" {{ request('role') === $name ? 'selected' : '' }}>
                             {{ $label }}
@@ -124,13 +127,22 @@
                                 <div class="flex flex-wrap gap-1">
                                     @foreach($user->roles as $role)
                                         @php
+                                            $roleName = $role->name;
+                                            $roleLabel = ucfirst($roleName);
+                                            if ($roleName === 'umt') $roleLabel = 'UAG';
+                                            if ($roleName === 'unsp') $roleLabel = 'UPNS';
+                                            if ($roleName === 'ubt') $roleLabel = 'UGBT';
+                                            if ($roleName === 'sgb') $roleLabel = 'SGB';
+                                            if ($roleName === 'ual') $roleLabel = 'UAL';
+                                            if ($roleName === 'ucc') $roleLabel = 'UCC';
+
                                             $roleColors = [
                                                 'admin' => 'bg-red-100 text-red-700',
                                                 'user' => 'bg-blue-100 text-blue-700',
                                             ];
                                         @endphp
-                                        <span class="px-2 py-0.5 text-xs font-medium rounded-full {{ $roleColors[$role->name] ?? 'bg-gray-100 text-gray-700' }}">
-                                            {{ ucfirst($role->name) }}
+                                        <span class="px-2 py-0.5 text-xs font-medium rounded-full {{ $roleColors[$roleName] ?? 'bg-gray-100 text-gray-700' }}">
+                                            {{ $roleLabel }}
                                         </span>
                                     @endforeach
                                 </div>

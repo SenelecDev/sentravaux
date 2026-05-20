@@ -193,7 +193,7 @@
                             <label class="block text-sm font-medium text-gray-700 mb-1">Chef d'équipe</label>
                             <select name="chef_equipe_id" class="select2-users" @if($isTermine) disabled @endif>
                                 <option value="">-- Sélectionner --</option>
-                                @foreach($users as $user)
+                                @foreach(($chefEquipeUsers ?? $users) as $user)
                                     <option value="{{ $user->id }}" {{ old('chef_equipe_id', $demande->chef_equipe_id) == $user->id ? 'selected' : '' }}>
                                         {{ $user->name }} @if($user->matricule) - {{ $user->matricule }} @endif
                                     </option>

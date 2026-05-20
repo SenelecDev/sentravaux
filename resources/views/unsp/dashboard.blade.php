@@ -41,6 +41,11 @@
                             <option value="{{ $y }}" {{ $annee == $y ? 'selected' : '' }}>{{ $y }}</option>
                         @endfor
                     </select>
+                    <select name="team_type" class="input-senelec text-sm py-1.5" onchange="this.form.submit()">
+                        <option value="">Tous types</option>
+                        <option value="interne" {{ ($teamType ?? '') === 'interne' ? 'selected' : '' }}>Interne</option>
+                        <option value="externe" {{ ($teamType ?? '') === 'externe' ? 'selected' : '' }}>Externe</option>
+                    </select>
                 </form>
             </div>
         </div>

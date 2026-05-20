@@ -15,6 +15,12 @@
                         {{ ucfirst(str_replace('_', ' ', $statutFilter)) }}
                     </span>
                 @endif
+                @if(!empty($teamTypeFilter))
+                    · Type :
+                    <span class="font-semibold">
+                        {{ $teamTypeFilter === 'interne' ? 'Travaux internes' : 'Travaux externes' }}
+                    </span>
+                @endif
             </p>
         </div>
         <div class="mt-4 md:mt-0 flex items-center gap-3">
@@ -43,6 +49,25 @@
         ];
     @endphp
 
+    {{-- Filtres complémentaires --}}
+    <div class="card-senelec p-4">
+        <form method="GET" action="{{ route('demande.index') }}" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+            <div class="md:col-span-2">
+                <label for="team_type" class="block text-sm font-semibold text-gray-700 mb-1">Type de travaux</label>
+                <select name="team_type" id="team_type" class="input-senelec">
+                    <option value="">Tous les types</option>
+                    <option value="interne" {{ ($teamTypeFilter ?? '') === 'interne' ? 'selected' : '' }}>Travaux internes</option>
+                    <option value="externe" {{ ($teamTypeFilter ?? '') === 'externe' ? 'selected' : '' }}>Travaux externes</option>
+                </select>
+            </div>
+            <input type="hidden" name="statut" value="{{ $statutFilter }}">
+            <div class="flex gap-2">
+                <button type="submit" class="btn-senelec flex-1">Filtrer</button>
+                <a href="{{ route('demande.index') }}" class="btn-secondary px-4">Réinitialiser</a>
+            </div>
+        </form>
+    </div>
+
     {{-- 2 lignes de cards (5 colonnes en desktop : 1 "Tout" + 9 statuts) --}}
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {{-- Card "Tout" pour réinitialiser --}}
@@ -50,7 +75,7 @@
             $isAllActive = empty($statutFilter);
             $allClass = 'stat-card-gray' . ($isAllActive ? ' ring-2 ring-senelec-purple' : '');
         @endphp
-        <a href="{{ route('demande.index') }}" class="block">
+        <a href="{{ route('demande.index', array_filter(['team_type' => $teamTypeFilter])) }}" class="block">
             <div class="{{ $allClass }}">
                 <div class="flex items-center justify-between">
                     <div>
@@ -66,7 +91,7 @@
                 $isActive = !empty($statutFilter) && $statutFilter === $key;
                 $cardClass = $meta['class'] . ($isActive ? ' ring-2 ring-senelec-purple' : '');
             @endphp
-            <a href="{{ route('demande.index', ['statut' => $key]) }}" class="block">
+            <a href="{{ route('demande.index', array_filter(['statut' => $key, 'team_type' => $teamTypeFilter])) }}" class="block">
                 <div class="{{ $cardClass }}">
                     <div class="flex items-center justify-between">
                         <div>
@@ -82,6 +107,7 @@
     <x-demandes-table 
         :demandes="$demandes" 
         :show-user="false" 
+        :show-rejection-reason="true"
         edit-route="demande.edit" 
     />
 </div>

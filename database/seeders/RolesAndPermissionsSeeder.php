@@ -71,6 +71,10 @@ class RolesAndPermissionsSeeder extends Seeder
         $seg = Role::firstOrCreate(['name' => 'seg']);
         $seg->givePermissionTo(['demande.view', 'demande.dispatch', 'demande.imputer', 'demande.valider']);
 
+        // SGB - Service Gestions Budget
+        $sgb = Role::firstOrCreate(['name' => 'sgb']);
+        $sgb->givePermissionTo(['demande.view', 'demande.dispatch', 'demande.imputer', 'demande.valider']);
+
         // UMT - Unité Maintenance Technique (SA/UAG)
         $umt = Role::firstOrCreate(['name' => 'umt']);
         $umt->givePermissionTo(['demande.view', 'demande.valider', 'demande.terminer', 'demande.cloturer']);
@@ -90,6 +94,14 @@ class RolesAndPermissionsSeeder extends Seeder
         // UTGC - Unité Travaux Génie Civil (SEG/UTGC)
         $utgc = Role::firstOrCreate(['name' => 'utgc']);
         $utgc->givePermissionTo(['demande.view', 'demande.valider', 'demande.terminer', 'demande.cloturer']);
+
+        // UAL - Unité Analyse et Liquidation (SGB/UAL)
+        $ual = Role::firstOrCreate(['name' => 'ual']);
+        $ual->givePermissionTo(['demande.view', 'demande.valider', 'demande.terminer', 'demande.cloturer']);
+
+        // UCC - Unité Contrôle et Conformité (SGB/UCC)
+        $ucc = Role::firstOrCreate(['name' => 'ucc']);
+        $ucc->givePermissionTo(['demande.view', 'demande.valider', 'demande.terminer', 'demande.cloturer']);
 
         // Chef d'équipe
         $equipe = Role::firstOrCreate(['name' => 'equipe']);

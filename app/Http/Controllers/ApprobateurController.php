@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Demande;
+use App\Models\DemandeRejection;
 use App\Models\User;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
@@ -95,11 +96,21 @@ class ApprobateurController extends Controller
                 $demande->approved_by = auth()->user()->id;
                 $demande->commentaire_approbation = $request->commentaire;
 
-                // Affecter automatiquement au service SA ou SEG selon nature + unite_code
+                // Affecter automatiquement au service SA / SEG / SGB selon nature + unite_code
                 $uniteInfo = \App\Helpers\ServiceRedirectionHelper::getUniteFromNature($demande->nature, $demande->unite_code);
 
                 if ($uniteInfo) {
-                    $serviceRole = $uniteInfo['service'] === 'SA' ? 'sad' : 'seg';
+                    $serviceRole = match ($uniteInfo['service']) {
+                        'SA' => 'sad',
+                        'SEG' => 'seg',
+                        'SGB' => 'sgb',
+                        default => null,
+                    };
+
+                    if (!$serviceRole) {
+                        throw new \RuntimeException('Service de redirection non géré: ' . ($uniteInfo['service'] ?? 'inconnu'));
+                    }
+
                     $serviceManager = User::whereHas('roles', function ($query) use ($serviceRole) {
                         $query->where('name', $serviceRole);
                     })->first();
@@ -109,6 +120,8 @@ class ApprobateurController extends Controller
                             $demande->sad_id = $serviceManager->id;
                         } elseif ($uniteInfo['service'] === 'SEG') {
                             $demande->seg_id = $serviceManager->id;
+                        } elseif ($uniteInfo['service'] === 'SGB') {
+                            $demande->sgb_id = $serviceManager->id;
                         }
                     }
                 }
@@ -120,6 +133,13 @@ class ApprobateurController extends Controller
                 $demande->statut = 'rejete';
                 $demande->motif = $request->motif;
                 $demande->rejected_by = auth()->user()->id;
+                DemandeRejection::create([
+                    'demande_id' => $demande->id,
+                    'rejected_by' => auth()->id(),
+                    'rejection_level' => 'n1',
+                    'reason' => (string) $request->motif,
+                    'rejected_at' => now(),
+                ]);
                 NotificationService::demandeRejetee($demande, auth()->user(), $request->motif);
             }
 

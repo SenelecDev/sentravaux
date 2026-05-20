@@ -11,10 +11,10 @@ class Demande extends Model
 
     protected $fillable = [
         'numero_demande', 'objet', 'observation', 'date', 'date_fin',
-        'date_intervention', 'date_debut_intervention', 'date_fin_intervention',
+        'date_intervention', 'date_debut_intervention', 'date_fin_intervention', 'date_cloture',
         'user_id', 'approbateur_n1_id', 'statut', 'nature', 'unite_code',
         'service_id', 'direction_id', 'departement_id', 'site_id',
-        'sad_id', 'seg_id', 'umt_id', 'ubt_id', 'unsp_id', 'umr_id', 'utgc_id',
+        'sad_id', 'seg_id', 'sgb_id', 'umt_id', 'ubt_id', 'unsp_id', 'umr_id', 'utgc_id', 'ual_id', 'ucc_id',
         'chef_equipe_id', 'superviseur_id', 'executant_id',
         'type_prestation', 'team_type', 'prestataire_nom',
         'comment_umt', 'comment_ubt', 'comment_unsp', 'comment_umr', 'comment_utgc',
@@ -29,9 +29,10 @@ class Demande extends Model
     protected $casts = [
         'date' => 'date',
         'date_fin' => 'date',
-        'date_intervention' => 'date',
+        'date_intervention' => 'datetime',
         'date_debut_intervention' => 'datetime',
         'date_fin_intervention' => 'datetime',
+        'date_cloture' => 'datetime',
         'periode_validee_seg' => 'boolean',
         'periode_validee_umr' => 'boolean',
     ];
@@ -109,6 +110,11 @@ class Demande extends Model
         return $this->belongsTo(User::class, 'seg_id');
     }
 
+    public function sgb()
+    {
+        return $this->belongsTo(User::class, 'sgb_id');
+    }
+
     public function umt()
     {
         return $this->belongsTo(User::class, 'umt_id');
@@ -132,6 +138,16 @@ class Demande extends Model
     public function utgc()
     {
         return $this->belongsTo(User::class, 'utgc_id');
+    }
+
+    public function ual()
+    {
+        return $this->belongsTo(User::class, 'ual_id');
+    }
+
+    public function ucc()
+    {
+        return $this->belongsTo(User::class, 'ucc_id');
     }
 
     // Équipe d'exécution
@@ -205,5 +221,10 @@ class Demande extends Model
     public function images()
     {
         return $this->hasMany(DemandeImage::class);
+    }
+
+    public function rejectionHistory()
+    {
+        return $this->hasMany(DemandeRejection::class)->orderByDesc('rejected_at');
     }
 }

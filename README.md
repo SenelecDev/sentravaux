@@ -1,92 +1,99 @@
 # SENTRAVAUX - Gestion des Travaux SENELEC
 
-## Stack Technique
+Application de gestion des demandes de travaux (Laravel 10).
+
+**Dépôt GitHub :** [https://github.com/SenelecDev/sentravaux](https://github.com/SenelecDev/sentravaux)
+
+## Stack technique
 
 - **Framework** : Laravel 10
 - **Frontend** : Tailwind CSS 4, Alpine.js 3, Livewire 3
-- **Auth** : LDAP (LdapRecord) + Auth locale
-- **Roles** : Spatie Laravel Permission
-- **Base de donnees** : MySQL (sentravaux)
+- **Auth** : LDAP (LdapRecord) + authentification locale
+- **Rôles** : Spatie Laravel Permission
+- **Base de données** : MySQL
+- **Intégrations** : LDAP, Oracle RH (sync utilisateurs), notifications in-app
 
-## Installation
+## Installation (développement — Laragon)
 
 ```bash
 cd c:\laragon\www
-git clone <repo-url> sentravaux
+git clone https://github.com/SenelecDev/sentravaux.git sentravaux
 cd sentravaux
 composer install
 npm install
 cp .env.example .env
 php artisan key:generate
-# Configurer .env : DB_DATABASE=sentravaux
+```
+
+Configurer `.env` (base `sentravaux`, LDAP, Oracle si besoin) puis :
+
+```bash
 php artisan migrate --seed
 npm run build
+php artisan serve
 ```
 
-## Comptes par defaut
+## Installation (Docker)
 
-| Matricule | Mot de passe | Role  |
-|-----------|-------------|-------|
-| ADMIN     | password    | admin |
-
-## Design System SENELEC
-
-### Couleurs
-- Purple : #2B1444 (sidebar)
-- Magenta : #B3006C (header, accents)
-- Teal : #0A91A3 (secondaire)
-- Orange : #E87400 (alertes)
-- Blue : #0D1CB0 (liens)
-- Yellow : #FFD100 (highlights)
-
-### Classes CSS
-- Boutons : .btn-senelec, .btn-primary, .btn-secondary, .btn-success, .btn-danger
-- Cartes : .card-senelec, .card-glass
-- Inputs : .input-senelec, .select-senelec
-- Badges : .badge-senelec, .badge-success, .badge-warning, .badge-danger
-- Tables : .table-senelec
-
-### Polices
-- Conthrax : Titres (public/fonts/)
-- Rajdhani : Headings
-- Open Sans : Corps de texte
-
-## Structure
-
-```
-app/Http/Controllers/
-  Auth/LoginController.php        # Auth locale + LDAP
-  DashboardController.php         # Dashboard
-  ProfileController.php           # Profil
-  Admin/DashboardController.php   # Admin dashboard
-  Admin/UserController.php        # CRUD users
-app/Models/User.php               # LDAP + Spatie
-app/Ldap/LdapAttributeHandler.php # Sync LDAP
-resources/css/app.css             # Design system
-resources/js/app.js               # Alpine.js
-resources/views/layouts/          # Layout + partials
-resources/views/auth/login.blade.php
-resources/views/admin/            # Pages admin
+```bash
+git clone https://github.com/SenelecDev/sentravaux.git
+cd sentravaux
+cp .env.docker.example .env
+# Éditer .env (DB, LDAP, Oracle, ports)
+docker compose build
+docker compose up -d
+docker compose exec app php artisan migrate --seed
 ```
 
-## Configuration LDAP
+Ports par défaut : HTTP **8093**, MySQL hôte **3313** (modifiables dans `.env`).
 
-Dans .env :
+## Déploiement CentOS 7
+
+Voir le guide : [deploy/DEPLOY-CENTOS7.md](deploy/DEPLOY-CENTOS7.md)
+
+```bash
+chmod +x deploy/*.sh
+sudo ./deploy/deploy-centos7.sh /opt/sentravaux
 ```
+
+## Compte par défaut (seed)
+
+| Matricule | Mot de passe | Rôle  |
+|-----------|--------------|-------|
+| ADMIN     | password     | admin |
+
+## Configuration LDAP (.env)
+
+```env
 LDAP_ENABLED=true
-LDAP_HOST=votre-serveur-ldap
-LDAP_USERNAME=cn=admin,dc=senelec,dc=sn
-LDAP_PASSWORD=secret
-LDAP_PORT=389
-LDAP_BASE_DN=dc=senelec,dc=sn
+LDAP_HOST=10.101.2.30
+LDAP_USERNAME="CN=...,CN=Users,DC=electricite,DC=sn"
+LDAP_PASSWORD=***
+LDAP_PORT=3268
+LDAP_BASE_DN="DC=electricite,DC=sn"
 ```
 
-LDAP_ENABLED=false = auth locale uniquement.
+`LDAP_ENABLED=false` → authentification locale uniquement.
 
-## Personnalisation
+## Commandes utiles
 
-- Nom : .env APP_NAME
-- Logo : public/img/logo.png
-- Couleurs : @theme dans resources/css/app.css
-- Sidebar : resources/views/layouts/partials/sidebar.blade.php
-- Roles : database/seeders/RolesAndPermissionsSeeder.php
+```bash
+php artisan users:sync-oracle    # Sync RH Oracle
+php artisan migrate --seed
+npm run build
+make up                          # Docker
+```
+
+## Structure principale
+
+```
+app/Http/Controllers/     # Contrôleurs métier (SAD, SEG, UMT, UMR, …)
+app/Services/NotificationService.php
+docker/                   # Images PHP, Nginx
+deploy/                   # Scripts CentOS 7
+resources/views/          # Vues Blade
+```
+
+## Licence
+
+Usage interne SENELEC.

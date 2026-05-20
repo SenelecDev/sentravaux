@@ -113,9 +113,8 @@ class UserController extends Controller
                 'service' => $validated['service'] ?? null,
             ]);
 
-            if (isset($validated['roles'])) {
-                $user->syncRoles($validated['roles']);
-            }
+            // Si aucune case n'est cochée, "roles" peut être absent => on doit vider les rôles
+            $user->syncRoles($validated['roles'] ?? []);
         } else {
             // Local users: full edit
             $validated = $request->validate([
@@ -151,9 +150,8 @@ class UserController extends Controller
                 $user->update(['password' => Hash::make($validated['password'])]);
             }
 
-            if (isset($validated['roles'])) {
-                $user->syncRoles($validated['roles']);
-            }
+            // Si aucune case n'est cochée, "roles" peut être absent => on doit vider les rôles
+            $user->syncRoles($validated['roles'] ?? []);
         }
 
         return redirect()->route('admin.users.show', $user)->with('success', 'Utilisateur mis à jour avec succès.');

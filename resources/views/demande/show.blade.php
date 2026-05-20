@@ -18,6 +18,8 @@
                 $backUrl = route('sad.demandes');
             } elseif ($user->hasRole('seg')) {
                 $backUrl = route('seg.demandes');
+            } elseif ($user->hasRole('sgb')) {
+                $backUrl = route('sgb.demandes');
             } elseif ($user->hasRole('demandeur')) {
                 $backUrl = route('demande.index');
             } elseif ($user->hasRole('umt')) {
@@ -30,6 +32,10 @@
                 $backUrl = route('umr.demandes.recues');
             } elseif ($user->hasRole('utgc')) {
                 $backUrl = route('utgc.demandes.recues');
+            } elseif ($user->hasRole('ual')) {
+                $backUrl = route('ual.demandes.recues');
+            } elseif ($user->hasRole('ucc')) {
+                $backUrl = route('ucc.demandes.recues');
             } elseif ($user->hasRole('equipe')) {
                 $backUrl = route('equipe.demandes.recues');
             } else {
@@ -86,6 +92,8 @@
                         'unsp' => 'unsp.edit',
                         'umr' => 'umr.edit',
                         'utgc' => 'utgc.edit',
+                        'ual' => 'ual.edit',
+                        'ucc' => 'ucc.edit',
                         'equipe' => 'equipe.edit',
                     ];
                     $currentUserHeader = auth()->user();
@@ -107,11 +115,12 @@
 
                 @php
                     $statutLower = strtolower($demande->statut ?? '');
+                    $isClotureStatus = str_starts_with($statutLower, 'clotur');
                     $isEquipeUser = auth()->user() && auth()->user()->hasRole('equipe');
                 @endphp
 
                 {{-- Bouton traiter la demande (sauf pour équipe sur \"terminée\" et demandes clôturées) --}}
-                @if($unitEditRouteHeader && $statutLower !== 'cloture' && !($isEquipeUser && $statutLower === 'termine'))
+                @if($unitEditRouteHeader && !$isClotureStatus && !($isEquipeUser && $statutLower === 'termine'))
                     <a href="{{ route($unitEditRouteHeader, $demande) }}"
                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-senelec-purple text-white text-xs font-semibold hover:bg-senelec-purple/90 transition-colors"
                        title="Traiter la demande">
@@ -120,7 +129,7 @@
                 @endif
 
                 {{-- Bouton Imprimer PDF pour les demandes clôturées --}}
-                @if($statutLower === 'cloture' && Route::has('demande.pdf'))
+                @if($isClotureStatus && Route::has('demande.pdf'))
                     <a href="{{ route('demande.pdf', $demande) }}"
                        target="_blank"
                        class="btn-warning text-xs"
@@ -131,6 +140,41 @@
             </div>
         </div>
     </div>
+
+    @php
+        $isDemandeurOwner = auth()->id() === $demande->user_id;
+        $isRejectedStatus = strtolower((string) ($demande->statut ?? '')) === 'rejete';
+        $latestRejection = $demande->rejectionHistory->first();
+
+        $latestRejectionReason = $latestRejection?->reason ?? ($demande->motif2 ?: $demande->motif);
+        $latestRejectionActor = $latestRejection?->rejectedByUser?->name
+            ?? ($demande->rejectedByN2?->name ?: $demande->rejectedBy?->name);
+        $latestRejectionDate = $latestRejection?->rejected_at ?? $demande->updated_at;
+    @endphp
+
+    @if($isDemandeurOwner && $isRejectedStatus && !empty($latestRejectionReason))
+        <div class="rounded-xl border border-red-200 bg-red-50 px-5 py-4">
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-600 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"/>
+                </svg>
+                <div>
+                    <p class="text-sm font-semibold text-red-800">Motif du rejet</p>
+                    <p class="text-xs text-red-700 mt-0.5">
+                        @if($latestRejectionActor)
+                            Par {{ $latestRejectionActor }}
+                        @else
+                            Par le service de validation
+                        @endif
+                        @if($latestRejectionDate)
+                            le {{ optional($latestRejectionDate)->format('d/m/Y H:i') }}
+                        @endif
+                    </p>
+                    <p class="mt-2 text-sm text-red-900 whitespace-pre-line">{{ $latestRejectionReason }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {{-- Informations principales --}}
@@ -167,6 +211,14 @@
                         <div>
                             <dt class="text-sm font-medium text-gray-500">Fin intervention</dt>
                             <dd class="mt-1 text-sm text-gray-900">{{ $demande->date_fin_intervention?->format('d/m/Y H:i') }}</dd>
+                        </div>
+                        @endif
+                        @if($demande->date_cloture || str_starts_with(strtolower((string) ($demande->statut ?? '')), 'clotur'))
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Date de clôture</dt>
+                            <dd class="mt-1 text-sm text-gray-900">
+                                {{ $demande->date_cloture?->format('d/m/Y H:i') ?? $demande->updated_at?->format('d/m/Y H:i') ?? '-' }}
+                            </dd>
                         </div>
                         @endif
                         @if($demande->type_prestation)
@@ -234,10 +286,11 @@
                                 $serviceDisplay = [
                                     'sad' => 'Service Administratif (SA)',
                                     'seg' => 'Service Entretien Général (SEG)',
+                                    'sgb' => 'Service Gestions Budget (SGB)',
                                 ];
                             @endphp
 
-                            @if($demande->sad || $demande->seg)
+                            @if($demande->sad || $demande->seg || $demande->sgb)
                             <li class="relative pb-8">
                                 <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"></span>
                                 <div class="relative flex space-x-3">
@@ -258,6 +311,12 @@
                                             @if($demande->seg)
                                                 {{ $serviceDisplay['seg'] }} - {{ $demande->seg->name }}
                                             @endif
+                                            @if(($demande->sad || $demande->seg) && $demande->sgb)
+                                                &middot;
+                                            @endif
+                                            @if($demande->sgb)
+                                                {{ $serviceDisplay['sgb'] }} - {{ $demande->sgb->name }}
+                                            @endif
                                         </p>
                                     </div>
                                 </div>
@@ -273,6 +332,9 @@
                                     // SEG units
                                     'utgc' => 'Unité Travaux Génie Civil (UTGC)',
                                     'umr' => 'Unité Matériel Roulant (UMR)',
+                                    // SGB units
+                                    'ual' => 'Unité Analyse et Liquidation (UAL)',
+                                    'ucc' => 'Unité Contrôle et Conformité (UCC)',
                                 ];
                                 $imputedUnits = [];
                                 foreach ($unitLabels as $key => $label) {
@@ -356,7 +418,10 @@
                                     </div>
                                     <div class="min-w-0 flex-1">
                                         <p class="text-sm text-gray-900 font-medium">Clôturée</p>
-                                        <p class="text-xs text-gray-500">Par {{ $demande->cloturedBy->name }}</p>
+                                        <p class="text-xs text-gray-500">
+                                            Par {{ $demande->cloturedBy->name }}
+                                            le {{ $demande->date_cloture?->format('d/m/Y H:i') ?? $demande->updated_at?->format('d/m/Y H:i') ?? '-' }}
+                                        </p>
                                     </div>
                                 </div>
                             </li>
@@ -365,6 +430,68 @@
                     </div>
                 </div>
             </div>
+
+            @php
+                $rejectionHistory = $demande->rejectionHistory->map(function ($entry) {
+                    return [
+                        'level' => $entry->rejection_level === 'n1' ? 'Niveau 1 (Approbateur)' : 'Niveau 2 (Service)',
+                        'actor' => $entry->rejectedByUser?->name,
+                        'reason' => $entry->reason,
+                        'date' => $entry->rejected_at,
+                    ];
+                })->values();
+
+                // Compatibilité avec anciennes données avant la table d'historique.
+                if ($rejectionHistory->isEmpty()) {
+                    $rejectionHistory = collect([
+                        [
+                            'level' => 'Niveau 1 (Approbateur)',
+                            'actor' => $demande->rejectedBy?->name,
+                            'reason' => $demande->motif,
+                            'date' => $demande->updated_at,
+                        ],
+                        [
+                            'level' => 'Niveau 2 (Service)',
+                            'actor' => $demande->rejectedByN2?->name,
+                            'reason' => $demande->motif2,
+                            'date' => $demande->updated_at,
+                        ],
+                    ])->filter(fn ($entry) => !empty($entry['reason']))->values();
+                }
+            @endphp
+
+            @if($rejectionHistory->isNotEmpty())
+            <div class="card-senelec">
+                <div class="p-6 border-b border-gray-100">
+                    <h2 class="text-lg font-semibold text-gray-900">Historique des rejets</h2>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-4">
+                        @foreach($rejectionHistory as $entry)
+                            <div class="rounded-lg border border-red-200 bg-red-50 p-4">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div>
+                                        <p class="text-sm font-semibold text-red-800">{{ $entry['level'] }}</p>
+                                        <p class="text-xs text-red-700 mt-0.5">
+                                            Par {{ $entry['actor'] ?? 'Utilisateur inconnu' }}
+                                        </p>
+                                        @if(!empty($entry['date']))
+                                            <p class="text-xs text-red-700 mt-0.5">
+                                                Le {{ optional($entry['date'])->format('d/m/Y H:i') }}
+                                            </p>
+                                        @endif
+                                    </div>
+                                    <span class="inline-flex items-center rounded-full bg-red-100 px-2.5 py-1 text-[11px] font-semibold text-red-700">
+                                        Rejet
+                                    </span>
+                                </div>
+                                <p class="mt-3 text-sm text-red-900 whitespace-pre-line">{{ $entry['reason'] }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            @endif
 
             {{-- Images --}}
             @if($demande->images && $demande->images->count() > 0)
@@ -437,9 +564,11 @@
                             'unsp' => 'Unité Pool Néttoiement Sécurité (UPNS)',
                             'umr' => 'Unité Matériel Roulant (UMR)',
                             'utgc' => 'Unité Travaux Génie Civil (UTGC)',
+                            'ual' => 'Unité Analyse et Liquidation (UAL)',
+                            'ucc' => 'Unité Contrôle et Conformité (UCC)',
                         ];
                     @endphp
-                    @foreach(['umt', 'ubt', 'unsp', 'umr', 'utgc'] as $unit)
+                    @foreach(['umt', 'ubt', 'unsp', 'umr', 'utgc', 'ual', 'ucc'] as $unit)
                         @if($demande->$unit)
                             <div>
                                 <span class="text-xs text-gray-500 block">Unité</span>
@@ -589,6 +718,8 @@
     @php
         $serviceRole = \App\Helpers\ServiceRedirectionHelper::getServiceRoleForNature($demande->nature, $demande->unite_code);
         $uniteInfo = \App\Helpers\ServiceRedirectionHelper::getUniteFromNature($demande->nature, $demande->unite_code);
+        $targetUnitRole = $uniteInfo ? \App\Helpers\ServiceRedirectionHelper::getRoleFromUnite($uniteInfo['code']) : null;
+        $targetUnitUsers = $targetUnitRole ? \App\Models\User::role($targetUnitRole)->orderBy('name')->get() : collect();
         $servicesStructure = config('services_structure.services_structure');
         $availableUnits = [];
 
@@ -696,6 +827,23 @@
                                         <p class="mt-1 text-[11px] text-emerald-700">
                                             Si le demandeur s'est trompé de service ou d'unité (ex : SA au lieu de SEG),
                                             choisissez ici le bon service / la bonne unité avant de confirmer l'imputation.
+                                        </p>
+                                    </div>
+                                @endif
+
+                                @if($serviceRole === 'sgb' && $targetUnitUsers->count() > 0)
+                                    <div class="mt-3">
+                                        <label for="unite_user_id" class="label text-xs">
+                                            Choisir le chef d'unité (optionnel)
+                                        </label>
+                                        <select id="unite_user_id" name="unite_user_id" class="input-senelec text-xs py-1.5">
+                                            <option value="">Affectation automatique</option>
+                                            @foreach($targetUnitUsers as $u)
+                                                <option value="{{ $u->id }}">{{ $u->name }} ({{ strtoupper($targetUnitRole) }})</option>
+                                            @endforeach
+                                        </select>
+                                        <p class="mt-1 text-[11px] text-emerald-700">
+                                            Sélectionnez ici le responsable UAL/UCC pour un dispatch explicite.
                                         </p>
                                     </div>
                                 @endif

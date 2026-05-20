@@ -9,6 +9,67 @@
         <p class="mt-1 text-gray-500">Suivi des demandes SA (Service Administratif)</p>
     </div>
 
+    <form method="GET" class="card-senelec p-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div>
+            <label class="block text-xs text-gray-500 mb-1">Unite</label>
+            <select name="unite" class="select-senelec w-full text-sm">
+                <option value="tous">Toutes</option>
+                @foreach($unites as $code => $nom)
+                    <option value="{{ $code }}" {{ request('unite') === $code ? 'selected' : '' }}>{{ $code }} - {{ $nom }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <label class="block text-xs text-gray-500 mb-1">Demandes (statut)</label>
+            <select name="demande" class="select-senelec w-full text-sm">
+                <option value="tous">Tous</option>
+                @foreach(['brouillon','en_attente','accepte','impute','valide','en_cours','termine','cloture','rejete'] as $s)
+                    <option value="{{ $s }}" {{ request('demande') === $s ? 'selected' : '' }}>{{ ucfirst(str_replace('_',' ', $s)) }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div>
+            <label class="block text-xs text-gray-500 mb-1">Type de travaux</label>
+            <select name="team_type" class="select-senelec w-full text-sm">
+                <option value="tous">Tous</option>
+                <option value="interne" {{ request('team_type') === 'interne' ? 'selected' : '' }}>Interne</option>
+                <option value="externe" {{ request('team_type') === 'externe' ? 'selected' : '' }}>Externe</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-xs text-gray-500 mb-1">Periode</label>
+            <select name="periode" class="select-senelec w-full text-sm">
+                <option value="tous" {{ request('periode', 'tous') === 'tous' ? 'selected' : '' }}>Toutes</option>
+                <option value="semaine" {{ request('periode') === 'semaine' ? 'selected' : '' }}>Semaine</option>
+                <option value="mois" {{ request('periode') === 'mois' ? 'selected' : '' }}>Mois</option>
+                <option value="annee" {{ request('periode') === 'annee' ? 'selected' : '' }}>Annee</option>
+                <option value="custom" {{ request('periode') === 'custom' ? 'selected' : '' }}>Personnalisee</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-xs text-gray-500 mb-1">Nature</label>
+            <select name="nature" class="select-senelec w-full text-sm">
+                <option value="tous">Toutes</option>
+                @foreach($natures as $nature)
+                    <option value="{{ $nature }}" {{ request('nature') === $nature ? 'selected' : '' }}>{{ $nature }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div><label class="block text-xs text-gray-500 mb-1">Date debut min</label><input type="date" name="date_debut_min" value="{{ request('date_debut_min') }}" class="input-senelec w-full text-sm"></div>
+        <div><label class="block text-xs text-gray-500 mb-1">Date debut max</label><input type="date" name="date_debut_max" value="{{ request('date_debut_max') }}" class="input-senelec w-full text-sm"></div>
+        <div><label class="block text-xs text-gray-500 mb-1">Date fin min</label><input type="date" name="date_fin_min" value="{{ request('date_fin_min') }}" class="input-senelec w-full text-sm"></div>
+        <div><label class="block text-xs text-gray-500 mb-1">Date fin max</label><input type="date" name="date_fin_max" value="{{ request('date_fin_max') }}" class="input-senelec w-full text-sm"></div>
+        <div><label class="block text-xs text-gray-500 mb-1">Creation min</label><input type="date" name="periode_min" value="{{ request('periode_min') }}" class="input-senelec w-full text-sm"></div>
+        <div><label class="block text-xs text-gray-500 mb-1">Creation max</label><input type="date" name="periode_max" value="{{ request('periode_max') }}" class="input-senelec w-full text-sm"></div>
+        <div class="md:col-span-2"><label class="block text-xs text-gray-500 mb-1">Recherche</label><input type="text" name="search" value="{{ request('search') }}" class="input-senelec w-full text-sm" placeholder="N demande ou objet"></div>
+        <div class="md:col-span-4 flex gap-2">
+            <button type="submit" class="btn-primary text-sm">Filtrer</button>
+            <a href="{{ route('sad.dashboard') }}" class="btn-secondary text-sm">Reinitialiser</a>
+            <a href="{{ route('sad.dashboard.export', request()->query()) }}" class="btn-warning text-sm">Exporter</a>
+        </div>
+    </form>
+
     {{-- Stats globales --}}
     <x-dashboard-stats
         :total-demandes="$totalDemandes"
@@ -84,10 +145,8 @@
             <h2 class="text-lg font-semibold text-gray-900">Évolution sur 12 mois</h2>
         </div>
         <div class="p-6">
-            <div class="w-full overflow-x-auto">
-                <div class="min-w-[700px]">
-                    <canvas id="sadLine" height="120"></canvas>
-                </div>
+            <div class="w-full h-72">
+                <canvas id="sadLine"></canvas>
             </div>
         </div>
     </div>
@@ -152,6 +211,43 @@
         </div>
     </div>
 
+    <div class="card-senelec">
+        <div class="p-6 border-b border-gray-100">
+            <h2 class="text-lg font-semibold text-gray-900">Demandes filtrees</h2>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="table-senelec min-w-[900px]">
+                <thead><tr><th>N°</th><th>Statut</th><th>Unite</th><th>Nature</th><th>Objet</th><th>Debut</th><th>Fin</th><th>Date de clôture</th></tr></thead>
+                <tbody>
+                    @forelse($demandesFiltrees as $demande)
+                        <tr class="cursor-pointer hover:bg-gray-50" onclick="window.location='{{ route('demande.show', $demande) }}'">
+                            <td>{{ $demande->numero_demande }}</td>
+                            <td>{{ ucfirst(str_replace('_',' ', $demande->statut)) }}</td>
+                            <td>{{ $demande->unite_code ?? '-' }}</td>
+                            <td>{{ $demande->nature ?? '-' }}</td>
+                            <td class="max-w-[320px] truncate">{{ $demande->objet }}</td>
+                            <td>{{ $demande->date_debut_intervention?->format('d/m/Y H:i') ?? '-' }}</td>
+                            <td>{{ $demande->date_fin_intervention?->format('d/m/Y H:i') ?? '-' }}</td>
+                            <td>
+                                @php
+                                    $isCloture = str_starts_with(strtolower((string) ($demande->statut ?? '')), 'clotur');
+                                    $finTravauxCloture = $demande->date_cloture
+                                        ?? $demande->date_fin_intervention
+                                        ?? $demande->date_fin
+                                        ?? $demande->updated_at;
+                                @endphp
+                                {{ $isCloture ? optional($finTravauxCloture)->format('d/m/Y H:i') : '-' }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr><td colspan="8" class="text-center py-8 text-gray-500">Aucune demande.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="p-4">{{ $demandesFiltrees->links() }}</div>
+    </div>
+
     {{-- Actions rapides --}}
     <div class="card">
         <h2 class="text-lg font-semibold text-gray-900 mb-4">Actions rapides</h2>
@@ -173,9 +269,10 @@
 </div>
 @endsection
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
     (function () {
+        function renderCharts() {
+        if (typeof Chart === 'undefined') return;
         const statutKeys = @json(array_keys($demandesParMois));
         const statutLabels = statutKeys.map(function (s) {
             return s.replace(/_/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
@@ -194,7 +291,8 @@
                             '#9CA3AF', '#FBBF24', '#3B82F6', '#A855F7',
                             '#10B981', '#6366F1', '#EF4444', '#14B8A6', '#10B981'
                         ],
-                        borderWidth: 0
+                        borderWidth: 0,
+                        hoverOffset: 0
                     }]
                 },
                 options: {
@@ -223,10 +321,24 @@
                         tension: 0.3,
                         fill: true,
                         pointRadius: 3,
-                        pointBackgroundColor: '#4C1D95'
+                        pointBackgroundColor: '#4C1D95',
+                        pointHoverRadius: 3,
+                        pointHoverBorderWidth: 0
                     }]
                 },
                 options: {
+                    animation: false,
+                    events: [],
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        point: {
+                            radius: 3,
+                            hoverRadius: 3,
+                            borderWidth: 0,
+                            hoverBorderWidth: 0
+                        }
+                    },
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -234,11 +346,23 @@
                         }
                     },
                     plugins: {
-                        legend: { display: false }
+                        legend: { display: false },
+                        tooltip: { enabled: false }
                     }
                 }
             });
         }
+        }
+
+        if (typeof Chart === 'undefined') {
+            const fallback = document.createElement('script');
+            fallback.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js';
+            fallback.onload = renderCharts;
+            document.head.appendChild(fallback);
+            return;
+        }
+
+        renderCharts();
     })();
 </script>
 @endpush

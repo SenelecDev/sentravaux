@@ -39,6 +39,13 @@
                     @endforeach
                 </select>
             </div>
+            <div class="w-48">
+                <select name="team_type" class="input-senelec">
+                    <option value="">Tous les types</option>
+                    <option value="interne" {{ request('team_type') === 'interne' ? 'selected' : '' }}>Travaux internes</option>
+                    <option value="externe" {{ request('team_type') === 'externe' ? 'selected' : '' }}>Travaux externes</option>
+                </select>
+            </div>
             <button type="submit" class="btn-senelec">Filtrer</button>
             <a href="{{ route('admin.demandes.index') }}" class="btn-secondary px-4 flex items-center">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

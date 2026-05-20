@@ -1,0 +1,95 @@
+# SENTRAVAUX - Stack Docker (dev / prod)
+# Ports par défaut choisis pour éviter les conflits avec 3 apps existantes (8080-8092, 3306-3312)
+# Ajustez dans .env : SENTRAVAUX_HTTP_PORT, SENTRAVAUX_MYSQL_PORT
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+      args:
+        INSTALL_OCI8: ${INSTALL_OCI8:-true}
+    image: sentravaux-app:${APP_VERSION:-latest}
+    container_name: sentravaux-app
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+    volumes:
+      - sentravaux_storage:/var/www/html/storage/app
+      - ./storage/logs:/var/www/html/storage/logs
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - sentravaux
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+      args:
+        APP_IMAGE: sentravaux-app:${APP_VERSION:-latest}
+    image: sentravaux-web:${APP_VERSION:-latest}
+    container_name: sentravaux-web
+    restart: unless-stopped
+    ports:
+      - "${SENTRAVAUX_HTTP_PORT:-8093}:80"
+    volumes:
+      - sentravaux_storage:/var/www/html/storage/app:ro
+    depends_on:
+      app:
+        condition: service_started
+    networks:
+      - sentravaux
+
+  db:
+    image: mysql:8.0
+    container_name: sentravaux-db
+    restart: unless-stopped
+    ports:
+      - "${SENTRAVAUX_MYSQL_PORT:-3313}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-sentravaux_root}
+      MYSQL_DATABASE: ${DB_DATABASE:-sentravaux}
+      MYSQL_USER: ${DB_USERNAME:-sentravaux}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-sentravaux_secret}
+    volumes:
+      - sentravaux_mysql:/var/lib/mysql
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+    networks:
+      - sentravaux
+
+  scheduler:
+    image: sentravaux-app:${APP_VERSION:-latest}
+    container_name: sentravaux-scheduler
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+    command: >
+      sh -c "while true; do php /var/www/html/artisan schedule:run --verbose --no-interaction; sleep 60; done"
+    depends_on:
+      - app
+      - db
+    networks:
+      - sentravaux
+
+volumes:
+  sentravaux_mysql:
+  sentravaux_storage:
+
+networks:
+  sentravaux:
+    driver: bridge

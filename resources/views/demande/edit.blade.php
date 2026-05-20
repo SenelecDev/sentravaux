@@ -142,7 +142,7 @@
     </div>
     @endif
 
-    <form action="{{ route('demande.update', $demande) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <form id="demande-form" action="{{ route('demande.update', $demande) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         @method('PUT')
 
@@ -180,14 +180,14 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="date_debut_intervention" class="block text-sm font-semibold text-gray-700 mb-1">Date début intervention</label>
+                        <label for="date_debut_intervention" class="block text-sm font-semibold text-gray-700 mb-1">Date début intervention <span class="text-red-500">*</span></label>
                         <input type="text" name="date_debut_intervention" id="date_debut_intervention" value="{{ old('date_debut_intervention', $demande->date_debut_intervention?->format('Y-m-d H:i')) }}" 
                                class="flatpickr-datetime w-full h-[42px] px-3 text-sm rounded-lg border border-gray-300 focus:border-[#2B1444] focus:ring-2 focus:ring-[#2B1444]/10 outline-none transition bg-white"
                                placeholder="Choisir la date et l'heure" readonly>
                         @error('date_debut_intervention') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label for="date_fin_intervention" class="block text-sm font-semibold text-gray-700 mb-1">Date fin intervention</label>
+                        <label for="date_fin_intervention" class="block text-sm font-semibold text-gray-700 mb-1">Date fin intervention <span class="text-red-500">*</span></label>
                         <input type="text" name="date_fin_intervention" id="date_fin_intervention" value="{{ old('date_fin_intervention', $demande->date_fin_intervention?->format('Y-m-d H:i')) }}" 
                                class="flatpickr-datetime w-full h-[42px] px-3 text-sm rounded-lg border border-gray-300 focus:border-[#2B1444] focus:ring-2 focus:ring-[#2B1444]/10 outline-none transition bg-white"
                                placeholder="Choisir la date et l'heure" readonly>
@@ -301,6 +301,20 @@
                                 </template>
                             </div>
                         </template>
+                        @if(!empty($tempImages))
+                            <div class="mt-3">
+                                <p class="text-xs font-semibold text-gray-600 mb-2">Images conservees apres erreur :</p>
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach($tempImages as $tempImage)
+                                        <input type="hidden" name="temp_images[]" value="{{ $tempImage['id'] }}">
+                                        <span class="inline-flex items-center gap-1 px-3 py-1 text-xs rounded-full border border-teal-200 bg-teal-50 text-teal-700">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                            {{ $tempImage['original_name'] }}
+                                        </span>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                         @error('images.*') <p class="text-sm text-red-600 mt-1">{{ $message }}</p> @enderror
                     </div>
                 </div>
@@ -339,6 +353,8 @@
         </div>
         @endif
 
+        <div id="client-date-error" class="hidden rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"></div>
+
         {{-- Actions --}}
         <div class="flex items-center gap-4 pt-2">
             <button type="submit" name="action" value="save_draft" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 shadow-sm" style="background-color: #27ae60;">
@@ -375,13 +391,32 @@
         });
 
         // Flatpickr pour les dates d'intervention UMR
-        flatpickr('.flatpickr-datetime', {
+        var dateStartPicker = flatpickr('#date_debut_intervention', {
             locale: 'fr',
             enableTime: true,
             dateFormat: 'Y-m-d H:i',
             altInput: true,
             altFormat: 'd/m/Y H:i',
             time_24hr: true,
+            defaultHour: 8,
+            defaultMinute: 0,
+            allowInput: false,
+            onChange: function(selectedDates) {
+                if (selectedDates.length && dateEndPicker) {
+                    dateEndPicker.set('minDate', selectedDates[0]);
+                }
+            }
+        });
+
+        var dateEndPicker = flatpickr('#date_fin_intervention', {
+            locale: 'fr',
+            enableTime: true,
+            dateFormat: 'Y-m-d H:i',
+            altInput: true,
+            altFormat: 'd/m/Y H:i',
+            time_24hr: true,
+            defaultHour: 8,
+            defaultMinute: 0,
             allowInput: false
         });
 
@@ -401,15 +436,63 @@
             var info = updateUniteCode();
             if (info.optgroupLabel === umrOptgroupLabel && $('#nature').val()) {
                 $('#umr-period-section').removeClass('hidden');
+                $('#date_debut_intervention, #date_fin_intervention').prop('required', true);
             } else {
                 $('#umr-period-section').addClass('hidden');
-                document.querySelectorAll('.flatpickr-datetime').forEach(function(el) {
-                    if (el._flatpickr) el._flatpickr.clear();
-                });
+                $('#date_debut_intervention, #date_fin_intervention').prop('required', false);
+                if (dateStartPicker) dateStartPicker.clear();
+                if (dateEndPicker) {
+                    dateEndPicker.clear();
+                    dateEndPicker.set('minDate', null);
+                }
+                $('#client-date-error').addClass('hidden').text('');
             }
         }
 
+        function validateUmrDatesBeforeSubmit() {
+            var info = updateUniteCode();
+            var isUmr = info.optgroupLabel === umrOptgroupLabel && $('#nature').val();
+            if (!isUmr) {
+                $('#client-date-error').addClass('hidden').text('');
+                return true;
+            }
+
+            var dateDebut = $('#date_debut_intervention').val();
+            var dateFin = $('#date_fin_intervention').val();
+            if (!dateDebut || !dateFin) {
+                $('#client-date-error').removeClass('hidden').text('Veuillez renseigner les deux dates d\'intervention pour une demande UMR.');
+                return false;
+            }
+
+            var start = new Date(dateDebut.replace(' ', 'T'));
+            var end = new Date(dateFin.replace(' ', 'T'));
+            var now = new Date();
+
+            if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+                $('#client-date-error').removeClass('hidden').text('Le format des dates d\'intervention est invalide.');
+                return false;
+            }
+
+            if (start < now) {
+                $('#client-date-error').removeClass('hidden').text('La date de début doit être supérieure ou égale à la date/heure actuelle.');
+                return false;
+            }
+
+            if (end <= start) {
+                $('#client-date-error').removeClass('hidden').text('La date de fin doit être strictement postérieure à la date de début.');
+                return false;
+            }
+
+            $('#client-date-error').addClass('hidden').text('');
+            return true;
+        }
+
         $('#nature').on('change', toggleUmrSection);
+        $('#demande-form').on('submit', function(e) {
+            if (!validateUmrDatesBeforeSubmit()) {
+                e.preventDefault();
+            }
+        });
         toggleUmrSection();
     });
 </script>

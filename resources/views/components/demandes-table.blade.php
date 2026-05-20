@@ -8,6 +8,7 @@
     'emptyMessage' => 'Aucune demande trouvée',
     'showNature' => true,
     'showSite' => true,
+    'showRejectionReason' => false,
     'actionsSlot' => null,
 ])
 
@@ -69,6 +70,17 @@
                         @endif
                         <td>
                             <p class="text-sm text-gray-900 line-clamp-2">{{ $demande->objet ?? '-' }}</p>
+                            @if($showRejectionReason && strtolower((string) ($demande->statut ?? '')) === 'rejete')
+                                @php
+                                    $lastRejection = $demande->rejectionHistory->first();
+                                    $rejectionReason = $lastRejection?->reason ?? ($demande->motif2 ?: $demande->motif);
+                                @endphp
+                                @if(!empty($rejectionReason))
+                                    <p class="mt-1 text-xs text-red-600 line-clamp-2" title="{{ $rejectionReason }}">
+                                        Motif rejet : {{ $rejectionReason }}
+                                    </p>
+                                @endif
+                            @endif
                         </td>
                         @if($showNature)
                         <td>
@@ -100,7 +112,11 @@
                                 @endif
 
                                 {{-- Icône PDF pour les demandes clôturées --}}
-                                @if(strtolower($demande->statut) === 'cloture')
+                                @php
+                                    $statutLower = strtolower((string) ($demande->statut ?? ''));
+                                    $isClotureStatus = str_starts_with($statutLower, 'clotur');
+                                @endphp
+                                @if($isClotureStatus)
                                     <a href="{{ route('demande.pdf', $demande) }}" onclick="event.stopPropagation()"
                                        class="p-1.5 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition-colors"
                                        title="Ouvrir le PDF" target="_blank">
@@ -115,10 +131,11 @@
 
                                 @if($editRoute)
                                     @php
-                                        $statutLower = strtolower($demande->statut ?? '');
+                                        $statutLower = strtolower((string) ($demande->statut ?? ''));
+                                        $isClotureStatus = str_starts_with($statutLower, 'clotur');
                                         $isEquipeUser = $currentUser && $currentUser->hasRole('equipe');
                                     @endphp
-                                    @if($isUnitRole && $statutLower !== 'cloture' && !($isEquipeUser && $statutLower === 'termine'))
+                                    @if($isUnitRole && !$isClotureStatus && !($isEquipeUser && $statutLower === 'termine'))
                                         {{-- Icône de traitement pour les unités (UMT, UBT, UNSP, UMR, UTGC, Équipe) --}}
                                         <a href="{{ route($editRoute, $demande) }}" onclick="event.stopPropagation()"
                                            class="p-1.5 text-white bg-senelec-purple hover:bg-senelec-purple/90 rounded-lg transition-colors"

@@ -12,6 +12,7 @@ use App\Models\Site;
 use App\Mail\DemandeCloture;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -38,8 +39,13 @@ class UmtController extends Controller
 
         $equipes = Equipe::all();
         $users = User::all();
+        $chefEquipeUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'equipe');
+        })->whereDoesntHave('roles', function ($query) {
+            $query->where('name', '!=', 'equipe');
+        })->orderBy('name')->get();
 
-        return view('umt.editer', compact('demande', 'equipes', 'users'));
+        return view('umt.editer', compact('demande', 'equipes', 'users', 'chefEquipeUsers'));
     }
 
     public function update(Request $request, string $id)
@@ -64,7 +70,7 @@ class UmtController extends Controller
             'executant_equipe_new.*' => 'nullable|exists:users,id',
             'commentaire' => 'nullable|string',
             'prestataire_nom' => 'nullable|string',
-            'numero_commande' => 'nullable|string',
+            'numero_commande' => ['nullable', 'string', 'max:255', 'regex:/^[^,;]+$/', Rule::unique('demandes', 'numero_commande')->ignore($demande->id)],
             'commentaire_prestataire' => 'nullable|string',
         ];
 
@@ -86,11 +92,14 @@ class UmtController extends Controller
             // Terminer (UMT ou chef d'équipe) : toujours exiger la date, les champs prestataire restent optionnels
             $rules['date_intervention'] = 'required|date';
             if ($request->filled('prestataire_nom')) {
-                $rules['numero_commande'] = 'required|string';
+                $rules['numero_commande'] = ['required', 'string', 'max:255', 'regex:/^[^,;]+$/', Rule::unique('demandes', 'numero_commande')->ignore($demande->id)];
             }
         }
 
-        $request->validate($rules);
+        $request->validate($rules, [
+            'numero_commande.regex' => 'Un seul numero de commande est autorise par demande (pas de liste).',
+            'numero_commande.unique' => 'Ce numero de commande est deja utilise sur une autre demande.',
+        ]);
 
         $chefEquipeUserId = null;
         $superviseurUserId = null;
@@ -205,6 +214,7 @@ class UmtController extends Controller
                         'validated_by' => auth()->id(),
                         // $superviseur_id a déjà été positionné dans $updateData plus haut
                     ]);
+                    NotificationService::handleWorkflowAction($demande->fresh(), 'dispatcher_externe');
 
                     return redirect()->route('umt.demandes.validees')->with('success', 'Demande validée pour prestataire externe.');
                 } else {
@@ -266,6 +276,7 @@ class UmtController extends Controller
                     'date_intervention' => now(),
                     'date_debut_intervention' => now(),
                 ]);
+                NotificationService::handleWorkflowAction($demande->fresh(), 'debut_travaux');
                 // Redirection selon le rôle
                 if ($currentUser->hasRole('equipe')) {
                     return redirect()->route('equipe.demandes.debutees')->with('success', 'Début des travaux enregistré avec succès.');
@@ -291,6 +302,7 @@ class UmtController extends Controller
                 if (!$demande->date_fin) $updateData['date_fin'] = now();
 
                 $demande->update($updateData);
+                NotificationService::handleWorkflowAction($demande->fresh(), 'terminer');
                 // Redirection selon le rôle
                 if ($currentUser->hasRole('equipe')) {
                     return redirect()->route('equipe.demandes.terminees')->with('success', 'Demande terminée avec succès.');
@@ -302,7 +314,8 @@ class UmtController extends Controller
                 if (!$currentUser || !$currentUser->hasRole('umt')) {
                     return redirect()->back()->withErrors(['error' => 'Seul le chef d\'unité peut clôturer la demande.']);
                 }
-                $demande->update(['statut' => 'cloture', 'cloture_par' => auth()->id()]);
+                $demande->update(['statut' => 'cloture', 'cloture_par' => auth()->id(), 'date_cloture' => now()]);
+                NotificationService::handleWorkflowAction($demande->fresh(), 'cloturer');
 
                 try {
                     // N1 : Approbateur
@@ -414,10 +427,14 @@ class UmtController extends Controller
         $user = auth()->user();
         $mois = $request->get('mois', date('m'));
         $annee = $request->get('annee', date('Y'));
+        $teamType = $request->get('team_type');
 
         $baseQuery = fn() => Demande::where(function ($query) use ($user) {
             $query->whereNotNull('umt_id')->orWhere('umt_id', $user->id);
-        });
+        })->when(
+            in_array($teamType, ['interne', 'externe'], true),
+            fn($q) => $q->where('team_type', $teamType)
+        );
 
         $totalDemandes = $baseQuery()->count();
         $statuts = ['brouillon', 'en_attente', 'en_cours', 'accepte', 'rejete', 'valide', 'impute', 'termine', 'cloture'];
@@ -488,7 +505,8 @@ class UmtController extends Controller
             'travauxDebutes',
             'periodesAvenir',
             'mois',
-            'annee'
+            'annee',
+            'teamType'
         ));
     }
 

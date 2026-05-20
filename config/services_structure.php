@@ -69,6 +69,23 @@ return [
                     ]
                 ]
             ]
+        ],
+        'SGB' => [
+            'name' => 'Service Gestions Budget',
+            'unites' => [
+                'UAL' => [
+                    'name' => 'Unité Analyse et Liquidation',
+                    'natures' => [
+                        'Demande de remboursement' => 'Remboursement'
+                    ]
+                ],
+                'UCC' => [
+                    'name' => 'Unité Contrôle et Conformité',
+                    'natures' => [
+                        'Demande de remboursement' => 'Remboursement'
+                    ]
+                ]
+            ]
         ]
     ],
 
@@ -108,7 +125,9 @@ return [
         'Climatisation Auto' => 'SEG',
         'Travaux de Carosserie' => 'SEG',
         'Visite technique' => 'SEG',
-        'Entretien Périodique' => 'SEG'
+        'Entretien Périodique' => 'SEG',
+        // SGB - UAL/UCC
+        'Demande de remboursement' => 'SGB'
         // Note: 'Autres demandes' est géré dynamiquement par ServiceRedirectionHelper
         // selon l'unité sélectionnée (SA pour UAG/UPNS/UGBT, SEG pour UTGC/UMR)
     ]

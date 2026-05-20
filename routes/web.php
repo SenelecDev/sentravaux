@@ -13,6 +13,9 @@ use App\Http\Controllers\DageController;
 use App\Http\Controllers\DageDashboardController;
 use App\Http\Controllers\UnspController;
 use App\Http\Controllers\UtgcController;
+use App\Http\Controllers\SgbController;
+use App\Http\Controllers\UalController;
+use App\Http\Controllers\UccController;
 use App\Http\Controllers\EquipeController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\DemandeurController;
@@ -134,6 +137,7 @@ Route::middleware('auth')->group(function () {
     // ==================== SAD ====================
     Route::middleware('role:sad')->group(function () {
         Route::get('/sad/dashboard', [SadController::class, 'dashboard'])->name('sad.dashboard');
+        Route::get('/sad/dashboard/export', [SadController::class, 'exportDashboard'])->name('sad.dashboard.export');
         Route::get('sad/demandes/approuvees', [SadController::class, 'demandes_approuvees'])->name('sad.demandes.approuvees');
         Route::get('sad/demandes/imputees', [SadController::class, 'demandes_imputees'])->name('sad.demandes.imputees');
         Route::get('sad/demandes/rejetees', [SadController::class, 'demandes_rejetees'])->name('sad.demandes.rejetees');
@@ -143,27 +147,36 @@ Route::middleware('auth')->group(function () {
     // ==================== SEG ====================
     Route::middleware('role:seg')->group(function () {
         Route::get('/seg/dashboard', [SegController::class, 'dashboard'])->name('seg.dashboard');
+        Route::get('/seg/dashboard/export', [SegController::class, 'exportDashboard'])->name('seg.dashboard.export');
         Route::get('seg/demandes/approuvees', [SegController::class, 'demandes_approuvees'])->name('seg.demandes.approuvees');
         Route::get('seg/demandes/imputees', [SegController::class, 'demandes_imputees'])->name('seg.demandes.imputees');
         Route::get('seg/demandes/rejetees', [SegController::class, 'demandes_rejetees'])->name('seg.demandes.rejetees');
         Route::get('seg/demandes', [SegController::class, 'demandes'])->name('seg.demandes');
     });
 
+    // ==================== SGB ====================
+    Route::middleware('role:sgb')->group(function () {
+        Route::get('/sgb/dashboard', [SgbController::class, 'dashboard'])->name('sgb.dashboard');
+        Route::get('/sgb/dashboard/export', [SgbController::class, 'exportDashboard'])->name('sgb.dashboard.export');
+        Route::get('sgb/demandes', [SgbController::class, 'demandes'])->name('sgb.demandes');
+    });
+
+
     // ==================== DEMANDE CRUD (tous les rôles métiers qui manipulent les demandes) ====================
-    Route::middleware('role:admin|demandeur|approbateur|sad|seg|umt|ubt|unsp|umr|utgc|equipe')->group(function () {
+    Route::middleware('role:admin|demandeur|approbateur|sad|seg|sgb|umt|ubt|unsp|umr|utgc|ual|ucc|equipe')->group(function () {
         Route::resource('demande', DemandeController::class);
         Route::post('/demande/{demande}/submit', [DemandeController::class, 'submit'])->name('demande.submit');
     });
 
     // ==================== DISPATCH (sad/seg) ====================
-    Route::middleware('role:admin|sad|seg')->group(function () {
+    Route::middleware('role:admin|sad|seg|sgb')->group(function () {
         Route::get('/demandes/pending-dispatch', [DemandeController::class, 'pendingValidation'])->name('demandes.pending_dispatch');
         Route::post('/demande/{demande}/dispatch', [DemandeController::class, 'validateDemande'])->name('demande.dispatch');
         Route::post('/demande/{demande}/validate', [DemandeController::class, 'validateDemande'])->name('demande.validate');
     });
 
     // ==================== PDF DEMANDE (tous rôles métiers) ====================
-    Route::middleware('role:admin|demandeur|approbateur|sad|seg|umt|ubt|unsp|umr|utgc|equipe')->group(function () {
+    Route::middleware('role:admin|demandeur|approbateur|sad|seg|sgb|umt|ubt|unsp|umr|utgc|ual|ucc|equipe')->group(function () {
         Route::get('demande/{demande}/pdf', [DemandeController::class, 'pdf'])
             ->name('demande.pdf');
     });
@@ -253,6 +266,30 @@ Route::middleware('auth')->group(function () {
         Route::get('utgc/demandes/cloturees', [UtgcController::class, 'demandesCloturees'])->name('utgc.demandes.cloturees');
         Route::get('utgc/demandes/debutees', [UtgcController::class, 'demandesDebutees'])->name('utgc.demandes.debutees');
         Route::resource('utgc', UtgcController::class);
+    });
+
+    // ==================== UAL ====================
+    Route::middleware('role:admin|ual')->group(function () {
+        Route::get('/ual/dashboard', [UalController::class, 'dashboard'])->name('ual.dashboard');
+        Route::get('ual/demandes', [UalController::class, 'demandes'])->name('ual.demandes');
+        Route::get('ual/demandes/recues', [UalController::class, 'demandes'])->name('ual.demandes.recues');
+        Route::get('ual/demandes/validees', [UalController::class, 'demandesValidees'])->name('ual.demandes.validees');
+        Route::get('ual/demandes/terminees', [UalController::class, 'demandesTerminees'])->name('ual.demandes.terminees');
+        Route::get('ual/demandes/cloturees', [UalController::class, 'demandesCloturees'])->name('ual.demandes.cloturees');
+        Route::get('ual/demandes/debutees', [UalController::class, 'demandesDebutees'])->name('ual.demandes.debutees');
+        Route::resource('ual', UalController::class);
+    });
+
+    // ==================== UCC ====================
+    Route::middleware('role:admin|ucc')->group(function () {
+        Route::get('/ucc/dashboard', [UccController::class, 'dashboard'])->name('ucc.dashboard');
+        Route::get('ucc/demandes', [UccController::class, 'demandes'])->name('ucc.demandes');
+        Route::get('ucc/demandes/recues', [UccController::class, 'demandes'])->name('ucc.demandes.recues');
+        Route::get('ucc/demandes/validees', [UccController::class, 'demandesValidees'])->name('ucc.demandes.validees');
+        Route::get('ucc/demandes/terminees', [UccController::class, 'demandesTerminees'])->name('ucc.demandes.terminees');
+        Route::get('ucc/demandes/cloturees', [UccController::class, 'demandesCloturees'])->name('ucc.demandes.cloturees');
+        Route::get('ucc/demandes/debutees', [UccController::class, 'demandesDebutees'])->name('ucc.demandes.debutees');
+        Route::resource('ucc', UccController::class);
     });
 
     // ==================== CHEF D'EQUIPE ====================

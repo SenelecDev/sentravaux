@@ -1,0 +1,17 @@
+# MySQL déjà présent sur le serveur (ne pas démarrer le conteneur db)
+# Usage:
+#   DB_HOST=172.17.0.1 DB_PORT=3306 docker compose -f docker-compose.yml -f docker-compose.external-db.yml up -d app web scheduler
+
+services:
+  app:
+    environment:
+      DB_HOST: ${DB_HOST:-172.17.0.1}
+      DB_PORT: ${DB_PORT:-3306}
+    depends_on: []
+
+  scheduler:
+    environment:
+      DB_HOST: ${DB_HOST:-172.17.0.1}
+      DB_PORT: ${DB_PORT:-3306}
+    depends_on:
+      - app

@@ -179,6 +179,16 @@
                         </select>
                     </div>
 
+                    {{-- Type de travaux --}}
+                    <div>
+                        <label class="block text-xs font-medium text-gray-500 mb-1">Type de travaux</label>
+                        <select name="team_type" class="select-senelec w-full text-sm">
+                            <option value="tous">Tous</option>
+                            <option value="interne" {{ ($teamTypeFilter ?? '') === 'interne' ? 'selected' : '' }}>Interne</option>
+                            <option value="externe" {{ ($teamTypeFilter ?? '') === 'externe' ? 'selected' : '' }}>Externe</option>
+                        </select>
+                    </div>
+
                     {{-- Par page --}}
                     <div>
                         <label class="block text-xs font-medium text-gray-500 mb-1">Par page</label>

@@ -232,15 +232,37 @@
                             Périodes en attente
                         </a>
                     </li>
-                    
                 </ul>
             </li>
             @endif
 
             {{-- ============================================
-                 UNITÉS (UMT, UBT, UNSP, UMR, UTGC)
+                 SGB (Service Gestions Budget)
                  ============================================ --}}
-            @foreach(['umt' => 'UMT', 'ubt' => 'UBT', 'unsp' => 'UNSP', 'umr' => 'UMR', 'utgc' => 'UTGC'] as $role => $label)
+            @if($user->hasRole('sgb'))
+            <li>
+                <div class="text-xs font-semibold leading-6 text-white/40 uppercase tracking-wider mb-2">SGB</div>
+                <ul role="list" class="-mx-2 space-y-1">
+                    <li>
+                        <a href="{{ route('sgb.dashboard') }}" class="{{ request()->routeIs('sgb.dashboard') ? 'sidebar-link-active' : 'sidebar-link' }}">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                            Tableau de bord
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('sgb.demandes') }}" class="{{ request()->routeIs('sgb.demandes') ? 'sidebar-link-active' : 'sidebar-link' }}">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                            Toutes les demandes
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @endif
+
+            {{-- ============================================
+                 UNITÉS (UMT, UBT, UNSP, UMR, UTGC, UAL, UCC)
+                 ============================================ --}}
+            @foreach(['umt' => 'UMT', 'ubt' => 'UBT', 'unsp' => 'UNSP', 'umr' => 'UMR', 'utgc' => 'UTGC', 'ual' => 'UAL', 'ucc' => 'UCC'] as $role => $label)
             @if($user->hasRole($role))
             <li>
                 <div class="text-xs font-semibold leading-6 text-white/40 uppercase tracking-wider mb-2">{{ $label }}</div>
@@ -342,6 +364,15 @@
                     Navigation
                 </div>
                 <ul role="list" class="-mx-2 space-y-1">
+                    <li>
+                        <a href="{{ route('notifications.index') }}"
+                           class="{{ request()->routeIs('notifications.*') ? 'sidebar-link-active' : 'sidebar-link' }}">
+                            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                            </svg>
+                            Notifications
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('documentation') }}" 
                            class="flex items-center justify-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:opacity-90"

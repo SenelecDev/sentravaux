@@ -17,7 +17,7 @@
     $baseRoute = null;
     $routesByStatut = [];
     // Pour SAD, SEG et toutes les unités on ne montre pas les compteurs Brouillon / En attente
-    $hideDraftWaiting = in_array($prefix, ['sad', 'seg', 'umt', 'ubt', 'unsp', 'umr', 'utgc']);
+    $hideDraftWaiting = in_array($prefix, ['sad', 'seg', 'sgb', 'umt', 'ubt', 'unsp', 'umr', 'utgc']);
 
     // Layout spécifique par rôle (nombre de colonnes)
     // UMT : 3 par ligne, autres rôles : jusqu'à 5 par ligne sur grand écran
@@ -80,6 +80,18 @@
                 'termine'  => route('seg.demandes', ['statut' => 'termine']),
                 'cloture'  => route('seg.demandes', ['statut' => 'cloture']),
                 'rejete'   => route('seg.demandes', ['statut' => 'rejete']),
+            ];
+        } elseif ($prefix === 'sgb') {
+            // SGB : même logique que SAD/SEG
+            $baseRoute = \Illuminate\Support\Facades\Route::has('sgb.demandes') ? route('sgb.demandes') : null;
+            $routesByStatut = [
+                'accepte'  => route('sgb.demandes', ['statut' => 'accepte']),
+                'impute'   => route('sgb.demandes', ['statut' => 'impute']),
+                'valide'   => route('sgb.demandes', ['statut' => 'valide']),
+                'en_cours' => route('sgb.demandes', ['statut' => 'en_cours']),
+                'termine'  => route('sgb.demandes', ['statut' => 'termine']),
+                'cloture'  => route('sgb.demandes', ['statut' => 'cloture']),
+                'rejete'   => route('sgb.demandes', ['statut' => 'rejete']),
             ];
         } elseif ($prefix === 'umt') {
             // UMT : règles spécifiques

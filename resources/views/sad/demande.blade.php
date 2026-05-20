@@ -11,7 +11,26 @@
             Vue : <span class="font-semibold">
                 {{ $statutsDisponibles[$statut] ?? ucfirst(str_replace('_', ' ', $statut)) }}
             </span>
+            @if(!empty($teamType))
+                · Type : <span class="font-semibold">{{ $teamType === 'interne' ? 'Travaux internes' : 'Travaux externes' }}</span>
+            @endif
         </p>
+    </div>
+
+    <div class="card-senelec p-4">
+        <form method="GET" action="{{ route('sad.demandes') }}" class="flex flex-wrap items-end gap-3">
+            <div class="w-64">
+                <label for="team_type" class="block text-sm font-semibold text-gray-700 mb-1">Type de travaux</label>
+                <select name="team_type" id="team_type" class="input-senelec">
+                    <option value="">Tous les types</option>
+                    <option value="interne" {{ ($teamType ?? '') === 'interne' ? 'selected' : '' }}>Travaux internes</option>
+                    <option value="externe" {{ ($teamType ?? '') === 'externe' ? 'selected' : '' }}>Travaux externes</option>
+                </select>
+            </div>
+            <input type="hidden" name="statut" value="{{ $statut }}">
+            <button type="submit" class="btn-senelec">Filtrer</button>
+            <a href="{{ route('sad.demandes', ['statut' => $statut]) }}" class="btn-secondary px-4">Réinitialiser</a>
+        </form>
     </div>
 
     {{-- Filtres par statut (raccourcis) --}}
@@ -21,7 +40,7 @@
                 @php
                     $isActive = $statut === $code;
                 @endphp
-                <a href="{{ route('sad.demandes', ['statut' => $code]) }}"
+                <a href="{{ route('sad.demandes', array_filter(['statut' => $code, 'team_type' => $teamType])) }}"
                    class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border transition-all
                         {{ $isActive
                             ? 'bg-senelec-purple text-white border-senelec-purple shadow-sm'

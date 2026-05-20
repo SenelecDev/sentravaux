@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Equipe;
 use App\Models\Demande;
 use Illuminate\Http\Request;
+use App\Services\NotificationService;
 use Carbon\Carbon;
 
 class EquipeController extends Controller
@@ -49,9 +50,14 @@ class EquipeController extends Controller
 
             $equipes = Equipe::all();
             $users = User::all();
+            $chefEquipeUsers = User::whereHas('roles', function ($query) {
+                $query->where('name', 'equipe');
+            })->whereDoesntHave('roles', function ($query) {
+                $query->where('name', '!=', 'equipe');
+            })->orderBy('name')->get();
 
             // Réutilise le même template moderne que pour l'UMT
-            return view('umt.editer', compact('demande', 'equipes', 'users'));
+            return view('umt.editer', compact('demande', 'equipes', 'users', 'chefEquipeUsers'));
         }
 
         // Mode admin : édition d'une équipe (table equipes)
@@ -124,6 +130,7 @@ class EquipeController extends Controller
             switch ($request->input('action')) {
                 case 'dispatcher':
                     $demande->update(['date_intervention' => now()]);
+                    NotificationService::travauxDebutes($demande->fresh(), auth()->user());
                     return redirect()->route('equipe.demandes.recues')->with('success', 'Demande des travaux exécutée avec succès.');
 
                 case 'terminer':
@@ -132,6 +139,7 @@ class EquipeController extends Controller
                         'date_fin' => now(),
                         'terminated_by' => auth()->id()
                     ]);
+                    NotificationService::demandeTerminee($demande->fresh(), auth()->user());
                     return redirect()->route('equipe.demandes.recues')->with('success', 'Demande de travaux terminée avec succès.');
 
                 default:

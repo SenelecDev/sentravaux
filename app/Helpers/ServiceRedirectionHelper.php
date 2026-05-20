@@ -16,9 +16,10 @@ class ServiceRedirectionHelper
             $uniteInfo = self::getUniteFromNature($nature, $uniteCode);
             if ($uniteInfo) {
                 $serviceName = $uniteInfo['service'];
+                $serviceRoleMapping = ['SA' => 'sad', 'SEG' => 'seg', 'SGB' => 'sgb'];
                 return [
                     'service_name' => $serviceName,
-                    'role_name' => $serviceName === 'SA' ? 'sad' : 'seg'
+                    'role_name' => $serviceRoleMapping[$serviceName] ?? null
                 ];
             }
         }
@@ -30,9 +31,10 @@ class ServiceRedirectionHelper
             return null;
         }
 
+        $serviceRoleMapping = ['SA' => 'sad', 'SEG' => 'seg', 'SGB' => 'sgb'];
         return [
             'service_name' => $serviceName,
-            'role_name' => $serviceName === 'SA' ? 'sad' : 'seg'
+            'role_name' => $serviceRoleMapping[$serviceName] ?? null
         ];
     }
 
@@ -43,15 +45,11 @@ class ServiceRedirectionHelper
     {
         $structure = config('services_structure.services_structure');
 
-        foreach ($structure['SA']['unites'] as $unite) {
-            if (isset($unite['natures'][$nature])) {
-                return $unite['natures'][$nature];
-            }
-        }
-
-        foreach ($structure['SEG']['unites'] as $unite) {
-            if (isset($unite['natures'][$nature])) {
-                return $unite['natures'][$nature];
+        foreach ($structure as $service) {
+            foreach (($service['unites'] ?? []) as $unite) {
+                if (isset($unite['natures'][$nature])) {
+                    return $unite['natures'][$nature];
+                }
             }
         }
 
@@ -78,38 +76,25 @@ class ServiceRedirectionHelper
         // on cherche d'abord dans cette unité précise, pour éviter
         // les ambiguïtés sur "Autres demandes" qui existe côté SA et SEG.
         if ($uniteCode) {
-            if (
-                isset($structure['SA']['unites'][$uniteCode]) &&
-                isset($structure['SA']['unites'][$uniteCode]['natures'][$nature])
-            ) {
-                return [
-                    'code' => $uniteCode,
-                    'name' => $structure['SA']['unites'][$uniteCode]['name'],
-                    'service' => 'SA'
-                ];
-            }
-
-            if (
-                isset($structure['SEG']['unites'][$uniteCode]) &&
-                isset($structure['SEG']['unites'][$uniteCode]['natures'][$nature])
-            ) {
-                return [
-                    'code' => $uniteCode,
-                    'name' => $structure['SEG']['unites'][$uniteCode]['name'],
-                    'service' => 'SEG'
-                ];
+            foreach ($structure as $serviceCode => $service) {
+                if (
+                    isset($service['unites'][$uniteCode]) &&
+                    isset($service['unites'][$uniteCode]['natures'][$nature])
+                ) {
+                    return [
+                        'code' => $uniteCode,
+                        'name' => $service['unites'][$uniteCode]['name'],
+                        'service' => $serviceCode
+                    ];
+                }
             }
         }
 
-        foreach ($structure['SA']['unites'] as $code => $unite) {
-            if (isset($unite['natures'][$nature])) {
-                return ['code' => $code, 'name' => $unite['name'], 'service' => 'SA'];
-            }
-        }
-
-        foreach ($structure['SEG']['unites'] as $code => $unite) {
-            if (isset($unite['natures'][$nature])) {
-                return ['code' => $code, 'name' => $unite['name'], 'service' => 'SEG'];
+        foreach ($structure as $serviceCode => $service) {
+            foreach (($service['unites'] ?? []) as $code => $unite) {
+                if (isset($unite['natures'][$nature])) {
+                    return ['code' => $code, 'name' => $unite['name'], 'service' => $serviceCode];
+                }
             }
         }
 
@@ -148,11 +133,10 @@ class ServiceRedirectionHelper
         $structure = config('services_structure.services_structure');
         $result = [];
 
-        foreach ($structure['SA']['unites'] as $uniteCode => $unite) {
-            $result['SA - ' . $unite['name']] = array_keys($unite['natures']);
-        }
-        foreach ($structure['SEG']['unites'] as $uniteCode => $unite) {
-            $result['SEG - ' . $unite['name']] = array_keys($unite['natures']);
+        foreach ($structure as $serviceCode => $service) {
+            foreach (($service['unites'] ?? []) as $uniteCode => $unite) {
+                $result[$serviceCode . ' - ' . $unite['name']] = array_keys($unite['natures']);
+            }
         }
 
         return $result;
@@ -185,7 +169,9 @@ class ServiceRedirectionHelper
             'UGBT' => 'ubt',
             'UPNS' => 'unsp',
             'UTGC' => 'utgc',
-            'UMR' => 'umr'
+            'UMR' => 'umr',
+            'UAL' => 'ual',
+            'UCC' => 'ucc'
         ];
 
         $requiredRole = $roleMapping[$unitCode] ?? null;
@@ -202,7 +188,9 @@ class ServiceRedirectionHelper
             'UGBT' => 'ubt',
             'UPNS' => 'unsp',
             'UTGC' => 'utgc',
-            'UMR' => 'umr'
+            'UMR' => 'umr',
+            'UAL' => 'ual',
+            'UCC' => 'ucc'
         ];
 
         return $roleMapping[$uniteCode] ?? null;
@@ -218,7 +206,7 @@ class ServiceRedirectionHelper
             return null;
         }
 
-        $serviceRoleMapping = ['SA' => 'sad', 'SEG' => 'seg'];
+        $serviceRoleMapping = ['SA' => 'sad', 'SEG' => 'seg', 'SGB' => 'sgb'];
         return $serviceRoleMapping[$uniteInfo['service']] ?? null;
     }
 
@@ -265,14 +253,11 @@ class ServiceRedirectionHelper
         $structure = config('services_structure.services_structure');
         $result = [];
 
-        foreach ($structure['SA']['unites'] as $uniteCode => $unite) {
-            if (self::userHasUnitRole($user, $uniteCode)) {
-                $result['SA - ' . $unite['name']] = array_keys($unite['natures']);
-            }
-        }
-        foreach ($structure['SEG']['unites'] as $uniteCode => $unite) {
-            if (self::userHasUnitRole($user, $uniteCode)) {
-                $result['SEG - ' . $unite['name']] = array_keys($unite['natures']);
+        foreach ($structure as $serviceCode => $service) {
+            foreach (($service['unites'] ?? []) as $uniteCode => $unite) {
+                if (self::userHasUnitRole($user, $uniteCode)) {
+                    $result[$serviceCode . ' - ' . $unite['name']] = array_keys($unite['natures']);
+                }
             }
         }
 

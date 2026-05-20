@@ -36,6 +36,11 @@ class DemandeController extends Controller
             $query->where('nature', $request->nature);
         }
 
+        // Filtre par type de travaux
+        if (in_array($request->team_type, ['interne', 'externe'], true)) {
+            $query->where('team_type', $request->team_type);
+        }
+
         $demandes = $query->orderByDesc('created_at')->paginate(20);
 
         $statuts = Demande::select('statut')->distinct()->whereNotNull('statut')->pluck('statut');

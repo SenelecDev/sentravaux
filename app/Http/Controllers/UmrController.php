@@ -9,6 +9,7 @@ use App\Models\Demande;
 use App\Mail\DemandeCloture;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -34,8 +35,13 @@ class UmrController extends Controller
 
         $equipes = Equipe::all();
         $users = User::all();
+        $chefEquipeUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'equipe');
+        })->whereDoesntHave('roles', function ($query) {
+            $query->where('name', '!=', 'equipe');
+        })->orderBy('name')->get();
 
-        return view('umr.editer', compact('demande', 'equipes', 'users'));
+        return view('umr.editer', compact('demande', 'equipes', 'users', 'chefEquipeUsers'));
     }
 
     public function update(Request $request, string $id)
@@ -58,7 +64,7 @@ class UmrController extends Controller
             'executant_equipe_new.*' => 'nullable|exists:users,id',
             'commentaire' => 'nullable|string',
             'prestataire_nom' => 'nullable|string',
-            'numero_commande' => 'nullable|string',
+            'numero_commande' => ['nullable', 'string', 'max:255', 'regex:/^[^,;]+$/', Rule::unique('demandes', 'numero_commande')->ignore($demande->id)],
             'commentaire_prestataire' => 'nullable|string',
         ];
 
@@ -73,10 +79,13 @@ class UmrController extends Controller
 
         if ($action === 'terminer') {
             $rules['date_intervention'] = 'required|date';
-            if ($request->filled('prestataire_nom')) $rules['numero_commande'] = 'required|string';
+            if ($request->filled('prestataire_nom')) $rules['numero_commande'] = ['required', 'string', 'max:255', 'regex:/^[^,;]+$/', Rule::unique('demandes', 'numero_commande')->ignore($demande->id)];
         }
 
-        $request->validate($rules);
+        $request->validate($rules, [
+            'numero_commande.regex' => 'Un seul numero de commande est autorise par demande (pas de liste).',
+            'numero_commande.unique' => 'Ce numero de commande est deja utilise sur une autre demande.',
+        ]);
 
         $chefEquipeUserId = $request->filled('chef_equipe_id') ? $request->chef_equipe_id : null;
         $superviseurUserId = $request->filled('superviseur_id') ? $request->superviseur_id : ($request->filled('superviseur_externe_id') ? $request->superviseur_externe_id : null);
@@ -125,6 +134,24 @@ class UmrController extends Controller
 
         switch ($action) {
             case 'dispatcher':
+                $teamType = $request->input('team_type', $demande->team_type);
+
+                if ($teamType === 'externe') {
+                    if (!$superviseurUserId) {
+                        return redirect()->back()->withErrors([
+                            'superviseur_externe_id' => 'Le superviseur doit être sélectionné pour dispatcher une prestation externe.',
+                        ]);
+                    }
+
+                    $demande->update([
+                        'statut' => 'valide',
+                        'validated_by' => auth()->id(),
+                    ]);
+                    NotificationService::handleWorkflowAction($demande->fresh(), 'dispatcher_externe');
+
+                    return redirect()->route('umr.demandes.recues')->with('success', 'Demande validée pour prestataire externe.');
+                }
+
                 if ($chefEquipeUserId) {
                     $demande->update(['chef_equipe_id' => $chefEquipeUserId, 'statut' => 'valide', 'validated_by' => auth()->id()]);
                     $chefEquipe = User::find($chefEquipeUserId);
@@ -148,6 +175,7 @@ class UmrController extends Controller
 
             case 'debut_travaux':
                 $demande->update(['statut' => 'en_cours', 'date_intervention' => now(), 'date_debut_intervention' => now()]);
+                NotificationService::handleWorkflowAction($demande->fresh(), 'debut_travaux');
                 return redirect()->route('umr.demandes.recues')->with('success', 'Début des travaux enregistré.');
 
             case 'terminer':
@@ -157,10 +185,12 @@ class UmrController extends Controller
                 if ($request->filled('commentaire_prestataire')) $termData['commentaire_prestataire'] = $request->commentaire_prestataire;
                 if (!$demande->date_fin) $termData['date_fin'] = now();
                 $demande->update($termData);
+                NotificationService::handleWorkflowAction($demande->fresh(), 'terminer');
                 return redirect()->route('umr.demandes.recues')->with('success', 'Demande terminée avec succès.');
 
             case 'cloturer':
-                $demande->update(['statut' => 'cloture', 'cloture_par' => auth()->id()]);
+                $demande->update(['statut' => 'cloture', 'cloture_par' => auth()->id(), 'date_cloture' => now()]);
+                NotificationService::handleWorkflowAction($demande->fresh(), 'cloturer');
                 try {
                     $n1 = User::find($demande->user_id);
                     $n2 = User::find($demande->approved_by);
@@ -254,8 +284,10 @@ class UmrController extends Controller
         $user = auth()->user();
         $mois = $request->get('mois', date('m'));
         $annee = $request->get('annee', date('Y'));
+        $teamType = $request->get('team_type');
 
-        $baseQuery = fn() => Demande::where(function ($q) use ($user) { $q->whereNotNull('umr_id')->orWhere('umr_id', $user->id); });
+        $baseQuery = fn() => Demande::where(function ($q) use ($user) { $q->whereNotNull('umr_id')->orWhere('umr_id', $user->id); })
+            ->when(in_array($teamType, ['interne', 'externe'], true), fn($q) => $q->where('team_type', $teamType));
 
         $totalDemandes = $baseQuery()->count();
         $statuts = ['brouillon', 'en_attente', 'en_cours', 'accepte', 'rejete', 'valide', 'impute', 'termine', 'cloture'];
@@ -307,6 +339,7 @@ class UmrController extends Controller
             'periodesAvenir',
             'mois',
             'annee',
+            'teamType',
             'demandesBrouillon',
             'demandesEnAttente',
             'demandesEnCours',

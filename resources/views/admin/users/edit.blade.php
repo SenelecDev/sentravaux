@@ -142,11 +142,14 @@
                     'dage'        => ['border' => '#d8b4fe', 'bg' => '#faf5ff', 'text' => '#7e22ce', 'desc' => 'Statistiques DAGE'],
                     'sad'         => ['border' => '#5eead4', 'bg' => '#f0fdfa', 'text' => '#0f766e', 'desc' => 'Service Administratif'],
                     'seg'         => ['border' => '#67e8f9', 'bg' => '#ecfeff', 'text' => '#0e7490', 'desc' => 'Service Entretien Général'],
+                    'sgb'         => ['border' => '#fde68a', 'bg' => '#fffbeb', 'text' => '#92400e', 'desc' => 'Service Gestions Budget'],
                     'umt'         => ['border' => '#86efac', 'bg' => '#f0fdf4', 'text' => '#15803d', 'desc' => 'Unité Maintenance'],
                     'ubt'         => ['border' => '#bef264', 'bg' => '#f7fee7', 'text' => '#4d7c0f', 'desc' => 'Unité BT'],
                     'unsp'        => ['border' => '#fdba74', 'bg' => '#fff7ed', 'text' => '#c2410c', 'desc' => 'Unité NSP'],
                     'umr'         => ['border' => '#a5b4fc', 'bg' => '#eef2ff', 'text' => '#4338ca', 'desc' => 'Unité MR'],
                     'utgc'        => ['border' => '#f9a8d4', 'bg' => '#fdf2f8', 'text' => '#be185d', 'desc' => 'Unité TGCC'],
+                    'ual'         => ['border' => '#fdba74', 'bg' => '#fff7ed', 'text' => '#9a3412', 'desc' => 'Unité Analyse et Liquidation'],
+                    'ucc'         => ['border' => '#fbcfe8', 'bg' => '#fdf2f8', 'text' => '#9d174d', 'desc' => 'Unité Contrôle et Conformité'],
                     'equipe'      => ['border' => '#c4b5fd', 'bg' => '#f5f3ff', 'text' => '#6d28d9', 'desc' => "Chef d'équipe"],
                 ];
                 $defaultColor = ['border' => '#d1d5db', 'bg' => '#f9fafb', 'text' => '#374151', 'desc' => ''];
@@ -154,15 +157,40 @@
 
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 @foreach($roles as $role)
-                    @php $c = $roleColors[$role->name] ?? $defaultColor; @endphp
+                    @php
+                        $roleName = $role->name;
+                        $c = $roleColors[$roleName] ?? $defaultColor;
+
+                        // Modifier uniquement le label affiché (ne pas toucher à la description)
+                        $roleLabel = ucfirst($roleName);
+                        $roleDesc = $c['desc'] ?? '';
+
+                        if ($roleName === 'sad') {
+                            $roleLabel = 'SA';
+                        } elseif ($roleName === 'seg') {
+                            $roleLabel = 'SEG';
+                        } elseif ($roleName === 'umt') {
+                            $roleLabel = 'UMT';
+                        } elseif ($roleName === 'ubt') {
+                            $roleLabel = 'UBT';
+                        } elseif ($roleName === 'unsp') {
+                            $roleLabel = 'UNSP';
+                        } elseif ($roleName === 'sgb') {
+                            $roleLabel = 'SGB';
+                        } elseif ($roleName === 'ual') {
+                            $roleLabel = 'UAL';
+                        } elseif ($roleName === 'ucc') {
+                            $roleLabel = 'UCC';
+                        }
+                    @endphp
                     <label class="flex flex-col items-center gap-1 py-3 px-4 rounded-xl cursor-pointer transition-all hover:shadow-md"
                            style="border: 2px solid {{ $c['border'] }}; background-color: {{ $c['bg'] }};">
                         <input type="checkbox" name="roles[]" value="{{ $role->name }}"
                                class="w-5 h-5 rounded border-gray-300 focus:ring-offset-0 mb-1"
                                {{ in_array($role->name, $userRoles) ? 'checked' : '' }}>
-                        <span class="text-sm font-bold" style="color: {{ $c['text'] }};">{{ ucfirst($role->name) }}</span>
-                        @if($c['desc'])
-                            <span class="text-xs text-gray-500 text-center">{{ $c['desc'] }}</span>
+                        <span class="text-sm font-bold" style="color: {{ $c['text'] }};">{{ $roleLabel }}</span>
+                        @if($roleDesc)
+                            <span class="text-xs text-gray-500 text-center">{{ $roleDesc }}</span>
                         @endif
                     </label>
                 @endforeach

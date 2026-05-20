@@ -1,0 +1,15 @@
+# Copier en docker-compose.override.yml pour personnaliser (non versionné)
+# cp docker-compose.override.example.yml docker-compose.override.yml
+
+services:
+  app:
+    # Client Oracle déjà installé sur le serveur CentOS 7
+    # volumes:
+    #   - /usr/lib/oracle/19/client64/lib:/opt/oracle/instantclient:ro
+    # environment:
+    #   LD_LIBRARY_PATH: /opt/oracle/instantclient
+
+  web:
+    # Exemple autre port si 8093 occupé
+    # ports:
+    #   - "8094:80"

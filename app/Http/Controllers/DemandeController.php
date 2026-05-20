@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Demande;
 use App\Models\DemandeImage;
+use App\Models\DemandeRejection;
 use App\Models\Departement;
 use App\Models\Direction;
 use App\Models\Equipe;
@@ -13,18 +14,30 @@ use App\Models\User;
 use App\Helpers\ServiceRedirectionHelper;
 use App\Services\NotificationService;
 use Dompdf\Dompdf;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class DemandeController extends Controller
 {
+    private const TEMP_IMAGES_SESSION_KEY = 'demande_temp_images';
+
     public function index(Request $request)
     {
         $user = Auth::user();
         $statutFilter = $request->get('statut'); // ex: brouillon, en_attente, accepte, impute, termine, cloture...
+        $teamTypeFilter = $request->get('team_type'); // interne | externe
+        if (!in_array($teamTypeFilter, ['interne', 'externe'], true)) {
+            $teamTypeFilter = null;
+        }
 
         $baseQuery = $user->demandes();
+        if ($teamTypeFilter) {
+            $baseQuery->where('team_type', $teamTypeFilter);
+        }
         $totalDemandes = $baseQuery->count();
 
         // Compteurs par statut pour les cards
@@ -38,7 +51,8 @@ class DemandeController extends Controller
             'approbateurN1', 'images', 'service', 'site', 'approvedBy',
             'rejectedBy', 'rejectedByN2', 'validatedBy', 'terminatedBy',
             'cloturedBy', 'equipes', 'chefequipe', 'superviseur', 'executant',
-            'sad', 'seg', 'umt', 'umr', 'utgc', 'ubt', 'unsp'
+            'sad', 'seg', 'sgb', 'umt', 'umr', 'utgc', 'ubt', 'unsp', 'ual', 'ucc',
+            'rejectionHistory'
         ]);
 
         if ($statutFilter) {
@@ -54,6 +68,7 @@ class DemandeController extends Controller
         return view('demande.index', [
             'demandes'        => $demandes,
             'statutFilter'    => $statutFilter,
+            'teamTypeFilter'  => $teamTypeFilter,
             'statsParStatut'  => $statsParStatut,
             'totalDemandes'   => $totalDemandes,
         ]);
@@ -73,16 +88,28 @@ class DemandeController extends Controller
             $structuredNatures = ServiceRedirectionHelper::getStructuredNatures();
         }
 
-        return view('demande.creer', compact('equipes', 'directions', 'departements', 'services', 'sites', 'approbateurs', 'structuredNatures'));
+        $tempImages = $this->getTempImagesFromSession();
+
+        return view('demande.creer', compact('equipes', 'directions', 'departements', 'services', 'sites', 'approbateurs', 'structuredNatures', 'tempImages'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'date_debut_intervention' => 'nullable|date',
-            'date_fin_intervention' => 'nullable|date|after_or_equal:date_debut_intervention',
-        ]);
+        $validator = Validator::make(
+            array_merge(
+                [
+                    'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+                    'temp_images.*' => 'nullable|string',
+                ],
+                $this->getDateValidationRules($request)
+            ),
+            $this->getDateValidationMessages()
+        );
+
+        if ($validator->fails()) {
+            $this->storeUploadedImagesTemporarily($request);
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $vd = $request->all();
         $vd['user_id'] = Auth::id();
@@ -99,23 +126,8 @@ class DemandeController extends Controller
             return redirect()->back()->withErrors('Une erreur est survenue lors de la création de la demande.')->withInput();
         }
 
-        // Traitement des images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                if ($image->isValid()) {
-                    $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                    $path = 'demandes/' . $demande->id;
-                    $image->storeAs('public/' . $path, $filename);
-                    $demande->images()->create([
-                        'filename' => $filename,
-                        'original_name' => $image->getClientOriginalName(),
-                        'path' => $path . '/' . $filename,
-                        'mime_type' => $image->getClientMimeType(),
-                        'size' => $image->getSize()
-                    ]);
-                }
-            }
-        }
+        $this->persistUploadedImagesToDemande($request, $demande);
+        $this->persistTempImagesToDemande($demande, $request->input('temp_images', []));
 
         if ($action === 'submit') {
             $message = "La demande a été soumise avec succès et est en attente d'approbation.";
@@ -173,7 +185,9 @@ class DemandeController extends Controller
             $structuredNatures = ServiceRedirectionHelper::getStructuredNatures();
         }
 
-        return view('demande.edit', compact('demande', 'equipes', 'directions', 'departements', 'services', 'sites', 'approbateurs', 'structuredNatures'));
+        $tempImages = $this->getTempImagesFromSession();
+
+        return view('demande.edit', compact('demande', 'equipes', 'directions', 'departements', 'services', 'sites', 'approbateurs', 'structuredNatures', 'tempImages'));
     }
 
     public function update(Request $request, Demande $demande)
@@ -182,11 +196,21 @@ class DemandeController extends Controller
             return redirect()->route('demande.index')->withErrors('Cette demande ne peut plus être modifiée.');
         }
 
-        $request->validate([
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
-            'date_debut_intervention' => 'nullable|date',
-            'date_fin_intervention' => 'nullable|date|after_or_equal:date_debut_intervention',
-        ]);
+        $validator = Validator::make(
+            array_merge(
+                [
+                    'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+                    'temp_images.*' => 'nullable|string',
+                ],
+                $this->getDateValidationRules($request)
+            ),
+            $this->getDateValidationMessages()
+        );
+
+        if ($validator->fails()) {
+            $this->storeUploadedImagesTemporarily($request);
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $vd = $request->only(['objet', 'observation', 'nature', 'unite_code', 'site_id', 'approbateur_n1_id', 'date_debut_intervention', 'date_fin_intervention']);
 
@@ -216,23 +240,8 @@ class DemandeController extends Controller
             }
         }
 
-        // Nouvelles images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                if ($image->isValid()) {
-                    $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                    $path = 'demandes/' . $demande->id;
-                    $image->storeAs('public/' . $path, $filename);
-                    $demande->images()->create([
-                        'filename' => $filename,
-                        'original_name' => $image->getClientOriginalName(),
-                        'path' => $path . '/' . $filename,
-                        'mime_type' => $image->getClientMimeType(),
-                        'size' => $image->getSize()
-                    ]);
-                }
-            }
-        }
+        $this->persistUploadedImagesToDemande($request, $demande);
+        $this->persistTempImagesToDemande($demande, $request->input('temp_images', []));
 
         $message = ($action === 'submit') ? 'La demande a été mise à jour et soumise.' : 'La demande a été mise à jour en brouillon.';
         return redirect()->route('demande.index')->with('success', $message);
@@ -253,7 +262,8 @@ class DemandeController extends Controller
             'user', 'approbateurN1', 'images', 'service', 'site',
             'approvedBy', 'rejectedBy', 'rejectedByN2', 'validatedBy',
             'terminatedBy', 'cloturedBy', 'equipes', 'chefequipe',
-            'superviseur', 'executant', 'sad', 'seg', 'umt', 'umr', 'utgc', 'ubt', 'unsp'
+            'superviseur', 'executant', 'sad', 'seg', 'sgb', 'umt', 'umr', 'utgc', 'ubt', 'unsp', 'ual', 'ucc',
+            'rejectionHistory.rejectedByUser'
         ]);
 
         return view('demande.show', compact('demande'));
@@ -262,23 +272,23 @@ class DemandeController extends Controller
     public function pdf(Demande $demande)
     {
         $demande->load([
-            'user', 'approbateurN1', 'images', 'service', 'site',
+            'user', 'approbateurN1', 'images', 'service', 'departement', 'direction', 'site',
             'approvedBy', 'rejectedBy', 'rejectedByN2', 'validatedBy',
             'terminatedBy', 'cloturedBy', 'equipes', 'chefequipe',
-            'superviseur', 'executant', 'sad', 'seg', 'umt', 'umr', 'utgc', 'ubt', 'unsp'
+            'superviseur', 'executant', 'sad', 'seg', 'sgb', 'umt', 'umr', 'utgc', 'ubt', 'unsp', 'ual', 'ucc'
         ]);
 
         // N1 : Approbateur
         $n1 = $demande->approvedBy ?: $demande->approbateurN1;
 
         // N2 : Chef de service (SAD ou SEG selon le cas)
-        $n2 = $demande->sad ?: $demande->seg;
+        $n2 = $demande->sad ?: ($demande->seg ?: $demande->sgb);
 
         // N3 : Chef d'unité (UMT / UBT / UNSP / UMR / UTGC)
         $n3 = null;
         $n3Name = null;
 
-        foreach (['umt', 'ubt', 'unsp', 'umr', 'utgc'] as $unite) {
+        foreach (['umt', 'ubt', 'unsp', 'umr', 'utgc', 'ual', 'ucc'] as $unite) {
             $field = $unite . '_id';
             if ($demande->$field) {
                 $n3 = User::find($demande->$field);
@@ -363,13 +373,28 @@ class DemandeController extends Controller
             $uniteUser = ServiceRedirectionHelper::getUniteUserForNature($demande->nature, $targetUniteCode);
 
             if ($uniteInfo) {
+                // Permettre le choix explicite du chef d'unité au dispatch
+                if ($request->filled('unite_user_id')) {
+                    $selectedUser = User::find($request->input('unite_user_id'));
+                    $requiredRole = ServiceRedirectionHelper::getRoleFromUnite($uniteInfo['code']);
+                    if (!$selectedUser || !$requiredRole || !$selectedUser->hasRole($requiredRole)) {
+                        return redirect()->back()->withErrors('Le chef d\'unité sélectionné ne correspond pas à l\'unité cible.');
+                    }
+                    $uniteUser = $selectedUser;
+                }
+
                 $updateData = [
                     'statut' => 'impute',
                     // on mémorise l'unité cible (UAG, UPNS, UGBT, UMR, UTGC, ...)
                     'unite_code' => $uniteInfo['code'],
                 ];
 
-                $targetServiceRole = $targetServiceCode === 'SA' ? 'sad' : 'seg';
+                $targetServiceRole = match ($targetServiceCode) {
+                    'SA' => 'sad',
+                    'SEG' => 'seg',
+                    'SGB' => 'sgb',
+                    default => null,
+                };
 
                 if ($targetServiceRole === 'sad') {
                     $updateData['sad_id'] = Auth::id();
@@ -396,6 +421,14 @@ class DemandeController extends Controller
                         $updateData['date_fin_intervention'] = $request->input('date_fin_intervention');
                         $updateData['periode_validee_seg'] = true;
                     }
+                } elseif ($targetServiceRole === 'sgb') {
+                    $updateData['sgb_id'] = Auth::id();
+                    if ($uniteUser) {
+                        switch ($uniteInfo['code']) {
+                            case 'UAL': $updateData['ual_id'] = $uniteUser->id; break;
+                            case 'UCC': $updateData['ucc_id'] = $uniteUser->id; break;
+                        }
+                    }
                 }
 
                 $demande->update($updateData);
@@ -410,13 +443,28 @@ class DemandeController extends Controller
                 'motif2' => $request->input('rejection_reason'),
                 'rejected_by_n2' => Auth::id(),
             ];
-            $rejectServiceRole = $targetServiceCode === 'SA' ? 'sad' : 'seg';
+            $rejectServiceRole = match ($targetServiceCode) {
+                'SA' => 'sad',
+                'SEG' => 'seg',
+                'SGB' => 'sgb',
+                default => null,
+            };
             if ($rejectServiceRole === 'sad') {
                 $updateData['sad_id'] = Auth::id();
             } elseif ($rejectServiceRole === 'seg') {
                 $updateData['seg_id'] = Auth::id();
+            } elseif ($rejectServiceRole === 'sgb') {
+                $updateData['sgb_id'] = Auth::id();
             }
             $demande->update($updateData);
+            DemandeRejection::create([
+                'demande_id' => $demande->id,
+                'rejected_by' => Auth::id(),
+                'rejection_level' => 'n2',
+                'reason' => (string) $request->input('rejection_reason'),
+                'rejected_at' => now(),
+            ]);
+            NotificationService::demandeRejeteeN2($demande->fresh(), Auth::user(), $request->input('rejection_reason'));
             return redirect()->back()->with('success', 'Demande rejetée et renvoyée vers le demandeur.');
         }
 
@@ -462,6 +510,21 @@ class DemandeController extends Controller
             $demandes = $demandes->merge($segDemandes);
         }
 
+        if (in_array('sgb', $userRoles)) {
+            $sgbNatures = $this->getSGBNatures();
+            $sgbDemandes = Demande::whereIn('statut', ['accepte', 'approuve'])
+                ->whereIn('nature', $sgbNatures)
+                ->where(function ($query) {
+                    $query->where('nature', '!=', 'Autres demandes')
+                        ->orWhereIn('unite_code', ['UAL', 'UCC']);
+                })
+                ->whereNull('sgb_id')
+                ->with(['user', 'site'])
+                ->orderBy('created_at', 'desc')
+                ->get();
+            $demandes = $demandes->merge($sgbDemandes);
+        }
+
         return view('demande.pending_dispatch', compact('demandes'));
     }
 
@@ -487,6 +550,50 @@ class DemandeController extends Controller
         }
     }
 
+    private function getDateValidationRules(Request $request): array
+    {
+        $isUmr = strtoupper((string) $request->input('unite_code')) === 'UMR';
+        $isSubmitAction = $request->input('action') === 'submit';
+        $requireUmrPeriod = $isUmr && $isSubmitAction;
+
+        $dateDebutRules = [
+            'nullable',
+            'date_format:Y-m-d H:i',
+            'required_with:date_fin_intervention',
+        ];
+        $dateFinRules = [
+            'nullable',
+            'date_format:Y-m-d H:i',
+            'required_with:date_debut_intervention',
+            'after:date_debut_intervention',
+        ];
+
+        if ($requireUmrPeriod) {
+            $dateDebutRules[] = 'required';
+            $dateDebutRules[] = 'after_or_equal:now';
+            $dateFinRules[] = 'required';
+        }
+
+        return [
+            'date_debut_intervention' => $dateDebutRules,
+            'date_fin_intervention' => $dateFinRules,
+        ];
+    }
+
+    private function getDateValidationMessages(): array
+    {
+        return [
+            'date_debut_intervention.required' => 'La date de début est obligatoire pour une demande UMR soumise.',
+            'date_fin_intervention.required' => 'La date de fin est obligatoire pour une demande UMR soumise.',
+            'date_debut_intervention.required_with' => 'Veuillez renseigner la date de début si une date de fin est saisie.',
+            'date_fin_intervention.required_with' => 'Veuillez renseigner la date de fin si une date de début est saisie.',
+            'date_debut_intervention.date_format' => 'La date de début doit respecter le format YYYY-MM-DD HH:mm.',
+            'date_debut_intervention.after_or_equal' => 'La date de début doit être supérieure ou égale à la date/heure actuelle.',
+            'date_fin_intervention.date_format' => 'La date de fin doit respecter le format YYYY-MM-DD HH:mm.',
+            'date_fin_intervention.after' => 'La date de fin doit être strictement postérieure à la date de début.',
+        ];
+    }
+
     private function getSANatures()
     {
         $structure = config('services_structure.services_structure');
@@ -505,5 +612,115 @@ class DemandeController extends Controller
             $natures = array_merge($natures, array_keys($unite['natures']));
         }
         return $natures;
+    }
+
+    private function getSGBNatures()
+    {
+        $structure = config('services_structure.services_structure');
+        $natures = [];
+        foreach (($structure['SGB']['unites'] ?? []) as $unite) {
+            $natures = array_merge($natures, array_keys($unite['natures']));
+        }
+        return $natures;
+    }
+
+    private function getTempImagesFromSession(): array
+    {
+        return array_values(session(self::TEMP_IMAGES_SESSION_KEY, []));
+    }
+
+    private function storeUploadedImagesTemporarily(Request $request): void
+    {
+        if (!$request->hasFile('images')) {
+            return;
+        }
+
+        $existing = session(self::TEMP_IMAGES_SESSION_KEY, []);
+
+        foreach ($request->file('images', []) as $image) {
+            if (!$image || !$image->isValid()) {
+                continue;
+            }
+
+            $id = (string) Str::uuid();
+            $extension = $image->getClientOriginalExtension() ?: 'jpg';
+            $filename = $id . '.' . $extension;
+            $path = 'temp/demandes/' . Auth::id();
+            $storedPath = $image->storeAs('public/' . $path, $filename);
+
+            if (!$storedPath) {
+                continue;
+            }
+
+            $existing[$id] = [
+                'id' => $id,
+                'filename' => $filename,
+                'original_name' => $image->getClientOriginalName(),
+                'path' => $path . '/' . $filename,
+                'mime_type' => $image->getClientMimeType(),
+                'size' => $image->getSize(),
+            ];
+        }
+
+        session([self::TEMP_IMAGES_SESSION_KEY => $existing]);
+    }
+
+    private function persistUploadedImagesToDemande(Request $request, Demande $demande): void
+    {
+        if (!$request->hasFile('images')) {
+            return;
+        }
+
+        foreach ($request->file('images') as $image) {
+            if ($image->isValid()) {
+                $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $path = 'demandes/' . $demande->id;
+                $image->storeAs('public/' . $path, $filename);
+                $demande->images()->create([
+                    'filename' => $filename,
+                    'original_name' => $image->getClientOriginalName(),
+                    'path' => $path . '/' . $filename,
+                    'mime_type' => $image->getClientMimeType(),
+                    'size' => $image->getSize(),
+                ]);
+            }
+        }
+    }
+
+    private function persistTempImagesToDemande(Demande $demande, array $tempImageIds): void
+    {
+        if (empty($tempImageIds)) {
+            return;
+        }
+
+        $allTempImages = session(self::TEMP_IMAGES_SESSION_KEY, []);
+        $selectedTempImages = Arr::only($allTempImages, array_unique($tempImageIds));
+
+        $movedIds = [];
+
+        foreach ($selectedTempImages as $tempId => $tempImage) {
+            $sourcePath = 'public/' . $tempImage['path'];
+            if (!Storage::exists($sourcePath)) {
+                continue;
+            }
+
+            $filename = time() . '_' . uniqid() . '.' . pathinfo((string) $tempImage['filename'], PATHINFO_EXTENSION);
+            $targetPath = 'demandes/' . $demande->id . '/' . $filename;
+
+            Storage::move($sourcePath, 'public/' . $targetPath);
+
+            $demande->images()->create([
+                'filename' => $filename,
+                'original_name' => $tempImage['original_name'],
+                'path' => $targetPath,
+                'mime_type' => $tempImage['mime_type'] ?? null,
+                'size' => $tempImage['size'] ?? null,
+            ]);
+
+            $movedIds[$tempId] = true;
+        }
+
+        $remaining = array_diff_key($allTempImages, $movedIds);
+        session([self::TEMP_IMAGES_SESSION_KEY => $remaining]);
     }
 }

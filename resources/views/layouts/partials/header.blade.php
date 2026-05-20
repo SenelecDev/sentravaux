@@ -26,12 +26,80 @@
 
         <div class="flex items-center gap-x-4 lg:gap-x-6">
             <!-- Notifications -->
-            <button type="button" class="-m-2.5 p-2.5 text-white/80 hover:text-white relative">
-                <span class="sr-only">Notifications</span>
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                </svg>
-            </button>
+            <div class="relative" x-data="notificationBell({{ $unreadNotificationsCount ?? 0 }})" x-init="init()">
+                <button type="button"
+                        @click.stop="open = !open; if (open) load()"
+                        class="-m-2.5 p-2.5 text-white/80 hover:text-white relative">
+                    <span class="sr-only">Notifications</span>
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+                    <span x-show="unreadCount > 0"
+                          x-text="unreadCount > 99 ? '99+' : unreadCount"
+                          class="absolute -top-0.5 -right-0.5 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-[#e30613] px-1 text-[10px] font-bold text-white"></span>
+                </button>
+
+                <div x-cloak
+                     x-show="open"
+                     @click.outside.window="open = false"
+                     x-transition
+                     class="absolute right-0 z-50 mt-2 w-80 sm:w-96 origin-top-right rounded-xl bg-white py-2 shadow-lg ring-1 ring-gray-900/5">
+                    <div class="flex items-center justify-between px-4 py-2 border-b border-gray-100">
+                        <p class="text-sm font-semibold text-gray-900">Notifications</p>
+                        <a href="{{ route('notifications.index') }}" class="text-xs text-[#B3006C] hover:underline">Tout voir</a>
+                    </div>
+                    <div class="max-h-80 overflow-y-auto">
+                        <template x-if="loading">
+                            <p class="px-4 py-6 text-sm text-gray-500 text-center">Chargement…</p>
+                        </template>
+                        <template x-if="!loading && items.length === 0">
+                            <p class="px-4 py-6 text-sm text-gray-500 text-center">Aucune notification</p>
+                        </template>
+                        <template x-for="item in items" :key="item.id">
+                            <a :href="item.url || '{{ route('notifications.index') }}'"
+                               class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-50 last:border-0"
+                               :class="!item.is_read ? 'bg-blue-50/40' : ''"
+                               @click="open = false">
+                                <p class="text-sm font-medium text-gray-900" x-text="item.title"></p>
+                                <p class="text-xs text-gray-600 mt-0.5 line-clamp-2" x-text="item.message"></p>
+                            </a>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+            window.notificationBell = function (initialCount) {
+                return {
+                    open: false,
+                    loading: false,
+                    unreadCount: initialCount,
+                    items: [],
+                    init() {
+                        setInterval(() => this.refreshCount(), 60000);
+                    },
+                    async refreshCount() {
+                        try {
+                            const r = await fetch(@json(route('notifications.count')));
+                            const d = await r.json();
+                            this.unreadCount = d.count ?? 0;
+                        } catch (e) {}
+                    },
+                    async load() {
+                        this.loading = true;
+                        try {
+                            const r = await fetch(@json(route('notifications.data')));
+                            const d = await r.json();
+                            this.items = d.notifications ?? [];
+                            this.unreadCount = d.unread_count ?? 0;
+                        } catch (e) {
+                            this.items = [];
+                        }
+                        this.loading = false;
+                    }
+                };
+            };
+            </script>
 
             <!-- Separator -->
             <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-white/20" aria-hidden="true"></div>

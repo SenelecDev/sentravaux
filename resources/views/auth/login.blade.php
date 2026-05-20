@@ -15,7 +15,7 @@
     <style>
         @font-face {
             font-family: 'Conthrax';
-            src: url('{{ asset('fonts/Conthrax-SemiBold.otf') }}') format('opentype');
+            src: url('../fonts/Conthrax-SemiBold.otf') format('opentype');
             font-weight: 600;
             font-style: normal;
             font-display: swap;
@@ -187,7 +187,7 @@
                             </div>
                         @endif
                         
-                        <form method="POST" action="{{ route('login') }}" class="space-y-4">
+                        <form method="POST" action="{{ rtrim(config('app.url'), '/') }}/" class="space-y-4">
                             @csrf
                             
                             <div>

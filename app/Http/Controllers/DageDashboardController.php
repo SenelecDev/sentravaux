@@ -21,6 +21,7 @@ class DageDashboardController extends Controller
         $serviceDemandeurFilter = $request->get('service_demandeur');
         $siteFilter = $request->get('site');
         $natureFilter = $request->get('nature');
+        $teamTypeFilter = $request->get('team_type');
         $search = $request->get('search');
         $uniteFilter = $request->get('unite');
         $perPage = $request->get('per_page', 25);
@@ -52,6 +53,7 @@ class DageDashboardController extends Controller
             if (!empty($natures)) $query->whereIn('nature', $natures);
         }
         if ($natureFilter && $natureFilter !== 'tous') $query->where('nature', $natureFilter);
+        if (in_array($teamTypeFilter, ['interne', 'externe'], true)) $query->where('team_type', $teamTypeFilter);
         if ($serviceDemandeurFilter && $serviceDemandeurFilter !== 'tous') $query->where('service_id', $serviceDemandeurFilter);
         if ($siteFilter && $siteFilter !== 'tous') $query->where('site_id', $siteFilter);
         if ($uniteFilter && $uniteFilter !== 'tous') $query->where('unite_code', $uniteFilter);
@@ -96,7 +98,7 @@ class DageDashboardController extends Controller
             'repartitionStatuts', 'evolutionMensuelle',
             'travauxEnCours', 'periodesValidees',
             'statutFilter', 'moisFilter', 'anneeFilter', 'semaineFilter', 'serviceFilter',
-            'natureFilter', 'serviceDemandeurFilter', 'siteFilter', 'search', 'perPage',
+            'natureFilter', 'teamTypeFilter', 'serviceDemandeurFilter', 'siteFilter', 'search', 'perPage',
             'services', 'servicesDemandeurs', 'sites', 'annees', 'natures',
             'uniteFilter', 'unites'
         ));
@@ -243,6 +245,7 @@ class DageDashboardController extends Controller
         $serviceDemandeurFilter = $request->get('service_demandeur');
         $siteFilter = $request->get('site');
         $natureFilter = $request->get('nature');
+        $teamTypeFilter = $request->get('team_type');
         $search = $request->get('search');
         $uniteFilter = $request->get('unite');
 
@@ -270,6 +273,7 @@ class DageDashboardController extends Controller
             if (!empty($natures)) $query->whereIn('nature', $natures);
         }
         if ($natureFilter && $natureFilter !== 'tous') $query->where('nature', $natureFilter);
+        if (in_array($teamTypeFilter, ['interne', 'externe'], true)) $query->where('team_type', $teamTypeFilter);
         if ($serviceDemandeurFilter && $serviceDemandeurFilter !== 'tous') $query->where('service_id', $serviceDemandeurFilter);
         if ($siteFilter && $siteFilter !== 'tous') $query->where('site_id', $siteFilter);
         if ($uniteFilter && $uniteFilter !== 'tous') $query->where('unite_code', $uniteFilter);

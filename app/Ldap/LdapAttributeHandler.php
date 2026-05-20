@@ -10,54 +10,52 @@ class LdapAttributeHandler
 {
     public function handle(LdapUser $ldap, DatabaseUser $database): void
     {
-        // Username
-        $database->ldap_username = $ldap->getFirstAttribute('samaccountname');
-
-        // Nom / Prénom
-        $displayName = $ldap->getFirstAttribute('displayname') ?? $ldap->getFirstAttribute('name');
-        $sn = $ldap->getFirstAttribute('sn');
-        $givenName = $ldap->getFirstAttribute('givenname');
-
-        if ($givenName && $sn) {
-            $database->prenom = $givenName;
-            $database->nom = $sn;
-        } elseif ($displayName) {
-            $parts = explode(' ', $displayName, 2);
-            $database->prenom = $parts[0] ?? '';
-            $database->nom = $parts[1] ?? '';
-        }
-
-        $database->name = trim(($database->prenom ?? '') . ' ' . ($database->nom ?? ''));
-
-        // Poste / Email / Service / Téléphone
-        $database->poste = $ldap->getFirstAttribute('title');
-        
+        $sam = (string) ($ldap->getFirstAttribute('samaccountname') ?? '');
+        $sn = (string) ($ldap->getFirstAttribute('sn') ?? '');
+        $givenName = (string) ($ldap->getFirstAttribute('givenname') ?? '');
+        $displayName = (string) ($ldap->getFirstAttribute('displayname') ?? $ldap->getFirstAttribute('name') ?? '');
+        $company = (string) ($ldap->getFirstAttribute('company') ?? '');
         $email = $ldap->getFirstAttribute('mail');
-        if ($email) {
-            $database->email = $email;
-        } elseif (!$database->email) {
-            $sam = $ldap->getFirstAttribute('samaccountname');
-            $database->email = $sam ? strtolower($sam) . '@senelec.sn' : null;
+
+        $database->ldap_username = $sam !== '' ? $sam : null;
+        $database->ldap_guid = $ldap->getConvertedGuid();
+
+        // Nom / prenom
+        $database->nom = $sn !== '' ? $sn : ($database->nom ?? '');
+        $database->prenom = $givenName !== '' ? $givenName : ($database->prenom ?? '');
+        if (($database->prenom === '' || $database->nom === '') && $displayName !== '') {
+            $parts = explode(' ', $displayName, 2);
+            $database->prenom = $database->prenom !== '' ? $database->prenom : (string) ($parts[0] ?? '');
+            $database->nom = $database->nom !== '' ? $database->nom : (string) ($parts[1] ?? '');
         }
 
-        $database->service = $ldap->getFirstAttribute('department');
-        $database->telephone = $ldap->getFirstAttribute('mobile') ?: $ldap->getFirstAttribute('telephonenumber');
+        $fullName = trim(($database->prenom ?? '') . ' ' . ($database->nom ?? ''));
+        $database->name = $fullName !== '' ? $fullName : ($displayName !== '' ? $displayName : ($sam !== '' ? $sam : 'Utilisateur'));
 
-        // Organisation & Matricule
-        $company = $ldap->getFirstAttribute('company');
-        if ($company) {
+        // Donnees pro
+        $database->poste = $ldap->getFirstAttribute('title') ?? $database->poste;
+        $database->service = $ldap->getFirstAttribute('department') ?? $database->service;
+        $database->telephone = $ldap->getFirstAttribute('mobile')
+            ?? $ldap->getFirstAttribute('telephonenumber')
+            ?? $database->telephone;
+
+        if (!empty($email)) {
+            $database->email = (string) $email;
+        } elseif (empty($database->email) && $sam !== '') {
+            $database->email = strtolower($sam) . '@senelec.sn';
+        }
+
+        // Organisation / entreprise
+        if ($company !== '') {
             $database->organisation = $company;
-
-            // Extraction du matricule depuis company (format "SENELEC XXXXX")
-            if (preg_match('/SENELEC\s+(\S+)/i', $company, $matches)) {
-                $database->matricule = strtoupper($matches[1]);
-            }
+            $split = preg_split('/\s+/', trim($company)) ?: [];
+            $database->entreprise = isset($split[0]) ? strtoupper((string) $split[0]) : ($database->entreprise ?? 'SENELEC');
+        } elseif (empty($database->entreprise)) {
+            $database->entreprise = 'SENELEC';
         }
 
-        if (!$database->matricule) {
-            $sam = $ldap->getFirstAttribute('samaccountname');
-            $database->matricule = $sam ? strtoupper($sam) : 'AUTO-' . strtoupper(uniqid());
-        }
+        // Matricule: employeenumber > company token > samaccountname > auto
+        $database->matricule = $this->extractMatriculeFromLdap($ldap, $sam);
 
         // Photo de profil
         $thumbnailPhoto = $ldap->getFirstAttribute('thumbnailPhoto');
@@ -86,5 +84,27 @@ class LdapAttributeHandler
         }
 
         $database->last_sync_at = now();
+    }
+
+    protected function extractMatriculeFromLdap(LdapUser $ldap, string $sam): string
+    {
+        $employeeNumber = $ldap->getFirstAttribute('employeenumber');
+        if (!empty($employeeNumber)) {
+            return strtoupper((string) $employeeNumber);
+        }
+
+        $company = (string) ($ldap->getFirstAttribute('company') ?? '');
+        if ($company !== '') {
+            $parts = array_values(array_filter(preg_split('/\s+/', trim($company)) ?: []));
+            if (isset($parts[1]) && (string) $parts[1] !== '') {
+                return strtoupper((string) $parts[1]);
+            }
+        }
+
+        if ($sam !== '') {
+            return strtoupper($sam);
+        }
+
+        return 'AUTO_' . strtoupper(substr(md5(uniqid('', true)), 0, 8));
     }
 }

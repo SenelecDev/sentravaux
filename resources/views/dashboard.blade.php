@@ -13,6 +13,39 @@
     </div>
 
     <!-- Stat Cards -->
+    @if(!empty($availableDashboards) && count($availableDashboards) > 1)
+    <div class="card-senelec p-5">
+        <h2 class="text-lg font-semibold text-gray-900 mb-1">Choisir un espace</h2>
+        <p class="text-sm text-gray-500 mb-4">Ce compte possède plusieurs rôles. Ouvrez le tableau de bord souhaité.</p>
+        @php
+            $labels = [
+                'admin' => 'Administration',
+                'dage' => 'DAGE',
+                'sad' => 'SA',
+                'seg' => 'SEG',
+                'sgb' => 'SGB',
+                'approbateur' => 'Approbateur',
+                'umt' => 'UMT',
+                'ubt' => 'UBT',
+                'unsp' => 'UNSP',
+                'umr' => 'UMR',
+                'utgc' => 'UTGC',
+                'ual' => 'UAL',
+                'ucc' => 'UCC',
+                'equipe' => 'Équipe',
+                'demandeur' => 'Demandeur',
+            ];
+        @endphp
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            @foreach($availableDashboards as $role => $route)
+                <a href="{{ route($route) }}" class="btn-secondary text-sm text-center">
+                    {{ $labels[$role] ?? strtoupper($role) }}
+                </a>
+            @endforeach
+        </div>
+    </div>
+    @endif
+
     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <div class="stat-card-purple">
             <div class="flex items-center justify-between">

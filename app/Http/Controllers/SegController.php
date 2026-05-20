@@ -31,6 +31,15 @@ class SegController extends Controller
         $demande->umr_id = $request->input('umr_id');
         $demande->utgc_id = $request->input('utgc_id');
         $demande->save();
+
+        $demande = $demande->fresh(['umr', 'utgc']);
+        if ($demande->umr_id && $demande->umr) {
+            NotificationService::demandeAssigneeUnite($demande, $demande->umr, 'UMR');
+        }
+        if ($demande->utgc_id && $demande->utgc) {
+            NotificationService::demandeAssigneeUnite($demande, $demande->utgc, 'UTGC');
+        }
+
         return redirect()->route('seg.demandes.approuvees')->with('success', 'Demande mise à jour avec succès');
     }
 
@@ -150,6 +159,66 @@ class SegController extends Controller
             ->limit(10)
             ->get();
 
+        $dashboardQuery = $this->buildDashboardQuery($user);
+        $this->applyDashboardFilters($dashboardQuery, $request);
+
+        // Rendre compteurs + graphiques dynamiques selon les filtres
+        $filteredBase = clone $dashboardQuery;
+        $demandesBrouillon = (clone $filteredBase)->where('statut', 'brouillon')->count();
+        $demandesEnAttente = (clone $filteredBase)->where('statut', 'en_attente')->count();
+        $demandesEnCours = (clone $filteredBase)->where('statut', 'en_cours')->count();
+        $demandesAcceptees = (clone $filteredBase)->where('statut', 'accepte')->count();
+        $demandesRejetees = (clone $filteredBase)->where('statut', 'rejete')->count();
+        $demandesValides = (clone $filteredBase)->where('statut', 'valide')->count();
+        $demandesImputees = (clone $filteredBase)->where('statut', 'impute')->count();
+        $demandesTerminees = (clone $filteredBase)->where('statut', 'termine')->count();
+        $demandesCloturees = (clone $filteredBase)->where('statut', 'cloture')->count();
+        $totalDemandes = (clone $filteredBase)->count();
+
+        $demandesParMois = [];
+        foreach ($statuts as $statut) {
+            $demandesParMois[$statut] = (clone $filteredBase)
+                ->where('statut', $statut)
+                ->whereMonth('created_at', $mois)
+                ->whereYear('created_at', $annee)
+                ->count();
+        }
+        $totalFiltre = array_sum($demandesParMois);
+        foreach ($statuts as $statut) {
+            $pourcentagesParStatut[$statut] = $totalFiltre > 0 ? round(($demandesParMois[$statut] / $totalFiltre) * 100, 1) : 0;
+        }
+
+        $derniersDouzeData = [];
+        for ($i = 11; $i >= 0; $i--) {
+            $date = Carbon::now()->subMonths($i);
+            $moisData = [];
+            foreach ($statuts as $statut) {
+                $moisData[$statut] = (clone $filteredBase)
+                    ->where('statut', $statut)
+                    ->whereMonth('created_at', $date->month)
+                    ->whereYear('created_at', $date->year)
+                    ->count();
+            }
+            $derniersDouzeData[] = ['mois' => $date->format('M Y'), 'data' => $moisData];
+        }
+
+        $demandesFiltrees = (clone $dashboardQuery)
+            ->with(['user', 'site', 'service'])
+            ->orderBy('created_at', 'desc')
+            ->paginate((int) $request->get('per_page', 15))
+            ->withQueryString();
+
+        $unites = collect(config('services_structure.services_structure.SEG.unites', []))
+            ->mapWithKeys(fn ($item, $code) => [$code => ($item['name'] ?? $code)])
+            ->toArray();
+
+        $natures = (clone $dashboardQuery)
+            ->whereNotNull('nature')
+            ->select('nature')
+            ->distinct()
+            ->orderBy('nature')
+            ->pluck('nature');
+
         return view('seg.dashboard', compact(
             'totalDemandes',
             'demandesBrouillon',
@@ -168,8 +237,101 @@ class SegController extends Controller
             'travauxDebutes',
             'periodesAvenir',
             'mois',
-            'annee'
+            'annee',
+            'demandesFiltrees',
+            'unites',
+            'natures'
         ));
+    }
+
+    public function exportDashboard(Request $request)
+    {
+        $query = $this->buildDashboardQuery(auth()->user());
+        $this->applyDashboardFilters($query, $request);
+
+        $demandes = $query->with(['user', 'service', 'site'])->orderBy('created_at', 'desc')->get();
+        $filename = 'dashboard_seg_' . now()->format('Y-m-d_H-i-s') . '.csv';
+
+        return response()->streamDownload(function () use ($demandes) {
+            $handle = fopen('php://output', 'w');
+            fprintf($handle, chr(0xEF) . chr(0xBB) . chr(0xBF));
+            fputcsv($handle, ['N Demande', 'Statut', 'Unite', 'Nature', 'Objet', 'Demandeur', 'Service', 'Site', 'Creation', 'Debut', 'Fin'], ';');
+            foreach ($demandes as $d) {
+                fputcsv($handle, [
+                    $d->numero_demande,
+                    $d->statut,
+                    $d->unite_code,
+                    $d->nature,
+                    $d->objet,
+                    $d->user?->name,
+                    $d->service?->libelle,
+                    $d->site?->libelle,
+                    optional($d->created_at)->format('d/m/Y H:i'),
+                    optional($d->date_debut_intervention)->format('d/m/Y H:i'),
+                    optional($d->date_fin_intervention)->format('d/m/Y H:i'),
+                ], ';');
+            }
+            fclose($handle);
+        }, $filename, ['Content-Type' => 'text/csv; charset=UTF-8']);
+    }
+
+    private function buildDashboardQuery($user)
+    {
+        $segNatures = [];
+        $structure = config('services_structure.services_structure');
+        foreach ($structure['SEG']['unites'] as $unite) {
+            $segNatures = array_merge($segNatures, array_keys($unite['natures']));
+        }
+
+        return Demande::where(function ($q) use ($user, $segNatures) {
+            $q->where('seg_id', $user->id)
+                ->orWhere(function ($inner) use ($segNatures) {
+                    $inner->where('statut', 'accepte')
+                        ->where(function ($sub) use ($segNatures) {
+                            $sub->where(function ($x) use ($segNatures) {
+                                $x->whereIn('nature', $segNatures)->where('nature', '!=', 'Autres demandes');
+                            })->orWhere(function ($x) {
+                                $x->where('nature', 'Autres demandes')->whereIn('unite_code', ['UTGC', 'UMR']);
+                            })->orWhere(function ($x) {
+                                $x->where('nature', 'Autres demandes')->whereNotNull('seg_id')->whereNull('sad_id');
+                            });
+                        });
+                });
+        });
+    }
+
+    private function applyDashboardFilters($query, Request $request): void
+    {
+        $unite = $request->get('unite');
+        $demande = $request->get('demande');
+        $teamType = $request->get('team_type');
+        $nature = $request->get('nature');
+        $periode = $request->get('periode', 'tous');
+        $search = trim((string) $request->get('search', ''));
+
+        if ($unite && $unite !== 'tous') $query->where('unite_code', $unite);
+        if ($demande && $demande !== 'tous') $query->where('statut', $demande);
+        if (in_array($teamType, ['interne', 'externe'], true)) $query->where('team_type', $teamType);
+        if ($nature && $nature !== 'tous') $query->where('nature', $nature);
+        if ($search !== '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('numero_demande', 'like', '%' . $search . '%')
+                    ->orWhere('objet', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($periode === 'semaine') $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+        if ($periode === 'mois') $query->whereMonth('created_at', now()->month)->whereYear('created_at', now()->year);
+        if ($periode === 'annee') $query->whereYear('created_at', now()->year);
+        if ($periode === 'custom') {
+            if ($request->filled('periode_min')) $query->whereDate('created_at', '>=', $request->get('periode_min'));
+            if ($request->filled('periode_max')) $query->whereDate('created_at', '<=', $request->get('periode_max'));
+        }
+
+        if ($request->filled('date_debut_min')) $query->whereDate('date_debut_intervention', '>=', $request->get('date_debut_min'));
+        if ($request->filled('date_debut_max')) $query->whereDate('date_debut_intervention', '<=', $request->get('date_debut_max'));
+        if ($request->filled('date_fin_min')) $query->whereDate('date_fin_intervention', '>=', $request->get('date_fin_min'));
+        if ($request->filled('date_fin_max')) $query->whereDate('date_fin_intervention', '<=', $request->get('date_fin_max'));
     }
 
     public function demandes_approuvees()
@@ -227,6 +389,7 @@ class SegController extends Controller
     {
         $user = auth()->user();
         $statut = $request->get('statut'); // null => toutes
+        $teamType = $request->get('team_type');
 
         // Même logique que sur le dashboard pour distinguer :
         // - demandes déjà suivies par SEG (seg_id)
@@ -277,6 +440,10 @@ class SegController extends Controller
             });
         }
 
+        if (in_array($teamType, ['interne', 'externe'], true)) {
+            $query->where('team_type', $teamType);
+        }
+
         $demandes = $query
             ->with(['user', 'service', 'site', 'approbateurN1', 'images', 'approvedBy'])
             ->orderBy('updated_at', 'desc')
@@ -296,7 +463,7 @@ class SegController extends Controller
             'rejete'   => 'Rejetées',
         ];
 
-        return view('seg.demande', compact('demandes', 'statut', 'statutsDisponibles'));
+        return view('seg.demande', compact('demandes', 'statut', 'statutsDisponibles', 'teamType'));
     }
 
     public function periodesEnAttente()
@@ -376,6 +543,8 @@ class SegController extends Controller
             'commentaire_periode_seg' => $request->input('commentaire'),
             'periode_validee_seg' => true,
         ]);
+
+        NotificationService::periodeModifieeSeg($demande->fresh());
 
         return redirect()->back()->with('success', 'Période d\'intervention modifiée avec succès.');
     }
