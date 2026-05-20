@@ -42,14 +42,19 @@
                 <tbody>
                     @forelse($services as $svc)
                         <tr>
-                            <td class="font-medium text-gray-900">{{ $svc->service }}</td>
+                            <td class="font-medium text-gray-900">
+                                {{ $svc->libelle }}
+                                @if($svc->code && $svc->code !== $svc->libelle)
+                                    <span class="text-xs text-gray-500 block">{{ $svc->code }}</span>
+                                @endif
+                            </td>
                             <td>
                                 <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-purple-100 text-purple-700">
                                     {{ $svc->users_count }} utilisateur(s)
                                 </span>
                             </td>
                             <td class="text-right">
-                                <a href="{{ route('admin.services.show', $svc->service) }}" 
+                                <a href="{{ route('admin.services.show', $svc->libelle) }}" 
                                    class="p-1.5 text-purple-500 hover:text-purple-700 hover:bg-purple-50 rounded-lg transition-colors inline-block" title="Voir les utilisateurs">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
