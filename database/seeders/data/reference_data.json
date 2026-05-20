@@ -1,0 +1,5469 @@
+{
+    "sites": [
+        {
+            "oracle_location_id": 1012,
+            "libelle": "4C",
+            "code": "4C",
+            "adresse": "Dakar",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 935,
+            "libelle": "Aero Lao",
+            "code": "Aero Lao",
+            "adresse": "Aero Lao",
+            "ville": "Matam",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 141,
+            "libelle": "BEL AIR - Distrib.",
+            "code": "BEL AIR - Distrib.",
+            "adresse": "avenue Félix Eboué",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 148,
+            "libelle": "BEL AIR_C2",
+            "code": "BEL AIR_C2",
+            "adresse": "BEL AIR AVENUE FELIX EBOUE",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 143,
+            "libelle": "BEL AIR_POMPE CARBUR",
+            "code": "BEL AIR_POMPE CARBUR",
+            "adresse": "Avenue Félix Eboué BEL AIR",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 80,
+            "libelle": "Bakel",
+            "code": "Bakel",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 207,
+            "libelle": "Bakel Production",
+            "code": "Bakel Production",
+            "adresse": "Bakel Production",
+            "ville": "Bakel",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 97,
+            "libelle": "Bambey",
+            "code": "Bambey",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 173,
+            "libelle": "Bandafaci Production",
+            "code": "Bandafaci Production",
+            "adresse": "Bandafaci Production",
+            "ville": "Bandafaci",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 181,
+            "libelle": "Bandafassi",
+            "code": "Bandafassi",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 212,
+            "libelle": "Bargny",
+            "code": "Bargny",
+            "adresse": "Bargny",
+            "ville": "Rufisque",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 251,
+            "libelle": "Bassoul Bassar",
+            "code": "Bassoul Bassar",
+            "adresse": "Iles du Saloum",
+            "ville": "Bassoul_Bassar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 206,
+            "libelle": "Batenty Production",
+            "code": "Batenty Production",
+            "adresse": "Batenty Production",
+            "ville": "Batenty",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 955,
+            "libelle": "Bel AIR\/TAG4",
+            "code": "Bel AIR\/TAG4",
+            "adresse": "BEL AIR",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 372,
+            "libelle": "Bel Air\/C2",
+            "code": "Bel Air\/C2",
+            "adresse": "Bel Air\/C2",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 377,
+            "libelle": "Bel Air\/C2\/AtelierEM",
+            "code": "Bel Air\/C2\/AtelierEM",
+            "adresse": "Bel Air\/C2",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 42,
+            "libelle": "Bel Air\/C2\/C1 diésel",
+            "code": "Bel Air\/C2\/C1 diésel",
+            "adresse": "Bel Air",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 373,
+            "libelle": "Bel Air\/C2\/C2 vapeur",
+            "code": "Bel Air\/C2\/C2 vapeur",
+            "adresse": "Bel Air\/C2",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 378,
+            "libelle": "Bel Air\/C2\/C6 diésel",
+            "code": "Bel Air\/C2\/C6 diésel",
+            "adresse": "Bel Air\/C2",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 376,
+            "libelle": "Bel Air\/C2\/CMT",
+            "code": "Bel Air\/C2\/CMT",
+            "adresse": "Bel Air\/C2",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 374,
+            "libelle": "Bel Air\/C2\/TAG4",
+            "code": "Bel Air\/C2\/TAG4",
+            "adresse": "Bel Air\/C2",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 43,
+            "libelle": "Bel Air\/Réseau",
+            "code": "Bel Air\/Réseau",
+            "adresse": "Bel-Air réseau",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 380,
+            "libelle": "Bel Air\/Réseau\/EG",
+            "code": "Bel Air\/Réseau\/EG",
+            "adresse": "Bel Air\/Réseau",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 379,
+            "libelle": "Bel Air\/Réseau\/EM DP",
+            "code": "Bel Air\/Réseau\/EM DP",
+            "adresse": "Bel Air\/Réseau",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 381,
+            "libelle": "Bel Air\/Réseau\/Garag",
+            "code": "Bel Air\/Réseau\/Garag",
+            "adresse": "Bel Air\/Réseau",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 382,
+            "libelle": "Bel Air\/Réseau\/SDD1",
+            "code": "Bel Air\/Réseau\/SDD1",
+            "adresse": "Bel Air\/Réseau",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 90,
+            "libelle": "Bignona",
+            "code": "Bignona",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 400,
+            "libelle": "Boucotte",
+            "code": "Boucotte",
+            "adresse": "Délégation Régionale Sud Ziguinchor quartier Boucotte",
+            "ville": "Ziguinchor",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 41,
+            "libelle": "Bourguiba",
+            "code": "Bourguiba",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 972,
+            "libelle": "Bourguiba DC",
+            "code": "Bourguiba DC",
+            "adresse": "Bourguiba",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 393,
+            "libelle": "Boutoute",
+            "code": "Boutoute",
+            "adresse": "Délégation Régionale Sud",
+            "ville": "Ziguinchor quartier Boutoute",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 164,
+            "libelle": "Boutoute Production",
+            "code": "Boutoute Production",
+            "adresse": "Centrale de Boutoute",
+            "ville": "Boutoute",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 180,
+            "libelle": "Bétenty",
+            "code": "Bétenty",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 145,
+            "libelle": "CAP DES BICHES_C3",
+            "code": "CAP DES BICHES_C3",
+            "adresse": "CAP DES BICES KM 22 RTE DE RUFISQUE",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 146,
+            "libelle": "CAP DES BICHES_C4",
+            "code": "CAP DES BICHES_C4",
+            "adresse": "CAP DES BICHES KM 22 ROUTE DE RUFISQUE",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 147,
+            "libelle": "CAP DES BICHES_C5",
+            "code": "CAP DES BICHES_C5",
+            "adresse": "CAP DES BICHES KM 22 ROUTE DE RUFISQUE",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 921,
+            "libelle": "Camberene DD",
+            "code": "Camberene DD",
+            "adresse": "Camberene",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 394,
+            "libelle": "Cap Skirring",
+            "code": "Cap Skirring",
+            "adresse": "Délégation Régionale Sud",
+            "ville": "Oussouye",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 44,
+            "libelle": "Cap des Biches",
+            "code": "Cap des Biches",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 383,
+            "libelle": "Cap des Biches\/C3",
+            "code": "Cap des Biches\/C3",
+            "adresse": "Cap des Biches",
+            "ville": "Rufisque",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 384,
+            "libelle": "Cap des Biches\/C4",
+            "code": "Cap des Biches\/C4",
+            "adresse": "Cap des Biches",
+            "ville": "Rufisque",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 385,
+            "libelle": "Cap des Biches\/CFPP",
+            "code": "Cap des Biches\/CFPP",
+            "adresse": "Cap des Biches",
+            "ville": "Rufisque",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 387,
+            "libelle": "Cap des Biches\/CMT",
+            "code": "Cap des Biches\/CMT",
+            "adresse": "Cap des Biches",
+            "ville": "Rufisque",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 388,
+            "libelle": "Cap des Biches\/PR",
+            "code": "Cap des Biches\/PR",
+            "adresse": "Cap des Biches",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 386,
+            "libelle": "Cap des Biches\/TAG",
+            "code": "Cap des Biches\/TAG",
+            "adresse": "Cap des Biches",
+            "ville": "Rufisque",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 954,
+            "libelle": "Cap des Biches\/TAG2",
+            "code": "Cap des Biches\/TAG2",
+            "adresse": "CAP DES BICHES TAG2",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 924,
+            "libelle": "Centenaire DD",
+            "code": "Centenaire DD",
+            "adresse": "Centenaire",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 957,
+            "libelle": "Centrale APR",
+            "code": "Centrale APR",
+            "adresse": "Centrale APR",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 692,
+            "libelle": "Centrale Park 4C",
+            "code": "Centrale Park 4C",
+            "adresse": "AGENCE MEDINA",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1052,
+            "libelle": "Centrale Solaire Diass",
+            "code": "Centrale Solaire Diass",
+            "adresse": "Diass",
+            "ville": "Mbour",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 60,
+            "libelle": "Centrale de Kahone",
+            "code": "Centrale de Kahone",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 73,
+            "libelle": "Centrale de St Louis",
+            "code": "Centrale de St Louis",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 84,
+            "libelle": "Centrale de Tamba",
+            "code": "Centrale de Tamba",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 95,
+            "libelle": "Centrale de Ziguinch",
+            "code": "Centrale de Ziguinch",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 912,
+            "libelle": "Centre Ville DD",
+            "code": "Centre Ville DD",
+            "adresse": "Dakar Centre Ville",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1192,
+            "libelle": "Cité Keur Gorgui",
+            "code": "Cité Keur Gorgui",
+            "adresse": "Cité Keur Gorgui",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 155,
+            "libelle": "DAKAR TRANSPORT",
+            "code": "DAKAR TRANSPORT",
+            "adresse": "Hann-Mariste",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 873,
+            "libelle": "DCD1\/BOURGUIBA",
+            "code": "DCD1\/BOURGUIBA",
+            "adresse": "BOURGUIBA",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 874,
+            "libelle": "DCD1\/MEDINA",
+            "code": "DCD1\/MEDINA",
+            "adresse": "MEDINA",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 853,
+            "libelle": "DCD1\/OUAKAM",
+            "code": "DCD1\/OUAKAM",
+            "adresse": "OUAKAM",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 875,
+            "libelle": "DCD1\/PATTE D'OIE",
+            "code": "DCD1\/PATTE D'OIE",
+            "adresse": "PATTE D'OIE",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 852,
+            "libelle": "DCD1\/SGC",
+            "code": "DCD1\/SGC",
+            "adresse": "SGC",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 872,
+            "libelle": "DCD1\/VINCENS",
+            "code": "DCD1\/VINCENS",
+            "adresse": "VINCENS",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 814,
+            "libelle": "DD\/HANN\/SCR",
+            "code": "DD\/HANN\/SCR",
+            "adresse": "Service Conduite Réseaux",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 815,
+            "libelle": "DD\/HANN\/STAL",
+            "code": "DD\/HANN\/STAL",
+            "adresse": "Service Travaux et Appuis Logistiques",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 792,
+            "libelle": "DD\/SDDV",
+            "code": "DD\/SDDV",
+            "adresse": "DAKAR",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 813,
+            "libelle": "DD\/SDPG",
+            "code": "DD\/SDPG",
+            "adresse": "Service Distribution Pikine Guediawaye",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 812,
+            "libelle": "DD\/SDRBD",
+            "code": "DD\/SDRBD",
+            "adresse": "Service Distribution Rufisque Bargny Diamniadio",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 332,
+            "libelle": "DEPOT_PASSAGE_COMBUS",
+            "code": "DEPOT_PASSAGE_COMBUS",
+            "adresse": "DEPOT PASSAGE COMBUSTIBLE",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 185,
+            "libelle": "Dabo",
+            "code": "Dabo",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 178,
+            "libelle": "Dabo CS Prod",
+            "code": "Dabo CS Prod",
+            "adresse": "Centrale Secondaire de DABO",
+            "ville": "DABO",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 65,
+            "libelle": "Dagana",
+            "code": "Dagana",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 87,
+            "libelle": "Darha",
+            "code": "Darha",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 552,
+            "libelle": "Darou Khoudosse",
+            "code": "Darou Khoudosse",
+            "adresse": "Délégation Régionale Centre Ouest - Région de Diourbel",
+            "ville": "Touba",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 88,
+            "libelle": "Darou Mousty",
+            "code": "Darou Mousty",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 732,
+            "libelle": "Daroukhane",
+            "code": "Daroukhane",
+            "adresse": "DAROUKHANE CROISEMENT SERIGNE ASSANE",
+            "ville": "GUEDIAWAYE",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 399,
+            "libelle": "Diame Niadio",
+            "code": "Diame Niadio",
+            "adresse": "Délégation Régionale Dakar 2 Diame Nadio",
+            "ville": "Rufisque",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1172,
+            "libelle": "Dianatou",
+            "code": "Dianatou",
+            "adresse": "Touba Dianatou",
+            "ville": "Touba",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 958,
+            "libelle": "Diass",
+            "code": "Diass",
+            "adresse": "DIASS",
+            "ville": "DIASS",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 248,
+            "libelle": "Diawara",
+            "code": "Diawara",
+            "adresse": "Bakel",
+            "ville": "Bakel",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 270,
+            "libelle": "Dionewar",
+            "code": "Dionewar",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 121,
+            "libelle": "Diouloulou",
+            "code": "Diouloulou",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 175,
+            "libelle": "Diouloulou CS Prod",
+            "code": "Diouloulou CS Prod",
+            "adresse": "Centrale Secondaire de Diouloulou",
+            "ville": "Diouloulou",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 96,
+            "libelle": "Diourbel",
+            "code": "Diourbel",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 271,
+            "libelle": "Djinrda",
+            "code": "Djinrda",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 252,
+            "libelle": "Djirnda production",
+            "code": "Djirnda production",
+            "adresse": "Iles du Saloum",
+            "ville": "Djirnda",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 272,
+            "libelle": "FICTIF",
+            "code": "FICTIF",
+            "adresse": "F",
+            "ville": "F",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 472,
+            "libelle": "FONGOLIMBI",
+            "code": "FONGOLIMBI",
+            "adresse": "TAMBA",
+            "ville": "TAMBA",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 74,
+            "libelle": "Fatick",
+            "code": "Fatick",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1332,
+            "libelle": "Fimela",
+            "code": "Fimela",
+            "adresse": "Dsitrict Fimela",
+            "ville": "Fatick",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 171,
+            "libelle": "Fongolimbi Prod.",
+            "code": "Fongolimbi Prod.",
+            "adresse": "Fongolimbi Production",
+            "ville": "Fongolimbi",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 184,
+            "libelle": "Fongonlémy",
+            "code": "Fongonlémy",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 76,
+            "libelle": "Foundiougne",
+            "code": "Foundiougne",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 312,
+            "libelle": "Fumela",
+            "code": "Fumela",
+            "adresse": "Région de Fatick",
+            "ville": "Fatick",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1312,
+            "libelle": "GOSSAS",
+            "code": "GOSSAS",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1212,
+            "libelle": "Gambie\/OMVG",
+            "code": "Gambie\/OMVG",
+            "adresse": "Soma",
+            "ville": "Soma",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 59,
+            "libelle": "Ganda",
+            "code": "Ganda",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 82,
+            "libelle": "Goudiri",
+            "code": "Goudiri",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 168,
+            "libelle": "Goudiry Production",
+            "code": "Goudiry Production",
+            "adresse": "Goudiry  Production",
+            "ville": "Goudiry",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1112,
+            "libelle": "Goudomp",
+            "code": "Goudomp",
+            "adresse": "Goudomp",
+            "ville": "Sédhiou",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 54,
+            "libelle": "Guinguinéo",
+            "code": "Guinguinéo",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 49,
+            "libelle": "Guédiawaye",
+            "code": "Guédiawaye",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 47,
+            "libelle": "HANN",
+            "code": "HANN",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 652,
+            "libelle": "HANN \/ DAPA",
+            "code": "HANN \/ DAPA",
+            "adresse": "Hann Route des Maristes",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 632,
+            "libelle": "HANN \/ DCCC",
+            "code": "HANN \/ DCCC",
+            "adresse": "Hann Route des Maristes",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 633,
+            "libelle": "HANN \/ DD",
+            "code": "HANN \/ DD",
+            "adresse": "HANN Route des Maristes",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 612,
+            "libelle": "HANN \/ DEQ",
+            "code": "HANN \/ DEQ",
+            "adresse": "Hann, Route des Maristes",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 653,
+            "libelle": "HANN \/ DRH",
+            "code": "HANN \/ DRH",
+            "adresse": "Hann Route des Maristes",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 592,
+            "libelle": "HANN \/ DT",
+            "code": "HANN \/ DT",
+            "adresse": "Hann, Route des Pères Maristes",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 144,
+            "libelle": "HANN LABO_COMPTEUR",
+            "code": "HANN LABO_COMPTEUR",
+            "adresse": "COMPLEXE DE HANN ROUTE DES PERES MARISTES",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 913,
+            "libelle": "HANN Maristes DD",
+            "code": "HANN Maristes DD",
+            "adresse": "HANN Maristes",
+            "ville": "HANN",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 914,
+            "libelle": "HLM FASS",
+            "code": "HLM FASS",
+            "adresse": "HLM FASS",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 919,
+            "libelle": "HLM Grand Yoff DD",
+            "code": "HLM Grand Yoff DD",
+            "adresse": "HLM Grand Yoff",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 125,
+            "libelle": "Hann",
+            "code": "Hann",
+            "adresse": "Complexe Hann, Route des pères Maristes",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1014,
+            "libelle": "Hann Maristes DPC",
+            "code": "Hann Maristes DPC",
+            "adresse": "Hann Maristes DPC",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 249,
+            "libelle": "Hann Yarakh",
+            "code": "Hann Yarakh",
+            "adresse": "Dakar",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 833,
+            "libelle": "Hann\/CPT",
+            "code": "Hann\/CPT",
+            "adresse": "HANN",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 398,
+            "libelle": "Jaxaay",
+            "code": "Jaxaay",
+            "adresse": "Délégation Régionale Dakar 2 Quartier Jaxaay",
+            "ville": "Rufisque",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 58,
+            "libelle": "Joal",
+            "code": "Joal",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 202,
+            "libelle": "KAHONE PRODUCTION",
+            "code": "KAHONE PRODUCTION",
+            "adresse": "Centrale de Kahone",
+            "ville": "KAHONE",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 513,
+            "libelle": "KAHONE2 EXPLOITATION",
+            "code": "KAHONE2 EXPLOITATION",
+            "adresse": "Exploitation Centrale Kahone2",
+            "ville": "KAHONE",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 492,
+            "libelle": "KAHONE2 PRODUCTION",
+            "code": "KAHONE2 PRODUCTION",
+            "adresse": "Centrale de Kahone2",
+            "ville": "KAHONE",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 452,
+            "libelle": "KOUNOUNE",
+            "code": "KOUNOUNE",
+            "adresse": "Kounoune",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 122,
+            "libelle": "Kaffrine",
+            "code": "Kaffrine",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 142,
+            "libelle": "Kahone - Production",
+            "code": "Kahone - Production",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1292,
+            "libelle": "Kahone\/SPR Sud-Est",
+            "code": "Kahone\/SPR Sud-Est",
+            "adresse": "Kahone",
+            "ville": "kahone",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 933,
+            "libelle": "Kanel",
+            "code": "Kanel",
+            "adresse": "Kanel",
+            "ville": "Matam",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 100,
+            "libelle": "Kaolack",
+            "code": "Kaolack",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 153,
+            "libelle": "Kaolack Distribution",
+            "code": "Kaolack Distribution",
+            "adresse": "Kaolack Siége régionale Quartier LEONA",
+            "ville": "KAOLACK",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1072,
+            "libelle": "Kaolack Nord",
+            "code": "Kaolack Nord",
+            "adresse": "Kaolack",
+            "ville": "Kaolack",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 123,
+            "libelle": "Kayar",
+            "code": "Kayar",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 292,
+            "libelle": "Keur Massar",
+            "code": "Keur Massar",
+            "adresse": "Keur Massar",
+            "ville": "Rufisque, Région de Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 55,
+            "libelle": "Khombole",
+            "code": "Khombole",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 81,
+            "libelle": "Kidira",
+            "code": "Kidira",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 167,
+            "libelle": "Kidira Production",
+            "code": "Kidira Production",
+            "adresse": "Kidira Production",
+            "ville": "Kidira",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 62,
+            "libelle": "Kolda",
+            "code": "Kolda",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 156,
+            "libelle": "Kolda Distribution",
+            "code": "Kolda Distribution",
+            "adresse": "Kolda",
+            "ville": "Kolda",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 157,
+            "libelle": "Kolda Production",
+            "code": "Kolda Production",
+            "adresse": "Centrale de Kolda",
+            "ville": "Kolda",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 83,
+            "libelle": "Koumpentoum",
+            "code": "Koumpentoum",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 169,
+            "libelle": "Koumpentoum Prod",
+            "code": "Koumpentoum Prod",
+            "adresse": "Koumpentoum Production",
+            "ville": "Koumpentoum",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 124,
+            "libelle": "Koungueul",
+            "code": "Koungueul",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 204,
+            "libelle": "Koungueul Production",
+            "code": "Koungueul Production",
+            "adresse": "Koungueul Production",
+            "ville": "KOUNGUEUL",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 956,
+            "libelle": "Kounoune Power",
+            "code": "Kounoune Power",
+            "adresse": "KOUNOUNE POWER",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 85,
+            "libelle": "Kébémer",
+            "code": "Kébémer",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 79,
+            "libelle": "Kédougou",
+            "code": "Kédougou",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 166,
+            "libelle": "Kédougou Production",
+            "code": "Kédougou Production",
+            "adresse": "Kédougou",
+            "ville": "Kédougou",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 86,
+            "libelle": "Linguére",
+            "code": "Linguére",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 101,
+            "libelle": "Louga",
+            "code": "Louga",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1013,
+            "libelle": "Malika",
+            "code": "Malika",
+            "adresse": "Malika",
+            "ville": "Rufisque",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 953,
+            "libelle": "Marsassoum",
+            "code": "Marsassoum",
+            "adresse": "Marsassoum",
+            "ville": "Ziguinchor",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 159,
+            "libelle": "Marsassoum CS Prod",
+            "code": "Marsassoum CS Prod",
+            "adresse": "Centrale secondaire",
+            "ville": "Marsassoum",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 66,
+            "libelle": "Marssassoum",
+            "code": "Marssassoum",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 70,
+            "libelle": "Matam",
+            "code": "Matam",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 152,
+            "libelle": "Matam Distribution",
+            "code": "Matam Distribution",
+            "adresse": "MATAM",
+            "ville": "MATAM",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 99,
+            "libelle": "Mbacké",
+            "code": "Mbacké",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 352,
+            "libelle": "Mbao",
+            "code": "Mbao",
+            "adresse": "Mbao",
+            "ville": "Guédiawaye",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1152,
+            "libelle": "Mbao Dispatching",
+            "code": "Mbao Dispatching",
+            "adresse": "Mbao",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 228,
+            "libelle": "Mboro",
+            "code": "Mboro",
+            "adresse": "Mboro",
+            "ville": "Mboro",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 57,
+            "libelle": "Mbour",
+            "code": "Mbour",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 915,
+            "libelle": "Medina DD",
+            "code": "Medina DD",
+            "adresse": "Medina",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 959,
+            "libelle": "Medina Gounass",
+            "code": "Medina Gounass",
+            "adresse": "medina gounass",
+            "ville": "tamba",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 952,
+            "libelle": "Medina Yoro Foula",
+            "code": "Medina Yoro Foula",
+            "adresse": "medina yoro foula",
+            "ville": "Boutote",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 572,
+            "libelle": "Mermoz",
+            "code": "Mermoz",
+            "adresse": "Sicap Mermoz, Route de Ouakam",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 21,
+            "libelle": "Médina",
+            "code": "Médina",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 75,
+            "libelle": "Médina Gounass",
+            "code": "Médina Gounass",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 56,
+            "libelle": "Médina Sabakh",
+            "code": "Médina Sabakh",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 179,
+            "libelle": "Médina Yoro Foula CS",
+            "code": "Médina Yoro Foula CS",
+            "adresse": "Centrale Secondaire de Médina Yoro Foula",
+            "ville": "Médina Yoro Foula",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 186,
+            "libelle": "Médina Yorofoula",
+            "code": "Médina Yorofoula",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 203,
+            "libelle": "Médina sabakh Prod",
+            "code": "Médina sabakh Prod",
+            "adresse": "Médina sabakh Production",
+            "ville": "MEDINA SABAKH",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 161,
+            "libelle": "Médina-Gounass CS Pd",
+            "code": "Médina-Gounass CS Pd",
+            "adresse": "Centrale secondaire",
+            "ville": "Médina-Gounass",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 126,
+            "libelle": "Mékhé",
+            "code": "Mékhé",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 672,
+            "libelle": "NDOFFANE",
+            "code": "NDOFFANE",
+            "adresse": "KAOLACK",
+            "ville": "KAOLACK",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 920,
+            "libelle": "NGOR DD",
+            "code": "NGOR DD",
+            "adresse": "Ngor",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 158,
+            "libelle": "Ndiamacounta CS Prod",
+            "code": "Ndiamacounta CS Prod",
+            "adresse": "Centrale Secondaire",
+            "ville": "Ndiamacounta",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 68,
+            "libelle": "Ndiamacouta",
+            "code": "Ndiamacouta",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 69,
+            "libelle": "Ndioum",
+            "code": "Ndioum",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 932,
+            "libelle": "Ngalléle",
+            "code": "Ngalléle",
+            "adresse": "Ngalléle",
+            "ville": "St Louis",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 205,
+            "libelle": "Nganda Production",
+            "code": "Nganda Production",
+            "adresse": "Nganda Production",
+            "ville": "Nganda",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 127,
+            "libelle": "Ngaparou",
+            "code": "Ngaparou",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 401,
+            "libelle": "Nguente",
+            "code": "Nguente",
+            "adresse": "Délégation Régionale Centre Ouest",
+            "ville": "Thiès quartiet Nguente",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 229,
+            "libelle": "Nguékhokh",
+            "code": "Nguékhokh",
+            "adresse": "Nguékhokh",
+            "ville": "Thiés",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 250,
+            "libelle": "Niodior",
+            "code": "Niodior",
+            "adresse": "Iles du Saloum",
+            "ville": "Niodior",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 128,
+            "libelle": "Nioro du rip",
+            "code": "Nioro du rip",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 46,
+            "libelle": "Ouakam",
+            "code": "Ouakam",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 917,
+            "libelle": "Ouakam DD",
+            "code": "Ouakam DD",
+            "adresse": "Ouakam",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1092,
+            "libelle": "Ouest-Foire",
+            "code": "Ouest-Foire",
+            "adresse": "Ouest-foire",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 201,
+            "libelle": "Ourosogui Production",
+            "code": "Ourosogui Production",
+            "adresse": "Centrale de Ourosogui",
+            "ville": "OUROSOGUI",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 71,
+            "libelle": "Ourossogui",
+            "code": "Ourossogui",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 92,
+            "libelle": "Oussouye",
+            "code": "Oussouye",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 992,
+            "libelle": "PROQUELEC SIEGE",
+            "code": "PROQUELEC SIEGE",
+            "adresse": "43, Rue Wagane DIOUF",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 187,
+            "libelle": "Pakour",
+            "code": "Pakour",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 177,
+            "libelle": "Pakour CS Prod",
+            "code": "Pakour CS Prod",
+            "adresse": "Centrale Secondaire de Pakour",
+            "ville": "Pakour",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 209,
+            "libelle": "Parcelles Assainies",
+            "code": "Parcelles Assainies",
+            "adresse": "Parcelles Assainies",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 923,
+            "libelle": "Parcelles Assainies DD",
+            "code": "Parcelles Assainies DD",
+            "adresse": "Parcelles Assainies",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 45,
+            "libelle": "Patte d'Oie",
+            "code": "Patte d'Oie",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 928,
+            "libelle": "Patte d'Oie DD",
+            "code": "Patte d'Oie DD",
+            "adresse": "Patte d'Oie DD",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 50,
+            "libelle": "Pikine",
+            "code": "Pikine",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 395,
+            "libelle": "Pikine (Saint Louis)",
+            "code": "Pikine (Saint Louis)",
+            "adresse": "Délégation Régionale Nord Saint Louis",
+            "ville": "Saint Louis",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 67,
+            "libelle": "Podor",
+            "code": "Podor",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 213,
+            "libelle": "Point E",
+            "code": "Point E",
+            "adresse": "Point E",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 403,
+            "libelle": "Popenguine",
+            "code": "Popenguine",
+            "adresse": "Délégation Régionale Centre Ouest",
+            "ville": "Mbour",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 925,
+            "libelle": "Poste HTB Bel Air",
+            "code": "Poste HTB Bel Air",
+            "adresse": "Bel Air",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 927,
+            "libelle": "Poste HTB Hann",
+            "code": "Poste HTB Hann",
+            "adresse": "Poste HTB Hann",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1132,
+            "libelle": "Pout",
+            "code": "Pout",
+            "adresse": "Pout",
+            "ville": "Thies",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1032,
+            "libelle": "Pété",
+            "code": "Pété",
+            "adresse": "Pété",
+            "ville": "Richard Toll",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 64,
+            "libelle": "Richard Toll",
+            "code": "Richard Toll",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 396,
+            "libelle": "Rosse Béthio",
+            "code": "Rosse Béthio",
+            "adresse": "Délégation Régionale Nord",
+            "ville": "Rosse Béthio",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 936,
+            "libelle": "Rosso",
+            "code": "Rosso",
+            "adresse": "Rosso",
+            "ville": "Richard Toll",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 397,
+            "libelle": "Rosso SENEGAL",
+            "code": "Rosso SENEGAL",
+            "adresse": "Délégation Rédionale Nord",
+            "ville": "Rosso",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 48,
+            "libelle": "Rufisque",
+            "code": "Rufisque",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 151,
+            "libelle": "SAINT LOUIS ANC USIN",
+            "code": "SAINT LOUIS ANC USIN",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 200,
+            "libelle": "SAINT LOUIS PROD",
+            "code": "SAINT LOUIS PROD",
+            "adresse": "Centrale Saint Louis",
+            "ville": "SAINT LOUIS",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1252,
+            "libelle": "SANGALKAM",
+            "code": "SANGALKAM",
+            "adresse": "Bureau de Sangalkam",
+            "ville": "Dakr",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 916,
+            "libelle": "Sacre Coeur DD",
+            "code": "Sacre Coeur DD",
+            "adresse": "Sacre Coeur cite Keur Gorgui",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 392,
+            "libelle": "Sacré-Coeur",
+            "code": "Sacré-Coeur",
+            "adresse": "Sicap Sacré-Coeur Dakar",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 712,
+            "libelle": "Sacré-Coeur \/ GC",
+            "code": "Sacré-Coeur \/ GC",
+            "adresse": "SICAP SACRE COEUR",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 63,
+            "libelle": "Saint Louis",
+            "code": "Saint Louis",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 402,
+            "libelle": "Saly Portudal",
+            "code": "Saly Portudal",
+            "adresse": "Délégation Régionale Centre Ouest",
+            "ville": "M'bour quartier Saly",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 183,
+            "libelle": "Salémata",
+            "code": "Salémata",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 170,
+            "libelle": "Salémata Production",
+            "code": "Salémata Production",
+            "adresse": "Salémata Production",
+            "ville": "Salémata",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1272,
+            "libelle": "Sangalkam\/DPC",
+            "code": "Sangalkam\/DPC",
+            "adresse": "Bureau Sangalkam",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 182,
+            "libelle": "Saraya",
+            "code": "Saraya",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 172,
+            "libelle": "Saraya Production",
+            "code": "Saraya Production",
+            "adresse": "Saraya Production",
+            "ville": "Saraya",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 918,
+            "libelle": "Scat Urbam DD",
+            "code": "Scat Urbam DD",
+            "adresse": "Scat Urbam",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 130,
+            "libelle": "Semmé",
+            "code": "Semmé",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 210,
+            "libelle": "Sicap",
+            "code": "Sicap",
+            "adresse": "Sicap",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 176,
+            "libelle": "Sindia CS Prod",
+            "code": "Sindia CS Prod",
+            "adresse": "Centrale Secondaire de Sindia",
+            "ville": "Sindia",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 91,
+            "libelle": "Sindian",
+            "code": "Sindian",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 22,
+            "libelle": "Siége Social Vincens",
+            "code": "Siége Social Vincens",
+            "adresse": "28-30 Rue Vincens",
+            "ville": "DAKAR",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 78,
+            "libelle": "Sokone",
+            "code": "Sokone",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 61,
+            "libelle": "Somone",
+            "code": "Somone",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 129,
+            "libelle": "Sédhiou",
+            "code": "Sédhiou",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 162,
+            "libelle": "Sédhiou CS Prod",
+            "code": "Sédhiou CS Prod",
+            "adresse": "Centrale secondaire",
+            "ville": "Sédhiou",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 150,
+            "libelle": "THIES SIEGE REGIONAL",
+            "code": "THIES SIEGE REGIONAL",
+            "adresse": "THIES QUARTIER CARRIERE",
+            "ville": "THIES",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 149,
+            "libelle": "THIES SIEGE SOCIAL",
+            "code": "THIES SIEGE SOCIAL",
+            "adresse": "THIES QUARTIER CARRIERE",
+            "ville": "THIES",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 165,
+            "libelle": "Tamba Production",
+            "code": "Tamba Production",
+            "adresse": "Tambacounda",
+            "ville": "Tambacounda",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 77,
+            "libelle": "Tambacounda",
+            "code": "Tambacounda",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 154,
+            "libelle": "Tambacounda Distribu",
+            "code": "Tambacounda Distribu",
+            "adresse": "TAMBACOUNDA",
+            "ville": "TAMBACOUNDA",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 94,
+            "libelle": "Tendouck",
+            "code": "Tendouck",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 131,
+            "libelle": "Thiadiaye",
+            "code": "Thiadiaye",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 51,
+            "libelle": "Thiaroye",
+            "code": "Thiaroye",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 934,
+            "libelle": "Thilogne",
+            "code": "Thilogne",
+            "adresse": "Thilogne",
+            "ville": "Matam",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 93,
+            "libelle": "Thionk Essyl",
+            "code": "Thionk Essyl",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 52,
+            "libelle": "Thiès",
+            "code": "Thiès",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 174,
+            "libelle": "Thonk-Essyl CS Prod",
+            "code": "Thonk-Essyl CS Prod",
+            "adresse": "Centrale Secondaire de Thionk-Essyl",
+            "ville": "Thionk-essyl",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 53,
+            "libelle": "Tivaouane",
+            "code": "Tivaouane",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 532,
+            "libelle": "Tobène",
+            "code": "Tobène",
+            "adresse": "Délégation Régionale Centre ouest - Thiès",
+            "ville": "Région de Thiès - Tivaouane",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 98,
+            "libelle": "Touba",
+            "code": "Touba",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 926,
+            "libelle": "Universite",
+            "code": "Universite",
+            "adresse": "UCAD",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 72,
+            "libelle": "Vélingara",
+            "code": "Vélingara",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 160,
+            "libelle": "Vélingara CS Prod",
+            "code": "Vélingara CS Prod",
+            "adresse": "Centrale secondaire",
+            "ville": "Vélingara",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 211,
+            "libelle": "Yeumbeul",
+            "code": "Yeumbeul",
+            "adresse": "Yeumbeul",
+            "ville": "Thiaroye",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 208,
+            "libelle": "Yoff",
+            "code": "Yoff",
+            "adresse": "Yoff",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 1232,
+            "libelle": "Yoff Aéroport DD",
+            "code": "Yoff Aéroport DD",
+            "adresse": "Aéroport Yoff",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 922,
+            "libelle": "Yoff DD",
+            "code": "Yoff DD",
+            "adresse": "Yoff",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 163,
+            "libelle": "ZIGUINCHOR DISTRIBUT",
+            "code": "ZIGUINCHOR DISTRIBUT",
+            "adresse": "Ziguinchor",
+            "ville": "Ziguinchor",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 89,
+            "libelle": "Ziguinchor",
+            "code": "Ziguinchor",
+            "adresse": null,
+            "ville": null,
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 892,
+            "libelle": "Zone de Captage",
+            "code": "Zone de Captage",
+            "adresse": "Zone de Captage",
+            "ville": "Dakar",
+            "region": null,
+            "is_active": 1
+        },
+        {
+            "oracle_location_id": 512,
+            "libelle": "kahone2",
+            "code": "kahone2",
+            "adresse": "Exploitation Kahone2",
+            "ville": "KAHONE",
+            "region": null,
+            "is_active": 1
+        }
+    ],
+    "services": [
+        {
+            "oracle_org_id": 596,
+            "libelle": "Agence Commerciale de Saly",
+            "code": null,
+            "centre_responsabilite": "CO006",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 591,
+            "libelle": "Agence Commerciale des 4C",
+            "code": null,
+            "centre_responsabilite": "DC210",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2434,
+            "libelle": "Agence Principale Kaffrine",
+            "code": null,
+            "centre_responsabilite": "CE007",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 204,
+            "libelle": "Agence Principale de Bourguiba",
+            "code": null,
+            "centre_responsabilite": "CR107",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3258,
+            "libelle": "Agence Principale de Darou Khoudoss",
+            "code": null,
+            "centre_responsabilite": "CO011",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 373,
+            "libelle": "Agence Principale de Diourbel",
+            "code": null,
+            "centre_responsabilite": "CO008",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 377,
+            "libelle": "Agence Principale de Fatick",
+            "code": null,
+            "centre_responsabilite": "CE005",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 209,
+            "libelle": "Agence Principale de Guédiawaye",
+            "code": null,
+            "centre_responsabilite": "CR203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 333,
+            "libelle": "Agence Principale de Kaolack",
+            "code": null,
+            "centre_responsabilite": "CE004",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 593,
+            "libelle": "Agence Principale de Keur Massar",
+            "code": null,
+            "centre_responsabilite": "CR303",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 379,
+            "libelle": "Agence Principale de Kolda",
+            "code": null,
+            "centre_responsabilite": "RS005",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 329,
+            "libelle": "Agence Principale de Louga",
+            "code": null,
+            "centre_responsabilite": "RN007",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 376,
+            "libelle": "Agence Principale de Matam",
+            "code": null,
+            "centre_responsabilite": "RN006",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3255,
+            "libelle": "Agence Principale de Mbao",
+            "code": null,
+            "centre_responsabilite": "CR304",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 331,
+            "libelle": "Agence Principale de Mbour",
+            "code": null,
+            "centre_responsabilite": "CO006",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 203,
+            "libelle": "Agence Principale de Médina",
+            "code": null,
+            "centre_responsabilite": "CR105",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3259,
+            "libelle": "Agence Principale de Nguinth",
+            "code": null,
+            "centre_responsabilite": "CO009",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 205,
+            "libelle": "Agence Principale de Ouakam",
+            "code": null,
+            "centre_responsabilite": "CR106",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 207,
+            "libelle": "Agence Principale de Pikine",
+            "code": null,
+            "centre_responsabilite": "CR204",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 375,
+            "libelle": "Agence Principale de Richard Toll",
+            "code": null,
+            "centre_responsabilite": "RN005",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 210,
+            "libelle": "Agence Principale de Rufisque",
+            "code": null,
+            "centre_responsabilite": "CR302",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3256,
+            "libelle": "Agence Principale de Sacre Coeur",
+            "code": null,
+            "centre_responsabilite": "CR112",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 328,
+            "libelle": "Agence Principale de Saint Louis",
+            "code": null,
+            "centre_responsabilite": "RN004",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3214,
+            "libelle": "Agence Principale de Saly",
+            "code": null,
+            "centre_responsabilite": "CO010",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 378,
+            "libelle": "Agence Principale de Tamba",
+            "code": null,
+            "centre_responsabilite": "CE006",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 208,
+            "libelle": "Agence Principale de Thiaroye",
+            "code": null,
+            "centre_responsabilite": "CR205",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 330,
+            "libelle": "Agence Principale de Thiés",
+            "code": null,
+            "centre_responsabilite": "CO004",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 372,
+            "libelle": "Agence Principale de Tivaouane",
+            "code": null,
+            "centre_responsabilite": "CO005",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 332,
+            "libelle": "Agence Principale de Touba",
+            "code": null,
+            "centre_responsabilite": "CO007",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 595,
+            "libelle": "Agence Principale de Touba Ndamatou",
+            "code": null,
+            "centre_responsabilite": "32675",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3935,
+            "libelle": "Agence Principale de Touba\/Dianatou",
+            "code": null,
+            "centre_responsabilite": "CO013",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 202,
+            "libelle": "Agence Principale de Vincens",
+            "code": null,
+            "centre_responsabilite": "CR104",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3257,
+            "libelle": "Agence Principale de Yoff",
+            "code": null,
+            "centre_responsabilite": "CR113",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 334,
+            "libelle": "Agence Principale de Ziguinchor",
+            "code": null,
+            "centre_responsabilite": "RS004",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 206,
+            "libelle": "Agence Principale de la Patte d'Oie",
+            "code": null,
+            "centre_responsabilite": "CR109",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3254,
+            "libelle": "Agence Principale des Parcelles Assainies",
+            "code": null,
+            "centre_responsabilite": "CR114",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3314,
+            "libelle": "Agence Secondaire Kaolack Nord",
+            "code": null,
+            "centre_responsabilite": "CE009",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4155,
+            "libelle": "Agence Secondaire Pikine Ndar",
+            "code": null,
+            "centre_responsabilite": "RN008",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3654,
+            "libelle": "Agence Secondaire de Kédougou",
+            "code": null,
+            "centre_responsabilite": "CE010",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3434,
+            "libelle": "Agence Secondaire de Malika",
+            "code": null,
+            "centre_responsabilite": "CR208",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3514,
+            "libelle": "Agence Secondaire de Sedhiou",
+            "code": null,
+            "centre_responsabilite": "RS006",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 792,
+            "libelle": "Agence Sicap",
+            "code": null,
+            "centre_responsabilite": "DC208",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3955,
+            "libelle": "Agence de Kédougou",
+            "code": null,
+            "centre_responsabilite": "CE010",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 477,
+            "libelle": "Cellule Cartographie et SIG",
+            "code": null,
+            "centre_responsabilite": "42670",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2474,
+            "libelle": "Cellule Modélisation et Etudes Financieres",
+            "code": null,
+            "centre_responsabilite": "FI002",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 571,
+            "libelle": "Centrale 6 Wartsîla",
+            "code": null,
+            "centre_responsabilite": "PA115",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 872,
+            "libelle": "Centrale Kahone 2 Wartsila",
+            "code": null,
+            "centre_responsabilite": "PA114",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4655,
+            "libelle": "Centrale Secondaire DABO",
+            "code": null,
+            "centre_responsabilite": "PX210",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4215,
+            "libelle": "Centrale Secondaire Salémata",
+            "code": null,
+            "centre_responsabilite": "PX228",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 649,
+            "libelle": "Centrale Secondaire de Bandafassi",
+            "code": null,
+            "centre_responsabilite": "PX227",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 639,
+            "libelle": "Centrale Secondaire de Bassoul\/Bassar",
+            "code": null,
+            "centre_responsabilite": "PX215",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 641,
+            "libelle": "Centrale Secondaire de Betenty",
+            "code": null,
+            "centre_responsabilite": "PX216",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 691,
+            "libelle": "Centrale Secondaire de Dionewar",
+            "code": null,
+            "centre_responsabilite": "PX218",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 672,
+            "libelle": "Centrale Secondaire de Djinrda",
+            "code": null,
+            "centre_responsabilite": "PX217",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 671,
+            "libelle": "Centrale Secondaire de Kidira",
+            "code": null,
+            "centre_responsabilite": "PX229",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 624,
+            "libelle": "Centrale Secondaire de Kolda",
+            "code": null,
+            "centre_responsabilite": "PX203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 642,
+            "libelle": "Centrale Secondaire de Kédougou",
+            "code": null,
+            "centre_responsabilite": "PX220",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 626,
+            "libelle": "Centrale Secondaire de Marsassoum",
+            "code": null,
+            "centre_responsabilite": "PX205",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 644,
+            "libelle": "Centrale Secondaire de Médina Gounass",
+            "code": null,
+            "centre_responsabilite": "PX222",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 650,
+            "libelle": "Centrale Secondaire de Salémata",
+            "code": null,
+            "centre_responsabilite": "PX228",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 643,
+            "libelle": "Centrale Secondaire de Vélingara",
+            "code": null,
+            "centre_responsabilite": "PX221",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 296,
+            "libelle": "Centrales Secondaires Kaolack",
+            "code": null,
+            "centre_responsabilite": "10439",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 294,
+            "libelle": "Centrales Secondaires ST LOUIS",
+            "code": null,
+            "centre_responsabilite": "10438",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 293,
+            "libelle": "Centrales Secondaires TAMBA",
+            "code": null,
+            "centre_responsabilite": "10440",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 295,
+            "libelle": "Centrales Secondaires Ziguinchor",
+            "code": null,
+            "centre_responsabilite": "10441",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 393,
+            "libelle": "DJIRNDA CS PRODUCTION",
+            "code": null,
+            "centre_responsabilite": "10439",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3415,
+            "libelle": "SERVICE TECHNIQUE DAKAR 3",
+            "code": null,
+            "centre_responsabilite": "CR207",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 335,
+            "libelle": "Service Achat d'Energie Conventionnelle",
+            "code": null,
+            "centre_responsabilite": "EA202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3154,
+            "libelle": "Service Achat d'Energie Renouvelable et Echanges",
+            "code": null,
+            "centre_responsabilite": "EA203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3814,
+            "libelle": "Service Achat de Gaz",
+            "code": null,
+            "centre_responsabilite": "EA204",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 136,
+            "libelle": "Service Achats (hors Combustible)",
+            "code": null,
+            "centre_responsabilite": "DA102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 132,
+            "libelle": "Service Administratif",
+            "code": null,
+            "centre_responsabilite": "DA202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2736,
+            "libelle": "Service Administration Gestion et Logistique",
+            "code": null,
+            "centre_responsabilite": "SG103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 752,
+            "libelle": "Service Administration Gestion et Logistique DPC",
+            "code": null,
+            "centre_responsabilite": "PC002",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 69,
+            "libelle": "Service Administration du Personnel",
+            "code": null,
+            "centre_responsabilite": "CH112",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4515,
+            "libelle": "Service Administration et Budget\/DRH",
+            "code": null,
+            "centre_responsabilite": "CH102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3595,
+            "libelle": "Service Administration et Gestion Logistique\/DCFPP",
+            "code": null,
+            "centre_responsabilite": "SG103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1732,
+            "libelle": "Service Administration, Budget et Logistique",
+            "code": null,
+            "centre_responsabilite": "PP102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1112,
+            "libelle": "Service Analyse Qualité",
+            "code": null,
+            "centre_responsabilite": "20243",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1073,
+            "libelle": "Service Analyse et Qualité de Service",
+            "code": null,
+            "centre_responsabilite": "DT103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4235,
+            "libelle": "Service Analyse et Qualité de Service\/DNQS\/DPR",
+            "code": null,
+            "centre_responsabilite": "PR102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1692,
+            "libelle": "Service Appui Technique et Logistique DPR",
+            "code": null,
+            "centre_responsabilite": "PX211",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 817,
+            "libelle": "Service Archives et Documentation",
+            "code": null,
+            "centre_responsabilite": "SI003",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3274,
+            "libelle": "Service Assurance et Gestion des Sinistres",
+            "code": null,
+            "centre_responsabilite": "DJ202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3234,
+            "libelle": "Service Cash Management",
+            "code": null,
+            "centre_responsabilite": "PC105",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4676,
+            "libelle": "Service Centrales de Pointe",
+            "code": null,
+            "centre_responsabilite": "PX107",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3694,
+            "libelle": "Service Communication Digitale",
+            "code": null,
+            "centre_responsabilite": "MC103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1974,
+            "libelle": "Service Communication Externe et Relations Publiques",
+            "code": null,
+            "centre_responsabilite": "MC104",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 365,
+            "libelle": "Service Communication Interne",
+            "code": null,
+            "centre_responsabilite": "MC102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 78,
+            "libelle": "Service Comptabilité Achats et Stocks",
+            "code": null,
+            "centre_responsabilite": "FI103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 77,
+            "libelle": "Service Comptabilité Générale",
+            "code": null,
+            "centre_responsabilite": "FI102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 664,
+            "libelle": "Service Comptabilité des Immobilisations",
+            "code": null,
+            "centre_responsabilite": "FI104",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3854,
+            "libelle": "Service Compteurs Intelligents",
+            "code": null,
+            "centre_responsabilite": "PC206",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1555,
+            "libelle": "Service Conduite des Réseaux",
+            "code": null,
+            "centre_responsabilite": "DD205",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3674,
+            "libelle": "Service Consolidation et Reporting",
+            "code": null,
+            "centre_responsabilite": "FI106",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3354,
+            "libelle": "Service Contentieux et Recouvrement",
+            "code": null,
+            "centre_responsabilite": "DJ102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4776,
+            "libelle": "Service Contentieux\/DCR\/DAJ",
+            "code": null,
+            "centre_responsabilite": "DJ102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3357,
+            "libelle": "Service Contrats",
+            "code": null,
+            "centre_responsabilite": "DJ203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 79,
+            "libelle": "Service Controle Analytique et Reporting",
+            "code": null,
+            "centre_responsabilite": "AC513",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1793,
+            "libelle": "Service Controle Comptable",
+            "code": null,
+            "centre_responsabilite": "FI105",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1874,
+            "libelle": "Service Controle DPD",
+            "code": null,
+            "centre_responsabilite": "PE222",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3874,
+            "libelle": "Service Contrôle Pratique et Procédure",
+            "code": null,
+            "centre_responsabilite": "PC107",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3374,
+            "libelle": "Service Contrôle Revenu Maximum Autorise",
+            "code": null,
+            "centre_responsabilite": "EG104",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 52,
+            "libelle": "Service Dispatching",
+            "code": null,
+            "centre_responsabilite": "EA102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 217,
+            "libelle": "Service Distribution DRCE1",
+            "code": null,
+            "centre_responsabilite": "DD504",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2314,
+            "libelle": "Service Distribution DRCE2",
+            "code": null,
+            "centre_responsabilite": "DD506",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 216,
+            "libelle": "Service Distribution DRCO1",
+            "code": null,
+            "centre_responsabilite": "DD502",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2414,
+            "libelle": "Service Distribution DRCO2",
+            "code": null,
+            "centre_responsabilite": "DD507",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4795,
+            "libelle": "Service Distribution DRCO3",
+            "code": null,
+            "centre_responsabilite": "DD508",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 215,
+            "libelle": "Service Distribution DRN1",
+            "code": null,
+            "centre_responsabilite": "DD503",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4796,
+            "libelle": "Service Distribution DRN2",
+            "code": null,
+            "centre_responsabilite": "DD509",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1552,
+            "libelle": "Service Distribution Dakar Ville",
+            "code": null,
+            "centre_responsabilite": "DD303",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1553,
+            "libelle": "Service Distribution Pikine Guédiawaye",
+            "code": null,
+            "centre_responsabilite": "DD304",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1554,
+            "libelle": "Service Distribution Rufisque Bargny Diamniadio",
+            "code": null,
+            "centre_responsabilite": "DD305",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 218,
+            "libelle": "Service Distribution Sud",
+            "code": null,
+            "centre_responsabilite": "DD505",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1493,
+            "libelle": "Service Domaine Commercial",
+            "code": null,
+            "centre_responsabilite": "SI204",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1496,
+            "libelle": "Service Domaine Decisionel, Communication,Controle et Qualite",
+            "code": null,
+            "centre_responsabilite": "SI207",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1495,
+            "libelle": "Service Domaine Finance-Comptabilite-RH-Logistique",
+            "code": null,
+            "centre_responsabilite": "SI206",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1494,
+            "libelle": "Service Domaine Technique",
+            "code": null,
+            "centre_responsabilite": "SI205",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2021,
+            "libelle": "Service Développement des Compétences",
+            "code": null,
+            "centre_responsabilite": "CH154",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 133,
+            "libelle": "Service Entretien Général",
+            "code": null,
+            "centre_responsabilite": "DA203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2455,
+            "libelle": "Service Environnement Prévention et Sécurite",
+            "code": null,
+            "centre_responsabilite": "QE003",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4395,
+            "libelle": "Service Essais et Mesures Electriques",
+            "code": null,
+            "centre_responsabilite": "DD207",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1794,
+            "libelle": "Service Etudes et Gestion des Immobilisations",
+            "code": null,
+            "centre_responsabilite": "PE412",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1935,
+            "libelle": "Service Etudes et Maitrise de la Demande",
+            "code": null,
+            "centre_responsabilite": "EG103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1592,
+            "libelle": "Service Etudes et Qualité des Réseaux",
+            "code": null,
+            "centre_responsabilite": "DD203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 618,
+            "libelle": "Service Exploitation C3",
+            "code": null,
+            "centre_responsabilite": "PX103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1632,
+            "libelle": "Service Exploitation C3 DPD",
+            "code": null,
+            "centre_responsabilite": "PX103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1652,
+            "libelle": "Service Exploitation C4 DPD",
+            "code": null,
+            "centre_responsabilite": "PX105",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2614,
+            "libelle": "Service Exploitation Postes",
+            "code": null,
+            "centre_responsabilite": "EA103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3676,
+            "libelle": "Service Facilitation des Projets et Impots Locaux",
+            "code": null,
+            "centre_responsabilite": "FI303",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3675,
+            "libelle": "Service Fiscalité Indirecte et Retenue Fiscale",
+            "code": null,
+            "centre_responsabilite": "FI302",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3995,
+            "libelle": "Service Fiscalité Indirecte et Retenues FIscales",
+            "code": null,
+            "centre_responsabilite": "FI302",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 80,
+            "libelle": "Service Gestion de la Rémunération",
+            "code": null,
+            "centre_responsabilite": "CH113",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2017,
+            "libelle": "Service Gestion des Carriéres et des Compétences",
+            "code": null,
+            "centre_responsabilite": "CH152",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3794,
+            "libelle": "Service Gestion des Emprunts et Suivi Evaluation",
+            "code": null,
+            "centre_responsabilite": "FI203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 137,
+            "libelle": "Service Gestion des Stocks",
+            "code": null,
+            "centre_responsabilite": "DA103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1772,
+            "libelle": "Service Gestion et Budget",
+            "code": null,
+            "centre_responsabilite": "DA002",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4015,
+            "libelle": "Service Gestion et Controle Dakar 3",
+            "code": null,
+            "centre_responsabilite": "CR305",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 362,
+            "libelle": "Service Gestion et Contrôle Centre - Ouest",
+            "code": null,
+            "centre_responsabilite": "CO003",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 363,
+            "libelle": "Service Gestion et Contrôle Centre -Est",
+            "code": null,
+            "centre_responsabilite": "CE003",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 359,
+            "libelle": "Service Gestion et Contrôle Dakar 1",
+            "code": null,
+            "centre_responsabilite": "CR103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 361,
+            "libelle": "Service Gestion et Contrôle Dakar 2",
+            "code": null,
+            "centre_responsabilite": "CR202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 370,
+            "libelle": "Service Gestion et Contrôle Nord",
+            "code": null,
+            "centre_responsabilite": "RN003",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 364,
+            "libelle": "Service Gestion et Contrôle Sud",
+            "code": null,
+            "centre_responsabilite": "RS003",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3062,
+            "libelle": "Service Guichet Unique",
+            "code": null,
+            "centre_responsabilite": "AF103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1499,
+            "libelle": "Service Infrastructures Reseaux",
+            "code": null,
+            "centre_responsabilite": "SI102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1498,
+            "libelle": "Service Infrastructures Systeme",
+            "code": null,
+            "centre_responsabilite": "SI104",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3034,
+            "libelle": "Service Ingenierie et Equipement de Production",
+            "code": null,
+            "centre_responsabilite": "PA112",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4678,
+            "libelle": "Service Ingénierie et Equipement Production",
+            "code": null,
+            "centre_responsabilite": "PA112",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2274,
+            "libelle": "Service Maintenance C3 DP",
+            "code": null,
+            "centre_responsabilite": "PX101",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1653,
+            "libelle": "Service Maintenance C4 DPD",
+            "code": null,
+            "centre_responsabilite": "PX106",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 654,
+            "libelle": "Service Maintenance Electromécanique",
+            "code": null,
+            "centre_responsabilite": "DT204",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 180,
+            "libelle": "Service Maintenance Lignes",
+            "code": null,
+            "centre_responsabilite": "DT202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 655,
+            "libelle": "Service Maintenance Spécialisée MT",
+            "code": null,
+            "centre_responsabilite": "DD005",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1834,
+            "libelle": "Service Maintenance Telecoms",
+            "code": null,
+            "centre_responsabilite": "DT303",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2934,
+            "libelle": "Service Maintenance Télécoms",
+            "code": null,
+            "centre_responsabilite": "DT303",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2454,
+            "libelle": "Service Management de la Qualite",
+            "code": null,
+            "centre_responsabilite": "QE002",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2456,
+            "libelle": "Service Management des Risques",
+            "code": null,
+            "centre_responsabilite": "QE005",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3295,
+            "libelle": "Service Marketing Operationnel et Social Media",
+            "code": null,
+            "centre_responsabilite": "MC203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3294,
+            "libelle": "Service Marketing Stratégique et Clientèle d'Affaire",
+            "code": null,
+            "centre_responsabilite": "MC202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1156,
+            "libelle": "Service Mesurage & Innovation Technologique",
+            "code": null,
+            "centre_responsabilite": "PC202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2055,
+            "libelle": "Service Mesurage & Innovation Technologique DMC",
+            "code": null,
+            "centre_responsabilite": "PC202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 353,
+            "libelle": "Service Normalisation et Coordination Technique",
+            "code": null,
+            "centre_responsabilite": "PR103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 147,
+            "libelle": "Service Plan et Budget",
+            "code": null,
+            "centre_responsabilite": "AC512",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2575,
+            "libelle": "Service Planification Distribution",
+            "code": null,
+            "centre_responsabilite": "EG204",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1914,
+            "libelle": "Service Planification Production",
+            "code": null,
+            "centre_responsabilite": "EG202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2574,
+            "libelle": "Service Planification Transport",
+            "code": null,
+            "centre_responsabilite": "EG205",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3895,
+            "libelle": "Service Pratique Commerciale et Relation Clientèle",
+            "code": null,
+            "centre_responsabilite": "PC106",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1054,
+            "libelle": "Service Pratiques Commerciales et Cash Management",
+            "code": null,
+            "centre_responsabilite": "PC106",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 141,
+            "libelle": "Service Prevention & Sécurité",
+            "code": null,
+            "centre_responsabilite": "QE003",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1654,
+            "libelle": "Service Production Bel Air DPD",
+            "code": null,
+            "centre_responsabilite": "PX102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4695,
+            "libelle": "Service Production Régional Sud-Est",
+            "code": null,
+            "centre_responsabilite": "PX232",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3754,
+            "libelle": "Service Production Régionale Centre",
+            "code": null,
+            "centre_responsabilite": "PX212",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 173,
+            "libelle": "Service Production Régionale EST",
+            "code": null,
+            "centre_responsabilite": "PX201",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3454,
+            "libelle": "Service Production Régionale Sud",
+            "code": null,
+            "centre_responsabilite": "PX202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4675,
+            "libelle": "Service Production Régionale Sud Est",
+            "code": null,
+            "centre_responsabilite": "PX232",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 172,
+            "libelle": "Service Production Régionale-Sud",
+            "code": null,
+            "centre_responsabilite": "PX202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1492,
+            "libelle": "Service Production et Gestion des Donnees",
+            "code": null,
+            "centre_responsabilite": "SI203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 171,
+            "libelle": "Service ProductionRégionale-Centre",
+            "code": null,
+            "centre_responsabilite": "PX212",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1452,
+            "libelle": "Service Projets, Urbanisation et Securite",
+            "code": null,
+            "centre_responsabilite": "SI002",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 181,
+            "libelle": "Service Protections et Teleconduite",
+            "code": null,
+            "centre_responsabilite": "DT302",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2794,
+            "libelle": "Service Protections et Téléconduite",
+            "code": null,
+            "centre_responsabilite": "DT302",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3734,
+            "libelle": "Service Protocole",
+            "code": null,
+            "centre_responsabilite": "DG018",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1052,
+            "libelle": "Service Prépaiement",
+            "code": null,
+            "centre_responsabilite": "PC205",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4516,
+            "libelle": "Service Prévention et Prise en Charge Psychosociale",
+            "code": null,
+            "centre_responsabilite": "CH163",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2018,
+            "libelle": "Service Prévisions et Recrutements",
+            "code": null,
+            "centre_responsabilite": "CH153",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 665,
+            "libelle": "Service Prévisions, Analyses Financières et Emprunts",
+            "code": null,
+            "centre_responsabilite": "FI203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2735,
+            "libelle": "Service Recherche Innovation et Formation Professionnelle Certifiante",
+            "code": null,
+            "centre_responsabilite": "SG107",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4455,
+            "libelle": "Service Recherche, Innovation et Formation Certifiante",
+            "code": null,
+            "centre_responsabilite": "SG107",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4775,
+            "libelle": "Service Recouvrement\/DCR\/DAJ",
+            "code": null,
+            "centre_responsabilite": "DJ104",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3063,
+            "libelle": "Service Relations Com Partenaires Publics Institutionnels",
+            "code": null,
+            "centre_responsabilite": "AF202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3061,
+            "libelle": "Service Relations Commerciales et Partenaires Prives",
+            "code": null,
+            "centre_responsabilite": "AF203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3934,
+            "libelle": "Service Relations Commerciales, PP, Instutions et  Assimilés",
+            "code": null,
+            "centre_responsabilite": "AF202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3634,
+            "libelle": "Service Relations Commerciales, Partenaires Publics, Institutions et Assimilés",
+            "code": null,
+            "centre_responsabilite": "AF202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2874,
+            "libelle": "Service Reporting",
+            "code": null,
+            "centre_responsabilite": "PP103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3914,
+            "libelle": "Service Reporting\/DRCI\/DPC",
+            "code": null,
+            "centre_responsabilite": "PC108",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3774,
+            "libelle": "Service Règlement",
+            "code": null,
+            "centre_responsabilite": "FI204",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3355,
+            "libelle": "Service Réglementation et Veille Juridique",
+            "code": null,
+            "centre_responsabilite": "DJ103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4495,
+            "libelle": "Service Securité du Système d'Information",
+            "code": null,
+            "centre_responsabilite": "DG024",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4297,
+            "libelle": "Service Spécialité Commercial et Support",
+            "code": null,
+            "centre_responsabilite": "SG106",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4295,
+            "libelle": "Service Spécialité Production",
+            "code": null,
+            "centre_responsabilite": "SG104",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4435,
+            "libelle": "Service Spécialité Réseaux Electriques",
+            "code": null,
+            "centre_responsabilite": "SG105",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1934,
+            "libelle": "Service Statistiques et Reporting",
+            "code": null,
+            "centre_responsabilite": "EG102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2914,
+            "libelle": "Service Suivi Achat Combustibles Lubrifiants et Gestion Logistique",
+            "code": null,
+            "centre_responsabilite": "PA102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3060,
+            "libelle": "Service Suivi Achat Combustibles Lubrifiants et Gestion Logistique\/DAC",
+            "code": null,
+            "centre_responsabilite": "PA102",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1157,
+            "libelle": "Service Suivi Consommation Clients",
+            "code": null,
+            "centre_responsabilite": "PC203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1158,
+            "libelle": "Service Suivi Consommation Clients Généraux et Grandes Puissances",
+            "code": null,
+            "centre_responsabilite": "PC203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2056,
+            "libelle": "Service Suivi Consommations Clients DMC",
+            "code": null,
+            "centre_responsabilite": "PC203",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1672,
+            "libelle": "Service Suivi Contrats O&M",
+            "code": null,
+            "centre_responsabilite": "PA116",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2634,
+            "libelle": "Service Suivi Controle et Gestion DP",
+            "code": null,
+            "centre_responsabilite": "PA103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3059,
+            "libelle": "Service Suivi Controle et Gestion DPP",
+            "code": null,
+            "centre_responsabilite": "PA103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1497,
+            "libelle": "Service Supervision, Helpdesk et Support",
+            "code": null,
+            "centre_responsabilite": "SI103",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4382,
+            "libelle": "Service Système d'Informations Géographiques",
+            "code": null,
+            "centre_responsabilite": "PE413",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3414,
+            "libelle": "Service Technique DC 3",
+            "code": null,
+            "centre_responsabilite": "CR306",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2235,
+            "libelle": "Service Technique DC1",
+            "code": null,
+            "centre_responsabilite": "CR111",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2236,
+            "libelle": "Service Technique DC2",
+            "code": null,
+            "centre_responsabilite": "CR207",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1593,
+            "libelle": "Service Travaux et Appui Logistique",
+            "code": null,
+            "centre_responsabilite": "DD204",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1792,
+            "libelle": "Service Travaux et Appuis Logistiques",
+            "code": null,
+            "centre_responsabilite": "DD204",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 82,
+            "libelle": "Service Trésorerie",
+            "code": null,
+            "centre_responsabilite": "FI202",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2394,
+            "libelle": "Service Téléconduite Distribution",
+            "code": null,
+            "centre_responsabilite": "DD206",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4777,
+            "libelle": "Service Veille Juridique",
+            "code": null,
+            "centre_responsabilite": "DJ204",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2020,
+            "libelle": "Services Actions Sociales et Relations Partenariales",
+            "code": null,
+            "centre_responsabilite": "CH162",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3894,
+            "libelle": "Services Ventes\/DT\/DCA",
+            "code": null,
+            "centre_responsabilite": "AF104",
+            "type": "SER",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4296,
+            "libelle": "Spécialité Réseaux Electriques",
+            "code": null,
+            "centre_responsabilite": "SG105",
+            "type": "SER",
+            "is_active": 1
+        }
+    ],
+    "equipes": [
+        {
+            "nom": "GMMB",
+            "description": null
+        },
+        {
+            "nom": "GTE",
+            "description": null
+        },
+        {
+            "nom": "GNS",
+            "description": null
+        },
+        {
+            "nom": "GP Pool",
+            "description": null
+        },
+        {
+            "nom": "Gp PB & BT",
+            "description": null
+        },
+        {
+            "nom": "Equipe Froid",
+            "description": null
+        },
+        {
+            "nom": "Equipe Menuiserie",
+            "description": null
+        },
+        {
+            "nom": "Equipe Travaux",
+            "description": null
+        },
+        {
+            "nom": "CGM",
+            "description": null
+        }
+    ],
+    "directions": [
+        {
+            "oracle_org_id": 24,
+            "libelle": "Direction Générale",
+            "code": null,
+            "centre_responsabilite": "DG001",
+            "type": "DG",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4055,
+            "libelle": "EM Direction Générale",
+            "code": null,
+            "centre_responsabilite": "DG001",
+            "type": "DG",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2834,
+            "libelle": "Direction Principale Commerciale",
+            "code": null,
+            "centre_responsabilite": "PC001",
+            "type": "DIRP",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2954,
+            "libelle": "Direction Principale Equipement",
+            "code": null,
+            "centre_responsabilite": "PE001",
+            "type": "DIRP",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2854,
+            "libelle": "Direction Principale Production",
+            "code": null,
+            "centre_responsabilite": "PP001",
+            "type": "DIRP",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3094,
+            "libelle": "Direction Principale Qualité et Supports",
+            "code": null,
+            "centre_responsabilite": "SQ001",
+            "type": "DIRP",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2894,
+            "libelle": "Direction Principale Réseaux",
+            "code": null,
+            "centre_responsabilite": "PR001",
+            "type": "DIRP",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4255,
+            "libelle": "EM Direction Principale Equipement",
+            "code": null,
+            "centre_responsabilite": "PE001",
+            "type": "DIRP",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4415,
+            "libelle": "EM Direction Principale Production",
+            "code": null,
+            "centre_responsabilite": "PP001",
+            "type": "DIRP",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2955,
+            "libelle": "Cellule Projets Production",
+            "code": null,
+            "centre_responsabilite": "PE221",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1854,
+            "libelle": "Cellule de Coordination des Projets du Transport",
+            "code": null,
+            "centre_responsabilite": "PE202",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3714,
+            "libelle": "Cellule de Suivi du Plan de Dévelopement Stratégique 2021-2025",
+            "code": null,
+            "centre_responsabilite": "DG019",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4355,
+            "libelle": "Coordination Compact 2026",
+            "code": null,
+            "centre_responsabilite": "PE002",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1954,
+            "libelle": "Coordination Programmes BM-UE",
+            "code": null,
+            "centre_responsabilite": "PE501",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2856,
+            "libelle": "Direction Approvisionnement Combustible, Ingénierie et Suivi Contrats",
+            "code": null,
+            "centre_responsabilite": "PA001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2734,
+            "libelle": "Direction CFPP",
+            "code": null,
+            "centre_responsabilite": "SG101",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3056,
+            "libelle": "Direction Clientèle Réguliere",
+            "code": null,
+            "centre_responsabilite": "CR001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3055,
+            "libelle": "Direction Clientèle d'Affaires",
+            "code": null,
+            "centre_responsabilite": "AF001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1132,
+            "libelle": "Direction Commerciale de la Communication et de la Clientele",
+            "code": null,
+            "centre_responsabilite": "DC001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3334,
+            "libelle": "Direction Communication et  Marketing",
+            "code": null,
+            "centre_responsabilite": "MC001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 41,
+            "libelle": "Direction Distribution",
+            "code": null,
+            "centre_responsabilite": "DD001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2974,
+            "libelle": "Direction Electrification",
+            "code": null,
+            "centre_responsabilite": "PE201",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4362,
+            "libelle": "Direction Equipement Réseaux",
+            "code": null,
+            "centre_responsabilite": "PE201",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4275,
+            "libelle": "Direction Equipement de Production",
+            "code": null,
+            "centre_responsabilite": "PE101",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2857,
+            "libelle": "Direction Exploitation",
+            "code": null,
+            "centre_responsabilite": "PX001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2375,
+            "libelle": "Direction Exploitation du Systeme et des Achats",
+            "code": null,
+            "centre_responsabilite": "EA001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4379,
+            "libelle": "Direction Génie Civil",
+            "code": null,
+            "centre_responsabilite": "PE401",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2994,
+            "libelle": "Direction Innovation Technologique",
+            "code": null,
+            "centre_responsabilite": "PE301",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4475,
+            "libelle": "Direction Passation des Marchés",
+            "code": null,
+            "centre_responsabilite": "PM001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 40,
+            "libelle": "Direction Production",
+            "code": null,
+            "centre_responsabilite": "PX001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3975,
+            "libelle": "Direction Projets de Production",
+            "code": null,
+            "centre_responsabilite": "PE100",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 495,
+            "libelle": "Direction de l'Administration, du Patrimoine et des Approvisionnements",
+            "code": null,
+            "centre_responsabilite": "DA001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1432,
+            "libelle": "Direction de l'Audit Interne et du Controle",
+            "code": null,
+            "centre_responsabilite": "AC001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 832,
+            "libelle": "Direction de la Qualité, de la Sécurité et de l'Environnement",
+            "code": null,
+            "centre_responsabilite": "QE001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 833,
+            "libelle": "Direction des Affaires Juridiques",
+            "code": null,
+            "centre_responsabilite": "DJ001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 492,
+            "libelle": "Direction des Etudes Générales",
+            "code": null,
+            "centre_responsabilite": "EG001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2355,
+            "libelle": "Direction des Finances et de la Comptabilite",
+            "code": null,
+            "centre_responsabilite": "FI001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 43,
+            "libelle": "Direction des Ressources Humaines",
+            "code": null,
+            "centre_responsabilite": "CH101",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 28,
+            "libelle": "Direction des Régions",
+            "code": null,
+            "centre_responsabilite": "SG011",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 125,
+            "libelle": "Direction des Systèmes d'Information",
+            "code": null,
+            "centre_responsabilite": "SI001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 45,
+            "libelle": "Direction du Transport",
+            "code": null,
+            "centre_responsabilite": "DT001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4095,
+            "libelle": "EM Cellule Communication",
+            "code": null,
+            "centre_responsabilite": "MC001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4076,
+            "libelle": "EM Cellule Projets Génie Civile",
+            "code": null,
+            "centre_responsabilite": "PE401",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4385,
+            "libelle": "EM Coordination Programmes BM-UE",
+            "code": null,
+            "centre_responsabilite": "PE500",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4077,
+            "libelle": "EM Direction Administration et du Patrimoine",
+            "code": null,
+            "centre_responsabilite": "DA001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4115,
+            "libelle": "EM Direction CFPP",
+            "code": null,
+            "centre_responsabilite": "SG101",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4335,
+            "libelle": "EM Direction Distribution",
+            "code": null,
+            "centre_responsabilite": "DD001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4257,
+            "libelle": "EM Direction Electrification",
+            "code": null,
+            "centre_responsabilite": "PE201",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4363,
+            "libelle": "EM Direction Equipement Réseaux",
+            "code": null,
+            "centre_responsabilite": "PE201",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4256,
+            "libelle": "EM Direction Gestion des Projets de Production",
+            "code": null,
+            "centre_responsabilite": "PE101",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2376,
+            "libelle": "EM Direction Génie Civil",
+            "code": null,
+            "centre_responsabilite": "PE401",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4258,
+            "libelle": "EM Direction Innovation Technologique",
+            "code": null,
+            "centre_responsabilite": "PE301",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4359,
+            "libelle": "EM Direction Projet Production",
+            "code": null,
+            "centre_responsabilite": "PE001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4056,
+            "libelle": "EM Direction des Ressources Humaines",
+            "code": null,
+            "centre_responsabilite": "CH101",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 54,
+            "libelle": "Présidence du Conseil d'Administration",
+            "code": null,
+            "centre_responsabilite": "CA001",
+            "type": "DIR",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1332,
+            "libelle": "Secretariat General",
+            "code": null,
+            "centre_responsabilite": "SG001",
+            "type": "DIR",
+            "is_active": 1
+        }
+    ],
+    "departements": [
+        {
+            "oracle_org_id": 2494,
+            "libelle": " Projet NSIC",
+            "code": null,
+            "centre_responsabilite": "DG013",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4575,
+            "libelle": "BART",
+            "code": null,
+            "centre_responsabilite": "EA301",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4595,
+            "libelle": "Bureau d'Accès des Tiers au réseau deTransport",
+            "code": null,
+            "centre_responsabilite": "EA301",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3054,
+            "libelle": "Cellule Coordination Agences Régionales",
+            "code": null,
+            "centre_responsabilite": "CR401",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2595,
+            "libelle": "Cellule Efficacite Energétique",
+            "code": null,
+            "centre_responsabilite": "PE204",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 144,
+            "libelle": "Cellule Etudes Financières",
+            "code": null,
+            "centre_responsabilite": "47120",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4356,
+            "libelle": "Cellule PADERAU",
+            "code": null,
+            "centre_responsabilite": "PE003",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2254,
+            "libelle": "Cellule Pole 2020",
+            "code": null,
+            "centre_responsabilite": "PE205",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2594,
+            "libelle": "Cellule Projet PAMACEL et Efficacite Energétique",
+            "code": null,
+            "centre_responsabilite": "PE004",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3018,
+            "libelle": "Cellule Projets Téléconduite",
+            "code": null,
+            "centre_responsabilite": "PE303",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2514,
+            "libelle": "Cellule SMARTGRID, Com et Stockage d'Energie",
+            "code": null,
+            "centre_responsabilite": "PE302",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3019,
+            "libelle": "Cellule SMARTGRID, Commercial et Stokage d'Energie",
+            "code": null,
+            "centre_responsabilite": "PE302",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4357,
+            "libelle": "Cellule Suivi Evaluation\/DPE",
+            "code": null,
+            "centre_responsabilite": "PE005",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2294,
+            "libelle": "Cellule de Controle Interne",
+            "code": null,
+            "centre_responsabilite": "AC531",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2094,
+            "libelle": "Cellule de Coordination des Applications Metiers",
+            "code": null,
+            "centre_responsabilite": "SI004",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 75,
+            "libelle": "Coordination Médecine du Travail",
+            "code": null,
+            "centre_responsabilite": "CH141",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2895,
+            "libelle": "Departement Achats d'Energie et Gaz",
+            "code": null,
+            "centre_responsabilite": "EA201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1814,
+            "libelle": "Departement Approvisionnement Combustible DP",
+            "code": null,
+            "centre_responsabilite": "PA101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1433,
+            "libelle": "Departement Audit Interne",
+            "code": null,
+            "centre_responsabilite": "AC521",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1472,
+            "libelle": "Departement Developpement et Exploitation des Services",
+            "code": null,
+            "centre_responsabilite": "SI201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1512,
+            "libelle": "Departement Equipement de Réseau",
+            "code": null,
+            "centre_responsabilite": "PE203",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2897,
+            "libelle": "Departement Exploitation du Systéme Electrique",
+            "code": null,
+            "centre_responsabilite": "EA101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1412,
+            "libelle": "Departement Fiscalite",
+            "code": null,
+            "centre_responsabilite": "FI301",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1434,
+            "libelle": "Departement Inspection des Processus Metier",
+            "code": null,
+            "centre_responsabilite": "AC621",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1435,
+            "libelle": "Departement Inspection des Processus Support",
+            "code": null,
+            "centre_responsabilite": "AC611",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1533,
+            "libelle": "Departement Maintenance Distribution Dakar",
+            "code": null,
+            "centre_responsabilite": "DD301",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2896,
+            "libelle": "Departement Protections et Telecoms",
+            "code": null,
+            "centre_responsabilite": "DT301",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1473,
+            "libelle": "Departement Systemes et Reseaux",
+            "code": null,
+            "centre_responsabilite": "SI101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2295,
+            "libelle": "Délégation Inspection",
+            "code": null,
+            "centre_responsabilite": "AC601",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2016,
+            "libelle": "Département Acquisition et Développement des Compétences",
+            "code": null,
+            "centre_responsabilite": "CH151",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 131,
+            "libelle": "Département Administration Générale",
+            "code": null,
+            "centre_responsabilite": "DA201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 68,
+            "libelle": "Département Administration du Personnel et Rémunération",
+            "code": null,
+            "centre_responsabilite": "CH111",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2855,
+            "libelle": "Département Administration et Reporting",
+            "code": null,
+            "centre_responsabilite": "PP101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2019,
+            "libelle": "Département Affaires Sociales",
+            "code": null,
+            "centre_responsabilite": "CH161",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4635,
+            "libelle": "Département Communication-DCM",
+            "code": null,
+            "centre_responsabilite": "MC101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4615,
+            "libelle": "Département Communication\/DCM",
+            "code": null,
+            "centre_responsabilite": "MC101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 76,
+            "libelle": "Département Comptabilité",
+            "code": null,
+            "centre_responsabilite": "FI101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3096,
+            "libelle": "Département Conduite des Marchés",
+            "code": null,
+            "centre_responsabilite": "SQ012",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4477,
+            "libelle": "Département Conduite des Marchés Supports",
+            "code": null,
+            "centre_responsabilite": "PM201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4476,
+            "libelle": "Département Conduite des Marchés de l'Exploitation",
+            "code": null,
+            "centre_responsabilite": "PM101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 182,
+            "libelle": "Département Conduite et Gestion Technique",
+            "code": null,
+            "centre_responsabilite": "DD201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4755,
+            "libelle": "Département Contentieux et Recouvrement",
+            "code": null,
+            "centre_responsabilite": "DJ101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 912,
+            "libelle": "Département Contentieux, Veille Juridique et Gestion Foncière",
+            "code": null,
+            "centre_responsabilite": "DJ101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4756,
+            "libelle": "Département Contrats Veille Juridique et Assurances",
+            "code": null,
+            "centre_responsabilite": "DJ201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 913,
+            "libelle": "Département Contrats et Gestion des Risques",
+            "code": null,
+            "centre_responsabilite": "DJ201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3174,
+            "libelle": "Département Controle Interne",
+            "code": null,
+            "centre_responsabilite": "AC531",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4737,
+            "libelle": "Département Controle du RMA et Tarification",
+            "code": null,
+            "centre_responsabilite": "EG331",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 46,
+            "libelle": "Département Contrôle de Gestion",
+            "code": null,
+            "centre_responsabilite": "AC511",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 338,
+            "libelle": "Département Contrôle des Revenus et Performances",
+            "code": null,
+            "centre_responsabilite": "37310",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3834,
+            "libelle": "Département Coordination des Agences Régionales",
+            "code": null,
+            "centre_responsabilite": "CR401",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 656,
+            "libelle": "Département Etudes Economiques Générales",
+            "code": null,
+            "centre_responsabilite": "EG101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4380,
+            "libelle": "Département Etudes Techniques et Gestion des Immobilisations",
+            "code": null,
+            "centre_responsabilite": "PE411",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2136,
+            "libelle": "Département Etudes et Controles",
+            "code": null,
+            "centre_responsabilite": "PE203",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 820,
+            "libelle": "Département Exploitation Dakar 2",
+            "code": null,
+            "centre_responsabilite": "DC301",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 653,
+            "libelle": "Département Exploitation du Systéme Electrique",
+            "code": null,
+            "centre_responsabilite": "EA101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 145,
+            "libelle": "Département Finances",
+            "code": null,
+            "centre_responsabilite": "FI201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 815,
+            "libelle": "Département Gestion et Coordination",
+            "code": null,
+            "centre_responsabilite": "DP301",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 336,
+            "libelle": "Département Grands Comptes",
+            "code": null,
+            "centre_responsabilite": "AF001",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4677,
+            "libelle": "Département Ingenierie et Suivi Contrat",
+            "code": null,
+            "centre_responsabilite": "PA111",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 823,
+            "libelle": "Département Maintenance Distribution Dakar",
+            "code": null,
+            "centre_responsabilite": "DD301",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2234,
+            "libelle": "Département Maintenance Distribution Régionale",
+            "code": null,
+            "centre_responsabilite": "DD501",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1072,
+            "libelle": "Département Maintenance Transport",
+            "code": null,
+            "centre_responsabilite": "DT201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1352,
+            "libelle": "Département Marketing",
+            "code": null,
+            "centre_responsabilite": "MC201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3394,
+            "libelle": "Département Mesurage et Controle",
+            "code": null,
+            "centre_responsabilite": "PC201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2054,
+            "libelle": "Département Mesurage et Controle DCC",
+            "code": null,
+            "centre_responsabilite": "PC201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3134,
+            "libelle": "Département Normalisation et Qualite de Service",
+            "code": null,
+            "centre_responsabilite": "PR101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 59,
+            "libelle": "Département Planification",
+            "code": null,
+            "centre_responsabilite": "EG201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4736,
+            "libelle": "Département Planification Production",
+            "code": null,
+            "centre_responsabilite": "EG311",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4735,
+            "libelle": "Département Planification Réseaux",
+            "code": null,
+            "centre_responsabilite": "EG321",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 821,
+            "libelle": "Département Pratiques Commerciales et Relation Clientèle",
+            "code": null,
+            "centre_responsabilite": "PC101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 165,
+            "libelle": "Département Production Bel Air",
+            "code": null,
+            "centre_responsabilite": "10210",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1612,
+            "libelle": "Département Production Dakar",
+            "code": null,
+            "centre_responsabilite": "PX101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 623,
+            "libelle": "Département Production Régionale",
+            "code": null,
+            "centre_responsabilite": "PX201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4378,
+            "libelle": "Département Projet Commercial",
+            "code": null,
+            "centre_responsabilite": "PE305",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3015,
+            "libelle": "Département Projet Energie Conventionnelle",
+            "code": null,
+            "centre_responsabilite": "PE103",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3014,
+            "libelle": "Département Projet Energie Renouvelable",
+            "code": null,
+            "centre_responsabilite": "PE102",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3017,
+            "libelle": "Département Projets Distribution",
+            "code": null,
+            "centre_responsabilite": "PE221",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4361,
+            "libelle": "Département Projets Energies  Conventionnelles",
+            "code": null,
+            "centre_responsabilite": "PE103",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4360,
+            "libelle": "Département Projets Energies Renouvelables",
+            "code": null,
+            "centre_responsabilite": "PE102",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3016,
+            "libelle": "Département Projets Transport",
+            "code": null,
+            "centre_responsabilite": "PE211",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4383,
+            "libelle": "Département Projets d'Investissement",
+            "code": null,
+            "centre_responsabilite": "PE421",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2135,
+            "libelle": "Département Projets de Distribution",
+            "code": null,
+            "centre_responsabilite": "PE221",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4738,
+            "libelle": "Département Prospective et Veille Economique",
+            "code": null,
+            "centre_responsabilite": "EG341",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3095,
+            "libelle": "Département Qualite, Sécurité et Environnement",
+            "code": null,
+            "centre_responsabilite": "QE001",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1154,
+            "libelle": "Département Relation Clientèle et Innovation",
+            "code": null,
+            "centre_responsabilite": "PC101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3574,
+            "libelle": "Département Relation Commerciale\/DCA",
+            "code": null,
+            "centre_responsabilite": "AF201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3058,
+            "libelle": "Département Relations Commerciales",
+            "code": null,
+            "centre_responsabilite": "AF201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4377,
+            "libelle": "Département SMARTGRID et Stockage d'Energie",
+            "code": null,
+            "centre_responsabilite": "PE304",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4555,
+            "libelle": "Département Santé et Securité Dakar 2",
+            "code": null,
+            "centre_responsabilite": "CH142",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4556,
+            "libelle": "Département Santé et Securité Dakar 4",
+            "code": null,
+            "centre_responsabilite": "CH144",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4535,
+            "libelle": "Département Santé et Securité au Travail Dakar 3",
+            "code": null,
+            "centre_responsabilite": "CH143",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4518,
+            "libelle": "Département Santé et Securité au Travail\/Dakar 2",
+            "code": null,
+            "centre_responsabilite": "CH142",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 58,
+            "libelle": "Département Systèmes et Réseaux",
+            "code": null,
+            "centre_responsabilite": "44210",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3057,
+            "libelle": "Département Technique",
+            "code": null,
+            "centre_responsabilite": "AF101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3554,
+            "libelle": "Département Technique\/DCA",
+            "code": null,
+            "centre_responsabilite": "AF100",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 26,
+            "libelle": "Département des Approvisionnements",
+            "code": null,
+            "centre_responsabilite": "DA101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4036,
+            "libelle": "EM Departement Relation Clientèle et Innovations",
+            "code": null,
+            "centre_responsabilite": "PC101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4075,
+            "libelle": "EM Département Achat Energie et Gaz",
+            "code": null,
+            "centre_responsabilite": "EA001",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4175,
+            "libelle": "EM Département Administration et Reporting",
+            "code": null,
+            "centre_responsabilite": "PP101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4096,
+            "libelle": "EM Département Marketing",
+            "code": null,
+            "centre_responsabilite": "MC201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4035,
+            "libelle": "EM Département Mesurage et Controle",
+            "code": null,
+            "centre_responsabilite": "PC201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4375,
+            "libelle": "EM Département Projets Distribution",
+            "code": null,
+            "centre_responsabilite": "PE221",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4364,
+            "libelle": "EM Département Projets Transport",
+            "code": null,
+            "centre_responsabilite": "PE211",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4384,
+            "libelle": "EM Département Projets d'Investissement",
+            "code": null,
+            "centre_responsabilite": "PE421",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4381,
+            "libelle": "EM Dépt Technique et Gestion des Immobilisations",
+            "code": null,
+            "centre_responsabilite": "PE411",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2034,
+            "libelle": "Medecin du Travail Dakar 2",
+            "code": null,
+            "centre_responsabilite": "CH142",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2035,
+            "libelle": "Medecin du Travail Dakar 3",
+            "code": null,
+            "centre_responsabilite": "CH143",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1034,
+            "libelle": "Projet Maîtrise de la Demande et Economie d'Energie",
+            "code": null,
+            "centre_responsabilite": "40520",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 499,
+            "libelle": "Sous Direction%d'Information%",
+            "code": null,
+            "centre_responsabilite": "40710",
+            "is_active": 1
+        }
+    ],
+    "delegations": [
+        {
+            "oracle_org_id": 4315,
+            "libelle": "Cellule Exploitation et Maintenance OMVG",
+            "code": null,
+            "centre_responsabilite": "PR003",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4517,
+            "libelle": "Coordination Santé et Securité au Travail",
+            "code": null,
+            "centre_responsabilite": "CH141",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 3115,
+            "libelle": "Délégation Audit et Controle",
+            "code": null,
+            "centre_responsabilite": "AC501",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1572,
+            "libelle": "Délégation Centrale Dakar 1",
+            "code": null,
+            "centre_responsabilite": "CR101",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 1573,
+            "libelle": "Délégation Centrale Dakar 2",
+            "code": null,
+            "centre_responsabilite": "CR201",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 2714,
+            "libelle": "Délégation Centrale Dakar 3",
+            "code": null,
+            "centre_responsabilite": "CR301",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 150,
+            "libelle": "Délégation Régionale Centre Est",
+            "code": null,
+            "centre_responsabilite": "CE001",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 149,
+            "libelle": "Délégation Régionale Centre Ouest",
+            "code": null,
+            "centre_responsabilite": "CO001",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 148,
+            "libelle": "Délégation Régionale Nord",
+            "code": null,
+            "centre_responsabilite": "RN001",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 151,
+            "libelle": "Délégation Régionale Sud",
+            "code": null,
+            "centre_responsabilite": "RS001",
+            "is_active": 1
+        },
+        {
+            "oracle_org_id": 4116,
+            "libelle": "EM Délégation Centrale DKR1",
+            "code": null,
+            "centre_responsabilite": "CR101",
+            "is_active": 1
+        }
+    ]
+}
