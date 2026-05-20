@@ -43,7 +43,8 @@ if [ "${APP_ENV:-local}" = "production" ]; then
     fi
 
     if [ -z "${APP_KEY:-}" ] || [ "${APP_KEY}" = "" ]; then
-        php artisan key:generate --force
+        handle_startup_cmd php artisan key:generate --force \
+            || echo "[entrypoint] APP_KEY vide : éditez .env sur le serveur (APP_KEY=base64:...)"
     fi
 
     php artisan storage:link --force 2>/dev/null || true

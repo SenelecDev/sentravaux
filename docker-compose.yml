@@ -17,7 +17,7 @@ services:
       DB_HOST: db
       DB_PORT: 3306
     volumes:
-      - ./.env:/var/www/html/.env:ro
+      - ./.env:/var/www/html/.env
       - sentravaux_storage:/var/www/html/storage/app
       - ./storage/logs:/var/www/html/storage/logs
     depends_on:
@@ -80,7 +80,7 @@ services:
       DB_HOST: db
       DB_PORT: 3306
     volumes:
-      - ./.env:/var/www/html/.env:ro
+      - ./.env:/var/www/html/.env
     command: >
       sh -c "while true; do php /var/www/html/artisan schedule:run --verbose --no-interaction; sleep 60; done"
     depends_on:
