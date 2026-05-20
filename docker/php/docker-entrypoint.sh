@@ -35,8 +35,11 @@ if [ "${APP_ENV:-local}" = "production" ]; then
     wait_for_db || true
 
     if [ ! -f .env ]; then
-        echo "[entrypoint] Fichier .env manquant."
-        exit 1
+        if [ -z "${APP_KEY:-}" ] && [ -z "${DB_HOST:-}" ]; then
+            echo "[entrypoint] Fichier .env manquant. Créez /var/www/sentravaux/.env sur l'hôte (voir .env.docker.example)."
+            exit 1
+        fi
+        echo "[entrypoint] Avertissement: .env absent dans le conteneur, variables chargées via Docker."
     fi
 
     if [ -z "${APP_KEY:-}" ] || [ "${APP_KEY}" = "" ]; then

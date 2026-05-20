@@ -45,10 +45,12 @@ Ou `git clone` si dépôt disponible.
 ## 2. Configuration
 
 ```bash
-cd /opt/sentravaux
+cd /var/www/sentravaux   # ou /opt/sentravaux
 cp .env.docker.example .env
 nano .env
 ```
+
+Le fichier `.env` doit exister **sur le serveur** dans le dossier du projet : il est monté dans le conteneur `app` (il n'est pas inclus dans l'image Docker).
 
 Variables importantes :
 
