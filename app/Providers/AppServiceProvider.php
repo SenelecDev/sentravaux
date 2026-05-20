@@ -31,8 +31,18 @@ class AppServiceProvider extends ServiceProvider
             }
         });
 
+        // Utiliser l'URL réelle de la requête (IP, port, proxy Apache)
+        // Évite ERR_NAME_NOT_RESOLVED si APP_URL=http://sentravaux ou placeholder .env
+        if (!$this->app->runningInConsole()) {
+            $request = $this->app->make('request');
+            if ($request && $request->getHttpHost()) {
+                URL::forceRootUrl($request->getSchemeAndHttpHost());
+                return;
+            }
+        }
+
         $root = config('app.url');
-        if (is_string($root) && $root !== '') {
+        if (is_string($root) && $root !== '' && !str_contains($root, 'VOTRE_SERVEUR')) {
             URL::forceRootUrl(rtrim($root, '/'));
         }
     }
