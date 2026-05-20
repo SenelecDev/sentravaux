@@ -12,11 +12,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
+        $seeders = [
             RolesAndPermissionsSeeder::class,
             ReferenceDataSeeder::class,
             AdminUserSeeder::class,
-            SimulateUsersSeeder::class,
-        ]);
+        ];
+
+        // Faker / factories : développement uniquement (composer --no-dev en prod)
+        if (app()->environment('local')) {
+            $seeders[] = SimulateUsersSeeder::class;
+        }
+
+        $this->call($seeders);
     }
 }
